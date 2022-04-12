@@ -1,0 +1,25 @@
+.navWrapper{
+    width: 100%;
+    padding: 10px;
+    margin: auto;
+    height: 55px;
+    display: flex;
+    background-color: #161616;
+    justify-content:space-between;
+}
+.logo{
+    font-size: 30px;
+    margin: auto 15px;
+    text-decoration: none;
+    color: white;
+}
+.options{
+    margin:auto 0;
+    display: flex;
+}
+.navOptions{
+    font-size: 15px;
+    margin: auto 15px;
+    text-decoration: none;
+    color: white;
+}
