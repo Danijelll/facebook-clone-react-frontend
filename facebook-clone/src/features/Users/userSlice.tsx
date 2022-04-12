@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import UserService from "../../services/userService";
 
 const initialState = {
     user: [],
@@ -8,8 +9,8 @@ export const userSlice = createSlice({
     name: "user",
     initialState: { value: { username: "", email: "", password: "" } },
     reducers: {
-        login: (state, action) => {
-            state.value = action.payload;
+        login: (state, payload) => {
+            UserService.login(payload);
         }
     }
 });
