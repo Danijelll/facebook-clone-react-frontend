@@ -9,7 +9,7 @@ function Login() {
         <input className="input" type="password" placeholder='Password...' />
         <button onClick={ () => {console.log("asd");
         }} className="button">Login</button>
-        <Link className="link" to="/register">Dont have an account? Register</Link>
+        <p className="link-text">Dont have an account? <Link className="link" to="/register">Register</Link></p>
 
     </div>
   )

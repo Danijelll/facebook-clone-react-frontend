@@ -1,25 +1,32 @@
-.navWrapper{
+a {
+    text-decoration: none;
+}
+
+.navWrapper {
     width: 100%;
     padding: 10px;
     margin: auto;
-    height: 55px;
+    height: 60px;
     display: flex;
-    background-color: #161616;
-    justify-content:space-between;
+    background-color: #16161699;
+    justify-content: space-between;
     text-decoration: none;
 }
-.logo{
+
+.logo {
     font-size: 30px;
-    margin: auto 15px;
+    margin: auto 15px auto;
     text-decoration: none;
     color: white;
 }
-.options{
-    margin:auto 0;
+
+.options {
+    margin: auto 10px auto;
     display: flex;
 }
-.navOptions{
-    font-size: 15px;
+
+.navOptions {
+    font-size: 20px;
     margin: auto 15px;
     text-decoration: none;
     color: white;

@@ -8,7 +8,7 @@ import Home from './pages/Home/Home';
 import Nav from './components/Nav/Nav';
 
 const store = configureStore({
-  reducer:{
+  reducer: {
 
   },
 });
@@ -16,14 +16,16 @@ const store = configureStore({
 function App() {
   return (
     <Provider store={store}>
-    <Router>
-      <Nav />
-      <Routes>
-        <Route path='/' element={<Login/>}/>
-        <Route path='/register' element={<Register/>}/>
-        <Route path='/home' element={<Home/>}/>
-      </Routes>
-    </Router>
+      <div className='root'>
+        <Router>
+          <Nav />
+          <Routes>
+            <Route path='/' element={<Login />} />
+            <Route path='/register' element={<Register />} />
+            <Route path='/home' element={<Home />} />
+          </Routes>
+        </Router>
+      </div>
     </Provider>
   );
 }
