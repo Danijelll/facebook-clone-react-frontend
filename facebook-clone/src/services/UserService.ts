@@ -2,7 +2,7 @@ import axios from "./axios";
 import { useNavigate } from "react-router-dom";
 import { ILogin, IRegister } from "../interfaces/IUser";
 
-class UserService{
+class UserService {
 
     async login(user: ILogin) {
         return axios.post('/login', user)
@@ -24,6 +24,18 @@ class UserService{
 
                 if (status == '200') {
                     return true;
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+    }
+    async getCurrentUserData() {
+        return axios.get('/home')
+            .then(function (response) {
+                const status = JSON.parse((response.status).toString());
+
+                if (status == '200') {
+                    return response.data;
                 }
             }).catch(function (error) {
                 console.log(error);
