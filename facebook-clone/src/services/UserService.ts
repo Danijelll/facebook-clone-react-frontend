@@ -10,7 +10,7 @@ class UserService{
                 const status = JSON.parse((response.status).toString());
 
                 if (status == '200') {
-                    useNavigate()("/home");
+                    return true;
                 }
             }).catch(function (error) {
                 console.log(error);
