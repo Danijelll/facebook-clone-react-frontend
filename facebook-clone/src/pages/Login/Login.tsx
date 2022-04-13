@@ -18,7 +18,7 @@ function Login() {
 
   const navigate = useNavigate();
 
-  const { isFirstLogin } = useLocation().state as ILoginProps;
+  const location = useLocation();
 
   const handleInput = (field: string, value: string) => {
     setLoginData({...loginData, [field]: value});
@@ -36,7 +36,7 @@ function Login() {
   return (
     <div className='wrapper'>
 
-      { isFirstLogin && <p className='confirm-email'>Please confirm your email before loging in</p>}
+      { location.state && (location.state as ILoginProps).isFirstLogin && <p className='confirm-email'>Please confirm your email before loging in</p>}
 
       <input className="input" value={loginData.username} onChange={e => handleInput('username', e.target.value)} placeholder='Username...' />
       <input className="input" value={loginData.password} onChange={e => handleInput('password', e.target.value)} type="password" placeholder='Password...' />
