@@ -1,6 +1,5 @@
 .wrapper{
     margin: 10% auto;
-    height: 35%;
     border-radius: 20px;
     background-color: #171717;
     width: 30%;
@@ -36,4 +35,13 @@
 .link-text{
     margin-top: 10px;
     color: white;
+}
+.confirm-email{
+    color: rgb(225, 134, 143);
+    background-color: rgb(67, 12, 17);
+    font-weight: 200;
+    margin: auto;
+    border-radius: 15px;
+    border: 1px solid rgb(104, 18, 27);
+    padding: 5px 20px;
 }

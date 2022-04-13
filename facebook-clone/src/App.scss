@@ -2,10 +2,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  height: 100%;
 }
 
 .root {
   background-image: linear-gradient(to right, rgba(128, 0, 128, 0.837), rgba(0, 0, 255, 0.882));
   overflow:auto;
+  height: 100vh;
 }
