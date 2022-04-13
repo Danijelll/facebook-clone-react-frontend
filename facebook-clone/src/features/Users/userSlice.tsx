@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import ILogin from "../../interfaces/IUser";
+import { ILogin, IRegister } from "../../interfaces/IUser";
 import UserService from "../../services/UserService";
 
 const initialState = {
@@ -13,20 +13,26 @@ const login = createAsyncThunk(
         return response;
     }
 )
+const register = createAsyncThunk(
+    'user/register',
+    async (registerData: IRegister, thunkAPI) => {
+        const response = await UserService.register(registerData);
+        return response;
+    }
+)
 
 export const userSlice = createSlice({
     name: "user",
     initialState: { value: { username: "", email: "", password: "" } },
     reducers: {
-        // login: (state, payload) => {
-        //     UserService.login(payload.payload);
-        // }
     },
     extraReducers: (builder) => {
         builder.addCase(login.fulfilled, (state, action) => {})
+        builder.addCase(register.fulfilled, (state, action) => {})
     },
 });
 
 export { login };
+export { register };
 export const getUser = (state: any) => state.user.user;
 export default userSlice.reducer;

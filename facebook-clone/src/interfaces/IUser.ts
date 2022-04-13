@@ -1,8 +1,10 @@
-interface ILogin{
+export interface ILogin{
     username:string,
     password:string
 }
 
-
-
-export default ILogin;
+export interface IRegister{
+    username:string,
+    email:string,
+    password:string
+}
