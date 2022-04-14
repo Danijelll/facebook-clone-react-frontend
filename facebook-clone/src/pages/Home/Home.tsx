@@ -1,11 +1,17 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { RootStore } from '../../features/store';
-import { UserSliceState } from '../../features/Users/userSlice'
+import { getCurrentUserData, UserSliceState } from '../../features/Users/userSlice'
 import './Home.scss'
 
 function Home() {
   const userData = useSelector((state: RootStore) => state.user.currentUser);
+
+    const dispatch = useDispatch();
+    useEffect(() => {
+      dispatch(getCurrentUserData());
+    }, [])
+  
 
   return (
     <div id='home-wrapper'>

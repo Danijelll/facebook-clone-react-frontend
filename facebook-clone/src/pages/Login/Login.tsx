@@ -30,7 +30,6 @@ function Login() {
 
     if (resultData) {
       navigate('/home');
-      dispatch(getCurrentUserData());
     }
   }
 
