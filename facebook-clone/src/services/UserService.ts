@@ -35,7 +35,9 @@ class UserService {
                 const status = JSON.parse((response.status).toString());
 
                 if (status == '200') {
+                    console.log(response.data);
                     return response.data;
+                    
                 }
             }).catch(function (error) {
                 console.log(error);

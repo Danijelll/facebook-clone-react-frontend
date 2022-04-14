@@ -11,4 +11,8 @@ export interface IRegister{
 
 export interface IUserData {
     id: number,
+    username: string,
+    profileImage: string,
+    coverImage: string,
+    createdOn: string
 }
