@@ -1,6 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { ILogin, IRegister } from "../../interfaces/IUser";
+import { ILogin, IRegister, IUserData } from "../../interfaces/IUser";
 import UserService from "../../services/UserService";
+
+export interface UserSliceState {
+    currentUser: IUserData;
+}
 
 const initialState = {
     user: [],
@@ -20,19 +24,27 @@ const register = createAsyncThunk(
         return response;
     }
 )
+const getCurrentUserData = createAsyncThunk(
+    'user/getCurrentUserData',
+    async () => {
+        const response = await UserService.getCurrentUserData();
+        return response;
+    }
+)
 
 export const userSlice = createSlice({
     name: "user",
-    initialState: { value: { username: "", email: "", password: "" } },
+    initialState: { currentUser: {} },
     reducers: {
     },
     extraReducers: (builder) => {
         builder.addCase(login.fulfilled, (state, action) => {})
         builder.addCase(register.fulfilled, (state, action) => {})
+        builder.addCase(getCurrentUserData.fulfilled, (state, action) => {
+            state.currentUser = action.payload;
+        })
     },
 });
 
-export { login };
-export { register };
-export const getUser = (state: any) => state.user.user;
+export { login, register, getCurrentUserData };
 export default userSlice.reducer;
