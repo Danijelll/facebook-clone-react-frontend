@@ -1,0 +1,25 @@
+.modal-backgorund {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    background-color: rgba(200, 200, 200, 0.306);
+}
+
+#modal-container {
+    margin-top: 200px;
+    width: 70%;
+    height: 500px;
+    background-color: white;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 10px 10px 4px 5px rgba(0, 0, 0, 0.500);
+}
+
+#close-modal-button {
+    right: 20px;
+}
