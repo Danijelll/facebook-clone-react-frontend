@@ -4,7 +4,7 @@ import { ILogin, IRegister } from "../interfaces/IUser";
 
 class UserService {
 
-    async login(user: ILogin) {
+    login(user: ILogin) {
         return axios.post('/login', user)
             .then(function (response) {
                 localStorage.setItem('token', response.data)
@@ -17,7 +17,7 @@ class UserService {
                 console.log(error);
             });
     }
-    async register(user: IRegister) {
+    register(user: IRegister) {
         return axios.post('/register', user)
             .then(function (response) {
                 const status = JSON.parse((response.status).toString());
@@ -29,7 +29,7 @@ class UserService {
                 console.log(error);
             });
     }
-    async getCurrentUserData() {
+    getCurrentUserData() {
         return axios.get('/home')
             .then(function (response) {
                 const status = JSON.parse((response.status).toString());
