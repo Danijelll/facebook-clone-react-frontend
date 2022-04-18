@@ -13,7 +13,7 @@ function Nav() {
                 <div className='logo'>Facebook Clone</div>
             </Link>
 
-            {!userData.id &&
+            {!userData.id ?
 
                 <div className="options">
 
@@ -27,11 +27,12 @@ function Nav() {
 
                 </div>
 
-            }
+                : null}
 
-            {userData.id &&
+            {userData.id ?
 
                 <div className="options">
+
                     <Link to="/home">
                         <div className='navOptions'>My Profile</div>
                     </Link>
@@ -47,13 +48,9 @@ function Nav() {
                     <Link to="/logout">
                         <div className='navOptions'>Logout</div>
                     </Link>
-
-
                 </div>
-
-            }
-
-
+                
+                : null}
         </div>
     )
 }
