@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router';
+import Loader from '../../components/Loader/Loader';
 import { RootStore } from '../../features/store';
 import { getCurrentUserData, UserSliceState } from '../../features/Users/userSlice'
 import AddImageModal from './Components/AddImageModal/AddImageModal';
@@ -7,17 +9,36 @@ import './Home.scss'
 
 function Home() {
   const userData = useSelector((state: RootStore) => state.user.currentUser);
+  
   const [showModal, setShowModal] = useState(false);
-  
+  const [isLoading, setIsLoading] = useState(true);
+
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(getCurrentUserData());
+    const getData = async () => {
+      await dispatch(getCurrentUserData());
+      console.log('fetching');
+
+      setIsLoading(false);
+    }
+
+    getData();
   }, [])
-  
-  
+
+  useEffect(() => {
+    if (!userData.isEmailConfirmed) {
+      navigate('/confirmEmail')
+
+    }
+  }, [])
+
   return (
     <div id='home-wrapper'>
-      {showModal && <AddImageModal closeModal={setShowModal}/>}
+      { isLoading && <Loader />}
+
+      {showModal && <AddImageModal closeModal={setShowModal} />}
 
       <div id='header'>
         <div id='profile-image-container'>
