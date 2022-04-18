@@ -13,6 +13,7 @@ export interface IUserData {
     id: number,
     username: string,
     profileImage: string,
+    isEmailConfirmed: boolean,
     coverImage: string,
     createdOn: string
 }
