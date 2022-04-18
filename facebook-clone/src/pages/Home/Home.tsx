@@ -19,7 +19,6 @@ function Home() {
   useEffect(() => {
     const getData = async () => {
       await dispatch(getCurrentUserData());
-      console.log('fetching');
 
       setIsLoading(false);
     }
@@ -28,11 +27,10 @@ function Home() {
   }, [])
 
   useEffect(() => {
-    if (!userData.isEmailConfirmed) {
+    if (userData.id && !userData.isEmailConfirmed) {
       navigate('/confirmEmail')
-
     }
-  }, [])
+  }, [userData])
 
   return (
     <div id='home-wrapper'>
