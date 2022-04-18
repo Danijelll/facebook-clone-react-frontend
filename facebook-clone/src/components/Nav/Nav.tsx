@@ -4,7 +4,6 @@ import { RootStore } from "../../features/store";
 import '../Nav/Nav.scss'
 
 function Nav() {
-
     const userData = useSelector((state: RootStore) => state.user.currentUser);
 
     return (
@@ -13,10 +12,10 @@ function Nav() {
                 <div className='logo'>Facebook Clone</div>
             </Link>
 
-            {!userData.id ?
+            {!userData.id &&
 
                 <div className="options">
-
+                    
                     <Link to="/register">
                         <div className='navOptions'>Register</div>
                     </Link>
@@ -26,10 +25,9 @@ function Nav() {
                     </Link>
 
                 </div>
+            }
 
-                : null}
-
-            {userData.id ?
+            {userData.id &&
 
                 <div className="options">
 
@@ -49,8 +47,7 @@ function Nav() {
                         <div className='navOptions'>Logout</div>
                     </Link>
                 </div>
-                
-                : null}
+            }
         </div>
     )
 }

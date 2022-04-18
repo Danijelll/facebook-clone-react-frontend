@@ -5,10 +5,14 @@ import Loader from '../../components/Loader/Loader';
 import { RootStore } from '../../features/store';
 import { getCurrentUserData, UserSliceState } from '../../features/Users/userSlice'
 import AddImageModal from './Components/AddImageModal/AddImageModal';
+import Feed from './Components/Feed/Feed';
+import MyProfile from './Components/MyProfile/MyProfile';
 import './Home.scss'
 
 function Home() {
   const userData = useSelector((state: RootStore) => state.user.currentUser);
+
+  const [mainContent, setMainContent] = useState(true)
   
   const [showModal, setShowModal] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -51,8 +55,15 @@ function Home() {
       </div>
 
 
-      <div id='user-images'>
-
+      <div id='main-wrapper'>
+        <div id='wrapper-header'>
+          <div style={{ backgroundColor: mainContent ? '#1e1e1e': ''}} onClick={() => setMainContent(true)} id='profile-button'>My Profile</div>
+          <div style={{ backgroundColor: mainContent ? '': '#1e1e1e'}} onClick={() => setMainContent(false)} id='feed-button'>Feed</div>
+        </div>
+        <div id='main-content'>
+        {mainContent && <MyProfile/>}
+        {!mainContent && <Feed/>}
+        </div>
       </div>
 
     </div>
