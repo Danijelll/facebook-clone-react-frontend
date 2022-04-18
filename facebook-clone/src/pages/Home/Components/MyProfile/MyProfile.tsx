@@ -1,8 +1,17 @@
-import React from 'react'
+import './MyProfile.scss'
 
 function MyProfile() {
   return (
-    <div>MyProfile</div>
+    <div id='my-profile-wrapper'>
+        <div className='album-item'></div>
+        <div className='album-item'></div>
+        <div className='album-item'></div>
+        <div className='album-item'></div>
+
+        <div className='album-item'></div>
+        <div className='album-item'></div>
+
+    </div>
   )
 }
 
