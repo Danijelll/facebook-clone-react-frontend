@@ -8,3 +8,8 @@ export interface IUploadImageData {
     caption: string,
     images: FileList
 }
+
+export interface ImageData{
+    userId: number,
+    imageUrl: string
+}

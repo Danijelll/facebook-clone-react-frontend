@@ -18,7 +18,7 @@ const getAllCurrentUserAlbums = createAsyncThunk(
 
 export const albumSlice = createSlice({
     name: "album",
-    initialState: { userAlbums: {} },
+    initialState: { userAlbums: undefined },
     reducers: {
     },
     extraReducers: (builder) => {

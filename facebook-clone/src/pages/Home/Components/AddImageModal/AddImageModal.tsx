@@ -31,7 +31,6 @@ function AddImageModal({ closeModal }: { closeModal: any }) {
         } as IUploadImageData;
 
         await dispatch(uploadImages(data));
-        console.log(data);
     }
 
 

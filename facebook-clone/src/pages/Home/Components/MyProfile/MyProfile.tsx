@@ -7,34 +7,29 @@ import './MyProfile.scss'
 
 function MyProfile() {
   const userData = useSelector((state: RootStore) => state.user.currentUser);
-  const Albums = useSelector((state: RootStore) => state.album.userAlbums);
-  const [userImages, setUserImage] = useState({});
+  const albums = useSelector((state: RootStore) => state.album.userAlbums);
 
   const dispatch = useDispatch();
 
+  const renderAlbum = () => {
+    return albums?.map(album => <ImageCarousel key={album.id} images={album.images}/>)    
+  }
+
   useEffect(() => {
     if (userData.id) {
-      dispatch(getAllCurrentUserAlbums(userData?.id));//useralbums
-    }}, [userData])
+      dispatch(getAllCurrentUserAlbums(userData?.id));
+        console.log(albums);
 
-    Object.keys(Albums).forEach(function (key:any){
-      Albums[key].images.forEach(image => {
-        setUserImage(image)
-      });
-  });
+    }
+  }, [userData])
 
   return (
     <div id='my-profile-wrapper'>
       <div className='album-item'>
-        <ImageCarousel />
+      { renderAlbum() }
       </div>
-
     </div>
   )
 }
 
 export default MyProfile
-
-function dispatch(arg0: any) {
-  throw new Error('Function not implemented.');
-}

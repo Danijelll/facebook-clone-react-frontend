@@ -19,9 +19,7 @@ function Home() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    console.log('home useeffect');
-    
+  useEffect(() => {    
     const getData = async () => {
       await dispatch(getCurrentUserData());
 
