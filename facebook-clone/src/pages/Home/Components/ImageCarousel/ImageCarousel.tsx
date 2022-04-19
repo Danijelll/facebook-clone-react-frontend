@@ -10,6 +10,10 @@ interface ImageCarouselProps {
 
 function ImageCarousel(props: ImageCarouselProps) {
     const { images } = props;
+    
+    const loadImages = () =>{
+        return images?.map(image => <img src={image.imageUrl} alt={image.imageUrl} />)
+    }
 
     const settings = {
         dots: true,
@@ -20,10 +24,9 @@ function ImageCarousel(props: ImageCarouselProps) {
     };
 
     return (
-        <Slider {...settings}>
-            <img src={images[0].imageUrl} alt="" />
-            <p></p>
 
+        <Slider {...settings}>
+            {loadImages()}
         </Slider>
 
     )
