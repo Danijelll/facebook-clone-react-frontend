@@ -1,6 +1,7 @@
 import './ImageCarousel.scss'
-import { Carousel } from 'react-responsive-carousel'
-import { useEffect } from 'react'
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { ImageData } from '../../../../interfaces/IImage'
 
 interface ImageCarouselProps {
@@ -8,20 +9,23 @@ interface ImageCarouselProps {
 }
 
 function ImageCarousel(props: ImageCarouselProps) {
-
     const { images } = props;
 
-    useEffect(() => {
-        console.log(images);
-
-    }, [])
-
+    const settings = {
+        dots: true,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1
+    };
 
     return (
-        <Carousel showArrows={true}>
+        <Slider {...settings}>
             <img src={images[0].imageUrl} alt="" />
             <p></p>
-        </Carousel>
+
+        </Slider>
+
     )
 }
 

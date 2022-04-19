@@ -12,21 +12,19 @@ function MyProfile() {
   const dispatch = useDispatch();
 
   const renderAlbum = () => {
-    return albums?.map(album => <ImageCarousel key={album.id} images={album.images}/>)    
+    return albums?.map(album => <ImageCarousel key={album.id} images={album.images} />)
   }
 
   useEffect(() => {
     if (userData.id) {
       dispatch(getAllCurrentUserAlbums(userData?.id));
-        console.log(albums);
-
     }
   }, [userData])
 
   return (
     <div id='my-profile-wrapper'>
       <div className='album-item'>
-      { renderAlbum() }
+        {renderAlbum()}
       </div>
     </div>
   )
