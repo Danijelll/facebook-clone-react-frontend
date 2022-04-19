@@ -20,6 +20,8 @@ function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log('home useeffect');
+    
     const getData = async () => {
       await dispatch(getCurrentUserData());
 
