@@ -1,5 +1,4 @@
 import { IUploadImageData } from "../interfaces/IImage";
-import axiosInstance from "./axios";
 import axios from "./axios";
 
 
@@ -28,18 +27,6 @@ class ImageService {
             }).catch(function (error) {
                 console.log(error);
             });
-    }
-
-
-    getAllCurrentUserImages(userId: number) {
-        return axios.get('/albums/search/' + userId + '?pageSize=0&pageNumber=0')
-        
-        .then(function (response) {
-            return response.data;
-
-        }).catch(function (error) {
-            console.log(error);
-        });
     }
 }
 
