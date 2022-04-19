@@ -8,3 +8,11 @@ export interface IUploadImageData {
     caption: string,
     images: FileList
 }
+
+export interface IImageData{
+    id: number
+    userId: number
+    caption:string
+    createdOn:Date
+    images:Array<File>
+}

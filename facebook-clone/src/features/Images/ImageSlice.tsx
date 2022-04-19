@@ -1,7 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { IUploadImageData } from "../../interfaces/IImage";
+import { IImageData, IUploadImageData } from "../../interfaces/IImage";
 import ImageService from "../../services/ImageService";
 
+export interface ImageSliceState {
+    userImages: Array<IImageData>;
+}
 
 const uploadImages = createAsyncThunk(
     'images/uploadImages',
@@ -11,15 +14,27 @@ const uploadImages = createAsyncThunk(
     }
 )
 
+const getAllCurrentUserImages = createAsyncThunk(
+    'images/getAllCurrentUserImages',
+    async (userId : number) => {
+        const response = await ImageService.getAllCurrentUserImages(userId);
+        return response;
+    }
+)
+
 export const imageSlice = createSlice({
     name: "image",
-    initialState: { currentUser: {} },
+    initialState: { userImages: {} },
     reducers: {
     },
     extraReducers: (builder) => {
         builder.addCase(uploadImages.fulfilled, (state, action) => {})
+        builder.addCase(getAllCurrentUserImages.fulfilled, (state, action) => {
+            state.userImages = action.payload;
+        })
+
     },
 });
 
-export { uploadImages }
+export { uploadImages, getAllCurrentUserImages }
 export default imageSlice.reducer;

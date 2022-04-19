@@ -13,7 +13,6 @@ function Home() {
   const userData = useSelector((state: RootStore) => state.user.currentUser);
 
   const [mainContent, setMainContent] = useState(true)
-  
   const [showModal, setShowModal] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 

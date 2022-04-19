@@ -1,4 +1,5 @@
 import { IUploadImageData } from "../interfaces/IImage";
+import axiosInstance from "./axios";
 import axios from "./axios";
 
 
@@ -10,15 +11,8 @@ class ImageService {
             caption: data.caption
         };
 
-        console.log(imageUploadData);
-        
-
         const formData = new FormData();
-
         formData.append('data', JSON.stringify(imageUploadData));
-
-        console.log(formData);
-        
 
         for (let i = 0; i < data.images.length; i++) {
             formData.append('image', data.images[i]);
@@ -34,6 +28,18 @@ class ImageService {
             }).catch(function (error) {
                 console.log(error);
             });
+    }
+
+
+    getAllCurrentUserImages(userId: number) {
+        return axios.get('/albums/search/' + userId + '?pageSize=0&pageNumber=0')
+        
+        .then(function (response) {
+            return response.data;
+
+        }).catch(function (error) {
+            console.log(error);
+        });
     }
 }
 
