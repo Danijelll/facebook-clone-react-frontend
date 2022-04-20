@@ -1,8 +1,8 @@
 #home-wrapper {
     margin: auto;
     width: 100%;
-    height: 2000px;
     background-color: #1e1e1e;
+    padding-bottom: 10px;
 }
 
 #header {
@@ -35,7 +35,8 @@
 }
 
 #about-user {
-    margin-top: 130px;
+    margin-top: 150px;
+    margin-bottom: 100px;
     margin-left: 50px;
     border-radius: 15px;
     cursor: default;
@@ -55,14 +56,7 @@
     color: rgba(255, 255, 255, 0.242);
 }
 
-#user-images {
-    margin: 20px auto;
-    border-radius: 15px;
-    background-color: white;
-    width: 80%;
-    height: 1000px;
-}
-#upload-image-button{
+#upload-image-button {
     margin-top: 10px;
     margin-left: 20px;
     padding: 10px;
@@ -74,4 +68,62 @@
     border-radius: 25px;
     margin-top: 25px;
     cursor: pointer;
+}
+
+#main-wrapper {
+    margin: 20px auto;
+    border-radius: 15px;
+    background-color: white;
+    width: 80%;
+}
+
+#wrapper-header {
+    display: flex;
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 100px;
+    background-color: #2f2f2f;
+}
+
+#profile-button {
+    cursor: pointer;
+    padding-top: 30px;
+    color: white;
+    font-size: 30px;
+    font-weight: 300;
+    text-align: center;
+    width: 50%;
+    height: 100%;
+    border-top-left-radius: 10px;
+    border: 1px black solid;
+
+}
+
+#profile-button:hover{
+    background-color: #282828;
+}
+
+#feed-button {
+    cursor: pointer;
+    padding-top: 30px;
+    color: white;
+    font-size: 30px;
+    font-weight: 300;
+    text-align: center;
+    width: 50%;
+    height: 100%;
+    border-top-right-radius: 10px;
+    border: 1px black solid;
+}
+
+#feed-button:hover{
+    background-color: #282828;
+}
+
+#main-content{
+    width: 100%;
+    height: 100%;
+    border-end-end-radius: 15px;
+    border-end-start-radius: 15px;
 }

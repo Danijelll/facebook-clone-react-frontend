@@ -6,10 +6,6 @@ export interface UserSliceState {
     currentUser: IUserData;
 }
 
-const initialState = {
-    user: [],
-}
-
 const login = createAsyncThunk(
     'user/login',
     async (loginData: ILogin, thunkAPI) => {

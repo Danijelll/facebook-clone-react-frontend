@@ -10,15 +10,8 @@ class ImageService {
             caption: data.caption
         };
 
-        console.log(imageUploadData);
-        
-
         const formData = new FormData();
-
         formData.append('data', JSON.stringify(imageUploadData));
-
-        console.log(formData);
-        
 
         for (let i = 0; i < data.images.length; i++) {
             formData.append('image', data.images[i]);
