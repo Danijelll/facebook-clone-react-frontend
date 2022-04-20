@@ -8,17 +8,15 @@ import './MyProfile.scss'
 function MyProfile() {
   const userData = useSelector((state: RootStore) => state.user.currentUser);
   const albums = useSelector((state: RootStore) => state.album.userAlbums);
-
   const dispatch = useDispatch();
 
   const renderAlbum = () => {
-    return albums?.map(album => <ImageCarousel key={album.id} images={album.images} />)
+    return albums?.map(album => <ImageCarousel key={album.id} createdOn={album.createdOn} captions={album.caption} images={album.images} />)
   }
 
   useEffect(() => {
     if (userData.id) {
-      dispatch(getAllCurrentUserAlbums(userData?.id));
-      
+      dispatch(getAllCurrentUserAlbums(userData?.id));      
     }
   }, [userData])
 
