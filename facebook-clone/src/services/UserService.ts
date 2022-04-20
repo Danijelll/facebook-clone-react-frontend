@@ -42,6 +42,19 @@ class UserService {
                 console.log(error);
             });
     }
+    getAllUsers(){
+        return axios.get('/users?pageSize=0&pageNumber=0')
+            .then(function (response) {
+                const status = JSON.parse((response.status).toString());
+
+                if (status == '200') {
+                    return response.data;
+                    
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+    }
 }
 
 export default new UserService;
