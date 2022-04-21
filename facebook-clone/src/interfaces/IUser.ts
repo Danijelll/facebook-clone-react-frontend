@@ -17,3 +17,9 @@ export interface IUserData {
     coverImage: string,
     createdOn: string
 }
+
+export interface IUserListData {
+    id: number,
+    username: string,
+    profileImage: string,
+}

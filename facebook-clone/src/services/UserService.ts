@@ -36,7 +36,20 @@ class UserService {
 
                 if (status == '200') {
                     return response.data;
-                    
+
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+    }
+    getUserByUsername(username: string) {
+        return axios.get('/users/search/' + username)
+            .then(function (response) {
+                const status = JSON.parse((response.status).toString());
+
+                if (status == '200') {
+                    return response.data;
+
                 }
             }).catch(function (error) {
                 console.log(error);
