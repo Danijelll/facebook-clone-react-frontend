@@ -6,6 +6,7 @@ import '../Nav/Nav.scss'
 
 function Nav() {
     const userData = useSelector((state: RootStore) => state.user.currentUser);
+
     const dispatch = useDispatch();
 
     return (
@@ -41,7 +42,7 @@ function Nav() {
                         <div className='navOptions'>Search Users</div>
                     </Link>
 
-                    <div onClick={() => showModal()}>
+                    <div onClick={() => dispatch(showModal())}>
                         <div className='navOptions'>Upload Images</div>
                     </div>
 

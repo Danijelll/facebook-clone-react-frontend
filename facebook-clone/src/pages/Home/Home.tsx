@@ -37,7 +37,6 @@ function Home() {
   }, [userData])
 
   useEffect(() => {
-    console.log(setShowModal);
   }, [setShowModal])
 
   return (

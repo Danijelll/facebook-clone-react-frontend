@@ -32,9 +32,9 @@ function AddImageModal() {
     }
 
     return (
-        <div className='modal-background' onClick={() => dispatch(closeModal)}>
+        <div className='modal-background' onClick={() => dispatch(closeModal())}>
             <div id='modal-container' onClick={(e) => e.stopPropagation()}>
-                <button id='close-modal-button' onClick={() => dispatch(closeModal)}> X </button>
+                <button id='close-modal-button' onClick={() => dispatch(closeModal())}> X </button>
 
                 <div id='title'>
                     <h1>Add Images</h1>

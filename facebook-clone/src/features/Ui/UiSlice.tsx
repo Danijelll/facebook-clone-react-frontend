@@ -16,8 +16,6 @@ export const uiSlice = createSlice({
             state.setShowModal = false;
         },
     },
-    extraReducers: (builder) => {
-    },
 });
 export const { showModal, closeModal } = uiSlice.actions
 export default uiSlice.reducer;
