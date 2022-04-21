@@ -31,7 +31,7 @@ function Home() {
   }, [])
 
   useEffect(() => {
-    if (userData.id && !userData.isEmailConfirmed) {
+    if (userData?.id && !userData?.isEmailConfirmed) {
       navigate('/confirmEmail')
     }
   }, [userData])

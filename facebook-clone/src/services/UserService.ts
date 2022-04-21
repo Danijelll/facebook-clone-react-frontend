@@ -55,6 +55,19 @@ class UserService {
                 console.log(error);
             });
     }
+    getUserById(id: number) {
+        return axios.get('/users/' + id)
+            .then(function (response) {
+                const status = JSON.parse((response.status).toString());
+
+                if (status == '200') {
+                    return response.data;
+
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+    }
 }
 
 export default new UserService;

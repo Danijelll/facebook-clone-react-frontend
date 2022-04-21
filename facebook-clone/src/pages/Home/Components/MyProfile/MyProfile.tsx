@@ -15,7 +15,7 @@ function MyProfile() {
   }
 
   useEffect(() => {
-    if (userData.id) {
+    if (userData?.id) {
       dispatch(getAllCurrentUserAlbums(userData?.id));      
     }
   }, [userData])

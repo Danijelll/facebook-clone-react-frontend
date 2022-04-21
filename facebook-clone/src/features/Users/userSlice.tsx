@@ -35,12 +35,20 @@ const searchUsers = createAsyncThunk(
         return response;
     }
 )
+const searchUserById = createAsyncThunk(
+    'user/searchUserById',
+    async (id: number) => {
+        const response = await UserService.getUserById(id);
+        return response;
+    }
+)
 
 export const userSlice = createSlice({
     name: "user",
     initialState: {
-        currentUser: {},
-        userList: [{}]
+        currentUser: undefined,
+        userList: undefined,
+        currentFriend: undefined,
     },
     reducers: {
     },
@@ -53,8 +61,13 @@ export const userSlice = createSlice({
         builder.addCase(getCurrentUserData.fulfilled, (state, action) => {
             state.currentUser = action.payload;
         })
+        builder.addCase(searchUserById.fulfilled, (state, action) => {
+            state.currentFriend = action.payload;
+            console.log(action.payload);
+            
+        })
     },
 });
 
-export { login, register, getCurrentUserData, searchUsers };
+export { login, register, getCurrentUserData, searchUsers, searchUserById };
 export default userSlice.reducer;
