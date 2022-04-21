@@ -1,10 +1,12 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom"
 import { RootStore } from "../../features/store";
+import { showModal } from "../../features/Ui/UiSlice";
 import '../Nav/Nav.scss'
 
 function Nav() {
     const userData = useSelector((state: RootStore) => state.user.currentUser);
+    const dispatch = useDispatch();
 
     return (
         <div className='navWrapper'>
@@ -35,13 +37,13 @@ function Nav() {
                         <div className='navOptions'>My Profile</div>
                     </Link>
 
-                    <Link to="/friends">
-                        <div className='navOptions'>Friends</div>
+                    <Link to="/userSearch">
+                        <div className='navOptions'>Search Users</div>
                     </Link>
 
-                    <Link to="/upload">
+                    <div onClick={() => showModal()}>
                         <div className='navOptions'>Upload Images</div>
-                    </Link>
+                    </div>
 
                     <Link to="/logout">
                         <div className='navOptions'>Logout</div>

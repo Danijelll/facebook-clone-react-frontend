@@ -7,19 +7,20 @@ import { getCurrentUserData, UserSliceState } from '../../features/Users/userSli
 import AddImageModal from './Components/AddImageModal/AddImageModal';
 import Feed from './Components/Feed/Feed';
 import MyProfile from './Components/MyProfile/MyProfile';
+import ProfileHeader from './Components/ProfileHeader/ProfileHeader';
 import './Home.scss'
 
 function Home() {
   const userData = useSelector((state: RootStore) => state.user.currentUser);
+  const setShowModal = useSelector((state: RootStore) => state.ui.setShowModal);
 
   const [mainContent, setMainContent] = useState(true)
-  const [showModal, setShowModal] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  useEffect(() => {    
+  useEffect(() => {
     const getData = async () => {
       await dispatch(getCurrentUserData());
 
@@ -35,35 +36,28 @@ function Home() {
     }
   }, [userData])
 
+  useEffect(() => {
+    console.log(setShowModal);
+  }, [setShowModal])
+
   return (
     <div id='home-wrapper'>
-      { isLoading && <Loader />}
+      {isLoading && <Loader />}
 
-      {showModal && <AddImageModal closeModal={setShowModal} />}
+      {setShowModal && <AddImageModal/>}
 
-      <div id='header'>
-        <div id='profile-image-container'>
-          <img id='profile-image' src={userData?.profileImage} />
+      <ProfileHeader profileImage={userData?.profileImage} username={userData?.username} createdOn={userData?.createdOn}/>
+
+        <div id='main-wrapper'>
+          <div id='wrapper-header'>
+            <div style={{ backgroundColor: mainContent ? '#1e1e1e' : '' }} onClick={() => setMainContent(true)} id='profile-button'>My Profile</div>
+            <div style={{ backgroundColor: mainContent ? '' : '#1e1e1e' }} onClick={() => setMainContent(false)} id='feed-button'>Feed</div>
+          </div>
+          <div id='main-content'>
+            {mainContent && <MyProfile />}
+            {!mainContent && <Feed />}
+          </div>
         </div>
-        <button id='upload-image-button' onClick={() => setShowModal(true)}>Upload Images</button>
-      </div>
-
-      <div id='about-user'>
-        <p id='user-name'>{userData?.username}</p>
-        <p id='joined'>Member since: {userData?.createdOn?.slice(0, 10)}</p>
-      </div>
-
-
-      <div id='main-wrapper'>
-        <div id='wrapper-header'>
-          <div style={{ backgroundColor: mainContent ? '#1e1e1e': ''}} onClick={() => setMainContent(true)} id='profile-button'>My Profile</div>
-          <div style={{ backgroundColor: mainContent ? '': '#1e1e1e'}} onClick={() => setMainContent(false)} id='feed-button'>Feed</div>
-        </div>
-        <div id='main-content'>
-        {mainContent && <MyProfile/>}
-        {!mainContent && <Feed/>}
-        </div>
-      </div>
 
     </div>
   )
