@@ -1,19 +1,20 @@
-import React from 'react'
+import { useNavigate } from 'react-router';
+import './UserItem.scss'
 
 interface UserItemProps {
-    id: number,
+    userId: number,
     username: string,
     profileImage: string,
 }
 
 function UserItem(props: UserItemProps) {
-    const { id, username, profileImage } = props;
+    const { userId, username, profileImage } = props;
+    const navigate = useNavigate();
 
     return (
-        <div>
-            <div>{id}</div>
-            <div>{username}</div>
-            <div>{profileImage}</div>
+        <div onClick={() => navigate('/userPage/'+userId)} id='user-item-wrapper'>
+            <img id='user-item-profile-image' src={profileImage} alt={profileImage} />
+            <div id='user-item-username'>{username}</div>
         </div>
     )
 }

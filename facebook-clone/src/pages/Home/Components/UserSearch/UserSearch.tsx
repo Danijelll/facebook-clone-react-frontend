@@ -21,7 +21,7 @@ function UserSearch() {
     }, [value])
 
     const renderUserList = () => {
-        return userList?.map(user => <UserItem key={user.id} id={user.id} username={user.username} profileImage={user.profileImage} />)
+        return userList?.map(user => <UserItem key={user.id} userId={user.id} username={user.username} profileImage={user.profileImage} />)
       }
 
     return (
