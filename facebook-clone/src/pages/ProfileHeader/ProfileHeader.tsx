@@ -1,5 +1,6 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { sendFriendRequest } from '../../features/Friendships/FriendshipSlice';
+import { checkFriendRequestStatus, sendFriendRequest } from '../../features/Friendships/FriendshipSlice';
 import { RootStore } from '../../features/store';
 import './ProfileHeader.scss'
 
@@ -13,7 +14,13 @@ interface ProfileHeaderProps {
 function ProfileHeader(props: ProfileHeaderProps) {
     const { profileImage, username, createdOn, showAddFriend } = props;
     const friendData = useSelector((state: RootStore) => state.user.currentFriend);
-    const dispatch = useDispatch(); 
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (friendData != undefined) {
+            dispatch(checkFriendRequestStatus(friendData?.id))
+        }
+    })
 
     return (
         <div id='profile-header-wrapper'>
@@ -27,7 +34,7 @@ function ProfileHeader(props: ProfileHeaderProps) {
                 <p id='user-name'>{username}</p>
                 <p id='joined'>Member since: {createdOn?.slice(0, 10)}</p>
             </div>
-            {showAddFriend && <button onClick={() => { dispatch(sendFriendRequest(friendData.id)) }} id='add-friend-button'>Add Friend</button> }
+            {showAddFriend && <button onClick={() => { dispatch(sendFriendRequest(friendData.id)) }} id='add-friend-button'>Add Friend</button>}
         </div>
     )
 }

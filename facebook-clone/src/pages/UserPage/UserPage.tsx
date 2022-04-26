@@ -16,9 +16,11 @@ function UserPage() {
 
 
     useEffect(() => {
-        dispatch(searchUserById(userId))                
-    },[])
-    
+        if (userId != undefined) {
+            dispatch(searchUserById(userId));
+        }
+    }, [])
+
     return (
         <div id='home-wrapper'>
             <ProfileHeader profileImage={friendData?.profileImage} username={friendData?.username} createdOn={friendData?.createdOn} showAddFriend={true} />
