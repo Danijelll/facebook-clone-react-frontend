@@ -1,7 +1,9 @@
+import { unwrapResult } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
+import { AppDispatch } from '../../../../../features/store';
 import { searchUserById } from '../../../../../features/Users/userSlice';
 import './UserItem.scss'
-
 
 interface UserItemProps {
     userId: number,
@@ -10,11 +12,27 @@ interface UserItemProps {
 }
 
 function UserItem(props: UserItemProps) {
-    const dispatch = useDispatch()
+    const dispatch: AppDispatch = useDispatch();
     const { userId, username, profileImage } = props;
 
+
+const navigate = useNavigate();
+
+const fetchUser = async () => {    
+    const result = await dispatch(searchUserById(userId));
+    const resultData = unwrapResult(result);
+    
+    console.log(resultData);
+    
+
+    if (resultData) {
+      navigate('/yougottheuser');
+    }
+  }
+
+
     return (
-        <div onClick={() => (dispatch(searchUserById(userId)))} id='user-item-wrapper'>
+        <div onClick={fetchUser} id='user-item-wrapper'>
             <img id='user-item-profile-image' src={profileImage} alt={profileImage} />
             <div id='user-item-username'>{username}</div>
         </div>
@@ -22,3 +40,7 @@ function UserItem(props: UserItemProps) {
 }
 
 export default UserItem
+
+function dispatch(arg0: any) {
+    throw new Error('Function not implemented.');
+}

@@ -62,9 +62,7 @@ export const userSlice = createSlice({
             state.currentUser = action.payload;
         })
         builder.addCase(searchUserById.fulfilled, (state, action) => {
-            state.currentFriend = action.payload;
-            console.log(action.payload);
-            
+            state.currentFriend = action.payload;            
         })
     },
 });

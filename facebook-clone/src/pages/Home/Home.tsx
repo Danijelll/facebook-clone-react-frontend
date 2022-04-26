@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router';
 import Loader from '../../components/Loader/Loader';
 import { RootStore } from '../../features/store';
-import { getCurrentUserData, UserSliceState } from '../../features/Users/userSlice'
+import { getCurrentUserData } from '../../features/Users/userSlice'
 import AddImageModal from './Components/AddImageModal/AddImageModal';
 import Feed from './Components/Feed/Feed';
 import MyProfile from './Components/MyProfile/MyProfile';

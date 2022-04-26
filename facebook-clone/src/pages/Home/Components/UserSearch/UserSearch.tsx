@@ -16,7 +16,7 @@ function UserSearch() {
     useEffect(() => {
         if (value !== undefined && value !== '') {
             dispatch(searchUsers(value))
-            console.log(userList);
+            
         }
     }, [value])
 
