@@ -1,8 +1,8 @@
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { AppDispatch } from '../../../../../features/store';
-import { searchUserById } from '../../../../../features/Users/userSlice';
+import { AppDispatch } from '../../../features/store';
+import { searchUserById } from '../../../features/Users/userSlice';
 import './UserItem.scss'
 
 interface UserItemProps {

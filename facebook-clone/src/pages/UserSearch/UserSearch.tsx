@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useDebounce } from 'use-debounce';
-import { RootStore } from '../../../../features/store';
-import { searchUsers } from '../../../../features/Users/userSlice';
+import { RootStore } from '../../features/store';
+import { searchUsers } from '../../features/Users/userSlice';
 import UserItem from './UserItem/UserItem';
 import './UserSearch.scss'
 

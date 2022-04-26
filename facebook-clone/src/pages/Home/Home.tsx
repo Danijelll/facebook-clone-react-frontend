@@ -7,7 +7,7 @@ import { getCurrentUserData } from '../../features/Users/userSlice'
 import AddImageModal from './Components/AddImageModal/AddImageModal';
 import Feed from './Components/Feed/Feed';
 import MyProfile from './Components/MyProfile/MyProfile';
-import ProfileHeader from './Components/ProfileHeader/ProfileHeader';
+import ProfileHeader from '../ProfileHeader/ProfileHeader';
 import './Home.scss'
 
 function Home() {

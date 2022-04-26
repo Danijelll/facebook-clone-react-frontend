@@ -5,7 +5,7 @@ import Register from './pages/Register/Register';
 import Home from './pages/Home/Home';
 import Nav from './components/Nav/Nav';
 import ConfirmEmail from './pages/ConfirmEmail/ConfirmEmail';
-import UserSearch from './pages/Home/Components/UserSearch/UserSearch';
+import UserSearch from './pages/UserSearch/UserSearch';
 
 function App() {
   return (
