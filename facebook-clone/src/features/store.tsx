@@ -3,6 +3,8 @@ import user, { UserSliceState } from './Users/userSlice'
 import image, { ImageSliceState } from './Images/ImageSlice'
 import album, { AlbumSliceState } from './Albums/AlbumSlice'
 import ui, { UiSliceState } from './Ui/UiSlice'
+import friendship, { FriendshipSliceState } from './Friendships/FriendshipSlice'
+
 
 
 
@@ -12,6 +14,7 @@ export const store = configureStore({
     image,
     album,
     ui,
+    friendship,
 
   },
 });
@@ -23,4 +26,5 @@ export interface RootStore {
   image: ImageSliceState;
   album: AlbumSliceState;
   ui: UiSliceState;
+  friendship: FriendshipSliceState;
 }
