@@ -16,16 +16,16 @@ function UserItem(props: UserItemProps) {
     const { userId, username, profileImage } = props;
 
 
-const navigate = useNavigate();
+    const navigate = useNavigate();
 
-const fetchUser = async () => {    
-    const result = await dispatch(searchUserById(userId));
-    const resultData = unwrapResult(result);    
+    const fetchUser = async () => {
+        const result = await dispatch(searchUserById(userId));
+        const resultData = unwrapResult(result);
 
-    if (resultData) {
-      navigate('/userPage');
+        if (resultData) {
+            navigate('/userPage', { state: { userId: userId } });
+        }
     }
-  }
 
 
     return (
