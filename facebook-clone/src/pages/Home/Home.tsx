@@ -28,7 +28,7 @@ function Home() {
     }
 
     getData();
-  }, [])
+  })
 
   useEffect(() => {
     if (userData?.id && !userData?.isEmailConfirmed) {
@@ -45,7 +45,7 @@ function Home() {
 
       {setShowModal && <AddImageModal/>}
 
-      <ProfileHeader profileImage={userData?.profileImage} username={userData?.username} createdOn={userData?.createdOn}/>
+      <ProfileHeader profileImage={userData?.profileImage} username={userData?.username} createdOn={userData?.createdOn} showAddFriend={false}/>
 
         <div id='main-wrapper'>
           <div id='wrapper-header'>

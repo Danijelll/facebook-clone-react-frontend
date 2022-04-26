@@ -20,13 +20,10 @@ const navigate = useNavigate();
 
 const fetchUser = async () => {    
     const result = await dispatch(searchUserById(userId));
-    const resultData = unwrapResult(result);
-    
-    console.log(resultData);
-    
+    const resultData = unwrapResult(result);    
 
     if (resultData) {
-      navigate('/yougottheuser');
+      navigate('/userPage');
     }
   }
 
@@ -40,7 +37,3 @@ const fetchUser = async () => {
 }
 
 export default UserItem
-
-function dispatch(arg0: any) {
-    throw new Error('Function not implemented.');
-}

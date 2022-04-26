@@ -5,7 +5,6 @@ import "slick-carousel/slick/slick-theme.css";
 import { ImageData } from '../../../../interfaces/IImage'
 import { RootStore } from '../../../../features/store';
 import { useSelector } from 'react-redux';
-import { idText } from 'typescript';
 
 interface ImageCarouselProps {
     images: ImageData[],
@@ -15,7 +14,6 @@ interface ImageCarouselProps {
 
 function ImageCarousel(props: ImageCarouselProps) {
     const userData = useSelector((state: RootStore) => state.user.currentUser);
-    const albums = useSelector((state: RootStore) => state.album.userAlbums);
     const { images,captions,createdOn } = props;
     
     

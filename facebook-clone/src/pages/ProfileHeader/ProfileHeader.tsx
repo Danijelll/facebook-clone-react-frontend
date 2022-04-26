@@ -4,16 +4,17 @@ interface ProfileHeaderProps {
     profileImage: string,
     username: string,
     createdOn: string,
+    showAddFriend: boolean
 }
 
 function ProfileHeader(props: ProfileHeaderProps) {
-    const { profileImage, username, createdOn } = props;
+    const { profileImage, username, createdOn, showAddFriend } = props;
 
     return (
         <div id='profile-header-wrapper'>
             <div id='header'>
                 <div id='profile-image-container'>
-                    <img id='profile-image' src={profileImage} />
+                    <img id='profile-image' src={profileImage} alt={profileImage} />
                 </div>
             </div>
 
@@ -21,7 +22,7 @@ function ProfileHeader(props: ProfileHeaderProps) {
                 <p id='user-name'>{username}</p>
                 <p id='joined'>Member since: {createdOn?.slice(0, 10)}</p>
             </div>
-            <button id='upload-image-button'>Upload Images</button>
+            {showAddFriend && <button id='add-friend-button'>Add Friend</button> }
         </div>
     )
 }

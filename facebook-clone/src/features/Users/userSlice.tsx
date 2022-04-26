@@ -5,6 +5,7 @@ import UserService from "../../services/UserService";
 export interface UserSliceState {
     currentUser: IUserData;
     userList: IUserListData[];
+    currentFriend: IUserData;
 }
 
 const login = createAsyncThunk(
