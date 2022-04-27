@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllCurrentUserAlbums } from '../../../../features/Albums/AlbumSlice';
 import { RootStore } from '../../../../features/store';
-import CommentModal from '../../../ImageCarousel/Components/CommentModal/CommentModal';
+import CommentModal from '../../../CommentModal/CommentModal';
 import ImageCarousel from '../../../ImageCarousel/ImageCarousel';
 import './MyProfile.scss'
 

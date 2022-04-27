@@ -1,8 +1,9 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { RootStore } from '../../../../features/store';
-import { closeCommentModal } from '../../../../features/Ui/UiSlice'
+import { RootStore } from '../../features/store';
+import { closeCommentModal } from '../../features/Ui/UiSlice'
 import './CommentModal.scss'
+import CommentItem from './Components/CommentItem/CommentItem';
 
 
 function CommentModal() {
@@ -10,7 +11,7 @@ function CommentModal() {
   const dispatch = useDispatch();
 
   const renderComments = () => {
-    //return albumComments?.map(comment => <CommentItem key={comment.commentId} userId={comment.userId} text={comment.text} createdOn={comment.createdOn} />)
+    return albumComments?.map(comment => <CommentItem key={comment.commentId} userId={comment.userId} text={comment.text} createdOn={comment.createdOn} />)
   }
 
   useEffect(() => {
@@ -24,6 +25,7 @@ function CommentModal() {
       <div id='comment-modal-container' onClick={(e) => e.stopPropagation()}>
 
         <div id='body'>
+          {renderComments()}
         </div>
 
         <div id='footer'>
