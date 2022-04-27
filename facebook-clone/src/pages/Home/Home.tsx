@@ -28,16 +28,13 @@ function Home() {
     }
 
     getData();
-  })
+  },[])
 
   useEffect(() => {
     if (userData?.id && !userData?.isEmailConfirmed) {
       navigate('/confirmEmail')
     }
   }, [userData])
-
-  useEffect(() => {
-  }, [setShowImageModal])
 
   return (
     <div id='home-wrapper'>

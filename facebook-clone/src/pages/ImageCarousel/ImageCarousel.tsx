@@ -6,18 +6,18 @@ import { ImageData } from '../../interfaces/IImage'
 import { RootStore } from '../../features/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { showCommentModal } from '../../features/Ui/UiSlice';
-import CommentModal from './Components/CommentModal/CommentModal';
+import { getAllAlbumComments } from '../../features/Albums/AlbumSlice';
 
 interface ImageCarouselProps {
+    albumId: number,
     images: ImageData[],
     captions: string,
     createdOn: Date,
 }
 
 function ImageCarousel(props: ImageCarouselProps) {
-    const setShowCommentModal = useSelector((state: RootStore) => state.ui.setShowCommentModal);
     const userData = useSelector((state: RootStore) => state.user.currentUser);
-    const { images, captions, createdOn } = props;
+    const { albumId,images, captions, createdOn } = props;
     const dispatch = useDispatch();
 
     const loadImages = () => {
@@ -35,24 +35,44 @@ function ImageCarousel(props: ImageCarouselProps) {
 
     return (
         <div>
-            {setShowCommentModal && <CommentModal />}
-
             <div id='image-slider-body' >
                 <div id='image-slider-header'>
-                    <img id='image-slider-user-image' src={userData?.profileImage} alt="" />
-                    <p id='image-slider-username'>{userData?.username}</p>
-                    <div onClick={() => dispatch(showCommentModal())} id='image-slider-add-comment-button'>
-                        <img id='image-slider-add-comment-button-svg' src="comment.svg" alt="commentSvg" />
+
+                    <img id='image-slider-user-image'
+                     src={userData?.profileImage} alt=""
+                    />
+
+                    <p id='image-slider-username'>
+                        {userData?.username}
+                    </p>
+
+                    <div 
+                        onClick={() => {
+                                dispatch(showCommentModal());
+                                dispatch(getAllAlbumComments(albumId))
+                            } 
+                        }
+                        id='image-slider-add-comment-button'
+                    >
+
+                    <img id='image-slider-add-comment-button-svg'
+                        src="comment.svg" alt="commentSvg" 
+                    />
+
                     </div>
                 </div>
+
                 <div id='image-slider-created-on'>
                     {createdOn.toString().slice(0, 10)}
                 </div>
+
                 <Slider className='image-slider' {...settings}>
                     {loadImages()}
                 </Slider>
+
                 <div id='image-slider-comments'>
                     {captions &&
+
                         <div id='image-slider-caption-wrapper'>
                             <p id='image-slider-caption-username'>
                                 {userData?.username}
@@ -60,6 +80,7 @@ function ImageCarousel(props: ImageCarouselProps) {
                             <p>
                                 {captions}
                             </p>
+
                         </div>
                     }
                 </div>

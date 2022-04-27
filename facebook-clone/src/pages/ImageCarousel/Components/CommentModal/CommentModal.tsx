@@ -1,25 +1,29 @@
 import { useEffect } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootStore } from '../../../../features/store';
 import { closeCommentModal } from '../../../../features/Ui/UiSlice'
 import './CommentModal.scss'
 
 
 function CommentModal() {
-
+  const albumComments = useSelector((state: RootStore) => state.album.currentAlbumComments);
   const dispatch = useDispatch();
 
+  const renderComments = () => {
+    //return albumComments?.map(comment => <CommentItem key={comment.commentId} userId={comment.userId} text={comment.text} createdOn={comment.createdOn} />)
+  }
+
   useEffect(() => {
-    console.log();
-    
+    console.log(albumComments);
   }, [])
-  
+
 
   return (
+
     <div className='comment-modal-background' onClick={() => dispatch(closeCommentModal())}>
       <div id='comment-modal-container' onClick={(e) => e.stopPropagation()}>
 
         <div id='body'>
-
         </div>
 
         <div id='footer'>
