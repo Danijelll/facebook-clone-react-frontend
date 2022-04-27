@@ -35,12 +35,30 @@
     margin-right: 5px;
 }
 
+#image-slider-add-comment-button {
+    filter: invert(94%) sepia(100%) saturate(0%) hue-rotate(224deg) brightness(105%) contrast(105%);
+    margin-top: 20px;
+    margin-left: 20px;
+    object-fit: cover;
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+}
+
+#image-slider-add-comment-button-svg {
+    height: 35px;
+}
+
 #image-slider-created-on {
     font-size: 13px;
     margin-left: 15px;
     margin-bottom: 10px;
 
     color: rgb(224, 224, 224);
+}
+
+#image-slider-comments {
+    margin-top: 30px;
 }
 
 .slick-dots li button::before {

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom"
 import { RootStore } from "../../features/store";
-import { showModal } from "../../features/Ui/UiSlice";
+import { showAddImageModal } from "../../features/Ui/UiSlice";
 import '../Nav/Nav.scss'
 
 function Nav() {
@@ -42,7 +42,7 @@ function Nav() {
                         <div className='navOptions'>Search Users</div>
                     </Link>
 
-                    <div onClick={() => dispatch(showModal())}>
+                    <div onClick={() => dispatch(showAddImageModal())}>
                         <div className='navOptions'>Upload Images</div>
                     </div>
 

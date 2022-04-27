@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { uploadImages } from '../../../../features/Images/ImageSlice';
 import { RootStore } from '../../../../features/store';
-import { closeModal } from '../../../../features/Ui/UiSlice';
+import { closeAddImageModal } from '../../../../features/Ui/UiSlice';
 import { IUploadImageData } from '../../../../interfaces/IImage';
 import './AddImageModal.scss'
 
@@ -32,9 +32,9 @@ function AddImageModal() {
     }
 
     return (
-        <div className='modal-background' onClick={() => dispatch(closeModal())}>
+        <div className='modal-background' onClick={() => dispatch(closeAddImageModal())}>
             <div id='modal-container' onClick={(e) => e.stopPropagation()}>
-                <button id='close-modal-button' onClick={() => dispatch(closeModal())}> X </button>
+                <button id='close-modal-button' onClick={() => dispatch(closeAddImageModal())}> X </button>
 
                 <div id='title'>
                     <h1>Add Images</h1>

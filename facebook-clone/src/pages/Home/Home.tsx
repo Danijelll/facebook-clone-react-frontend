@@ -12,7 +12,7 @@ import './Home.scss'
 
 function Home() {
   const userData = useSelector((state: RootStore) => state.user.currentUser);
-  const setShowModal = useSelector((state: RootStore) => state.ui.setShowModal);
+  const setShowImageModal = useSelector((state: RootStore) => state.ui.setShowImageModal);
 
   const [mainContent, setMainContent] = useState(true)
   const [isLoading, setIsLoading] = useState(true);
@@ -37,13 +37,13 @@ function Home() {
   }, [userData])
 
   useEffect(() => {
-  }, [setShowModal])
+  }, [setShowImageModal])
 
   return (
     <div id='home-wrapper'>
       {isLoading && <Loader />}
 
-      {setShowModal && <AddImageModal/>}
+      {setShowImageModal && <AddImageModal/>}
 
       <ProfileHeader profileImage={userData?.profileImage} username={userData?.username} createdOn={userData?.createdOn} showAddFriend={false}/>
 

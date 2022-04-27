@@ -1,21 +1,31 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export interface UiSliceState {
-    setShowModal: boolean;
+    setShowImageModal: boolean;
+    setShowCommentModal: boolean;
 
 }
 
 export const uiSlice = createSlice({
     name: "ui",
-    initialState: { setShowModal: false },
+    initialState: {
+        setShowImageModal: false,
+        setShowCommentModal: false
+    },
     reducers: {
-        showModal(state) {
-            state.setShowModal = true;
+        showCommentModal(state) {
+            state.setShowCommentModal = true;            
         },
-        closeModal(state) {
-            state.setShowModal = false;
+        closeCommentModal(state) {
+            state.setShowCommentModal = false;
+        },
+        showAddImageModal(state) {
+            state.setShowImageModal = true;
+        },
+        closeAddImageModal(state) {
+            state.setShowImageModal = false;
         },
     },
 });
-export const { showModal, closeModal } = uiSlice.actions
+export const { showAddImageModal, closeAddImageModal, showCommentModal, closeCommentModal } = uiSlice.actions
 export default uiSlice.reducer;
