@@ -1,3 +1,4 @@
+import { FriendRequestStatusEnum } from "../Models/FriendRequestStatusEnum";
 import axios from "./axios";
 
 

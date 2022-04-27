@@ -1,6 +1,6 @@
-export enum friendRequestStatusEnum {
-    NoRequest,
-    Friends,
-    PendingIncoming,
-    PendingOutgoing,
+export enum FriendRequestStatusEnum {
+    NoRequest = 0,
+    Friends = 1,
+    PendingIncoming = 2,
+    PendingOutgoing = 3,
   }

@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { friendRequestStatusEnum } from "../../Models/FriendRequestStatusEnum";
+import { FriendRequestStatusEnum } from "../../Models/FriendRequestStatusEnum";
 import FriendshipService from "../../services/FriendshipService";
 
 export interface FriendshipSliceState {
-    RequestStatus: friendRequestStatusEnum;
+    RequestStatus: FriendRequestStatusEnum;
 }
 
 const sendFriendRequest = createAsyncThunk(
@@ -24,13 +24,13 @@ const checkFriendRequestStatus = createAsyncThunk(
 
 export const friendshipSlice = createSlice({
     name: "friendships",
-    initialState: { RequestStatus:friendRequestStatusEnum },
+    initialState: { RequestStatus: '' as any /** CHANGE ANY */},
     reducers: {
     },
     extraReducers: (builder) => {
         builder.addCase(sendFriendRequest.fulfilled, (state, action) => { })
         builder.addCase(checkFriendRequestStatus.fulfilled, (state, action) => {
-            state.RequestStatus = action.payload            
+            state.RequestStatus = action.payload
         })
 
     },
