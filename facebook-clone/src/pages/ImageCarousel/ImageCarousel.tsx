@@ -34,7 +34,7 @@ function ImageCarousel(props: ImageCarouselProps) {
     };
 
     return (
-        <div>
+        <div id='image-carousel-wrapper'>
             <div id='image-slider-body' >
                 <div id='image-slider-header'>
 

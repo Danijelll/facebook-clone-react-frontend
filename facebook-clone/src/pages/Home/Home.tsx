@@ -46,8 +46,8 @@ function Home() {
 
         <div id='main-wrapper'>
           <div id='wrapper-header'>
-            <div style={{ backgroundColor: mainContent ? '#1e1e1e' : '' }} onClick={() => setMainContent(true)} id='profile-button'>My Profile</div>
-            <div style={{ backgroundColor: mainContent ? '' : '#1e1e1e' }} onClick={() => setMainContent(false)} id='feed-button'>Feed</div>
+            <div style={{ backgroundColor: mainContent ? '#1e1e1e' : '' , borderBottom: mainContent ? 'none' : '' }} onClick={() => setMainContent(true)} id='profile-button'>My Profile</div>
+            <div style={{ backgroundColor: mainContent ? '' : '#1e1e1e' , borderBottom: mainContent ? '' : 'none' }} onClick={() => setMainContent(false)} id='feed-button'>Feed</div>
           </div>
           <div id='main-content'>
             {mainContent && <MyProfile />}
