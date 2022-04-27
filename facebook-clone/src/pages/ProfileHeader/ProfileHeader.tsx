@@ -21,7 +21,7 @@ function ProfileHeader(props: ProfileHeaderProps) {
     let buttonText = '';
 
     useEffect(() => {
-        if (friendData != undefined && friendRequestStatus.toString() !== '') {
+        if (friendData != undefined && friendRequestStatus.toString() !== '') { //AAAAAAAAAA
             dispatch(checkFriendRequestStatus(friendData?.id))
             console.log(friendRequestStatus);
             

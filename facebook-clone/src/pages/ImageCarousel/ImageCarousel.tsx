@@ -2,8 +2,8 @@ import './ImageCarousel.scss'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { ImageData } from '../../../../interfaces/IImage'
-import { RootStore } from '../../../../features/store';
+import { ImageData } from '../../interfaces/IImage'
+import { RootStore } from '../../features/store';
 import { useSelector } from 'react-redux';
 
 interface ImageCarouselProps {
