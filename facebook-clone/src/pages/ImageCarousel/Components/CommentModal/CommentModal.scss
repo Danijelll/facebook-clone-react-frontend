@@ -1,4 +1,4 @@
-.modal-background {
+.comment-modal-background {
     width: 100vw;
     height: 100vh;
     position: absolute;
@@ -7,17 +7,17 @@
     display: flex;
     justify-content: center;
     justify-items: center;
-    background-color: rgba(200, 200, 200, 0.306);
+    background-color: rgba(84, 84, 84, 0.201);
+    z-index: 10;
 }
 
-#modal-container {
+#comment-modal-container {
     margin-top: 200px;
     width: 70%;
     height: 300px;
-    background-color: white;
+    background-color: #1e1e1e;
     border-radius: 15px;
     padding: 15px;
-    box-shadow: 10px 10px 4px 5px rgba(0, 0, 0, 0.500);
 }
 
 #close-modal-button {
