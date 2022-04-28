@@ -53,7 +53,8 @@ function Home() {
           <div
             style={{
               backgroundColor: mainContent ? '#1e1e1e' : '',
-              borderBottom: mainContent ? 'none' : ''
+              borderBottom: mainContent ? 'none' : '',
+              borderRight: mainContent ? 'none' : ''
             }}
             onClick={() => setMainContent(true)}
             id='profile-button'>
@@ -63,7 +64,8 @@ function Home() {
           <div
             style={{
               backgroundColor: mainContent ? '' : '#1e1e1e',
-              borderBottom: mainContent ? '' : 'none'
+              borderBottom: mainContent ? '' : 'none',
+              borderLeft: mainContent ? '' : 'none'
             }}
             onClick={() => setMainContent(false)}
             id='feed-button'>

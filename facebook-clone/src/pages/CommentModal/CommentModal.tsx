@@ -11,7 +11,7 @@ function CommentModal() {
   const dispatch = useDispatch();
 
   const renderComments = () => {
-    return albumComments?.map(comment => <CommentItem key={comment.commentId} userId={comment.userId} text={comment.text} createdOn={comment.createdOn} />)
+    return albumComments?.map(comment => <CommentItem key={comment.commentId} username={comment.username} profileImage={comment.profileImage} userId={comment.userId} text={comment.text} createdOn={comment.createdOn} />)
   }
 
   useEffect(() => {
