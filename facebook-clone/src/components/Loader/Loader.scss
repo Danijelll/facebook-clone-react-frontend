@@ -1,4 +1,4 @@
-.loader-background{
+.loader-background {
     width: 100vw;
     height: 100vh;
     position: absolute;
@@ -9,16 +9,19 @@
     justify-items: center;
     background-color: rgb(0, 0, 0);
 }
-.loader-item{
+
+.loader-item {
     margin: auto;
     align-items: center;
 }
-.loader{
+
+.loader {
     width: 100px;
     height: 100px;
 }
-.loader-text{
-color: white;
-margin: auto;
-text-align: center;
+
+.loader-text {
+    color: white;
+    margin: auto;
+    text-align: center;
 }
