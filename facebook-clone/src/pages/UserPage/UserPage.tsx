@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
 import { RootStore } from '../../features/store';
@@ -14,7 +14,6 @@ function UserPage() {
     const location = useLocation();
     const userId = (location.state as IUserProps).userId
 
-
     useEffect(() => {
         if (userId != undefined) {
             dispatch(searchUserById(userId));
@@ -23,7 +22,12 @@ function UserPage() {
 
     return (
         <div id='home-wrapper'>
-            <ProfileHeader profileImage={friendData?.profileImage} username={friendData?.username} createdOn={friendData?.createdOn} showAddFriend={true} />
+            <ProfileHeader
+                profileImage={friendData?.profileImage}
+                username={friendData?.username}
+                createdOn={friendData?.createdOn}
+                showAddFriend={true}
+            />
             <div id='main-wrapper'>
                 <div id='wrapper-header'>
                 </div>

@@ -1,4 +1,4 @@
-#user-search-wrapper{
+#user-search-wrapper {
     margin: 30px auto;
     width: 30%;
     padding: 15px;
@@ -6,12 +6,14 @@
     background-color: #1e1e1e;
     border-radius: 15px;
 }
-#user-search-header{
+
+#user-search-header {
     width: 100%;
     display: flex;
     justify-content: center;
 }
-#user-search-input{
+
+#user-search-input {
     width: 80%;
     padding: 5px;
     font-size: 15px;
@@ -23,11 +25,11 @@
     margin-top: 10px;
 }
 
-#user-item{
+#user-item {
     margin: auto;
 }
 
-#user-search-svg{
+#user-search-svg {
     margin-top: 7px;
     margin-left: 10px;
 }

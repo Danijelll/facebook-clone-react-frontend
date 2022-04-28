@@ -24,7 +24,7 @@ const checkFriendRequestStatus = createAsyncThunk(
 
 export const friendshipSlice = createSlice({
     name: "friendships",
-    initialState: { RequestStatus: '' as any /** CHANGE ANY */},
+    initialState: { RequestStatus: '' as any /** CHANGE ANY */ },
     reducers: {
     },
     extraReducers: (builder) => {

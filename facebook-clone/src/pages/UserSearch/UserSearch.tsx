@@ -9,28 +9,43 @@ import './UserSearch.scss'
 function UserSearch() {
     const [query, setQuery] = useState<string>();
     const [value] = useDebounce(query, 400);
-    const dispatch = useDispatch();
     const userList = useSelector((state: RootStore) => state.user.userList);
 
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (value !== undefined && value !== '') {
             dispatch(searchUsers(value))
-            
+
         }
     }, [value])
 
     const renderUserList = () => {
-        return userList?.map(user => <UserItem key={user.id} userId={user.id} username={user.username} profileImage={user.profileImage} />)
-      }
+        return userList?.map(user =>
+            <UserItem
+                key={user.id}
+                userId={user.id}
+                username={user.username}
+                profileImage={user.profileImage}
+            />)
+    }
 
     return (
         <div id='user-search-wrapper'>
             <div id='user-search-header'>
-                <input id='user-search-input' onChange={(e) => {
-                    setQuery(e.target.value);
-                }} placeholder='Search...' type="text" />
-                <img id='user-search-svg' src="../../../../search.svg" alt="" />
+                <input
+                    id='user-search-input'
+                    onChange={(e) => {
+                        setQuery(e.target.value);
+                    }}
+                    placeholder='Search...'
+                    type="text"
+                />
+                <img
+                    id='user-search-svg'
+                    src="../../../../search.svg"
+                    alt="searchSvg"
+                />
             </div>
             <div>
                 {renderUserList()}

@@ -16,6 +16,7 @@ class FriendshipService {
                 console.log(error);
             });
     }
+    
     checkFriendRequestStatus(friendId: number) {
         return axios.get('/friendRequestStatus/' + friendId)
             .then(function (response) {

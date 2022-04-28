@@ -23,12 +23,10 @@ function Home() {
   useEffect(() => {
     const getData = async () => {
       await dispatch(getCurrentUserData());
-
       setIsLoading(false);
     }
-
     getData();
-  },[])
+  }, [])
 
   useEffect(() => {
     if (userData?.id && !userData?.isEmailConfirmed) {
@@ -40,20 +38,46 @@ function Home() {
     <div id='home-wrapper'>
       {isLoading && <Loader />}
 
-      {setShowImageModal && <AddImageModal/>}
+      {setShowImageModal && <AddImageModal />}
 
-      <ProfileHeader profileImage={userData?.profileImage} username={userData?.username} createdOn={userData?.createdOn} showAddFriend={false}/>
+      <ProfileHeader
+        profileImage={userData?.profileImage}
+        username={userData?.username}
+        createdOn={userData?.createdOn}
+        showAddFriend={false}
+      />
 
-        <div id='main-wrapper'>
-          <div id='wrapper-header'>
-            <div style={{ backgroundColor: mainContent ? '#1e1e1e' : '' , borderBottom: mainContent ? 'none' : '' }} onClick={() => setMainContent(true)} id='profile-button'>My Profile</div>
-            <div style={{ backgroundColor: mainContent ? '' : '#1e1e1e' , borderBottom: mainContent ? '' : 'none' }} onClick={() => setMainContent(false)} id='feed-button'>Feed</div>
+      <div id='main-wrapper'>
+        <div id='wrapper-header'>
+
+          <div
+            style={{
+              backgroundColor: mainContent ? '#1e1e1e' : '',
+              borderBottom: mainContent ? 'none' : ''
+            }}
+            onClick={() => setMainContent(true)}
+            id='profile-button'>
+            My Profile
           </div>
-          <div id='main-content'>
-            {mainContent && <MyProfile />}
-            {!mainContent && <Feed />}
+
+          <div
+            style={{
+              backgroundColor: mainContent ? '' : '#1e1e1e',
+              borderBottom: mainContent ? '' : 'none'
+            }}
+            onClick={() => setMainContent(false)}
+            id='feed-button'>
+            Feed
           </div>
+
         </div>
+
+        <div id='main-content'>
+          {mainContent && <MyProfile />}
+          {!mainContent && <Feed />}
+        </div>
+
+      </div>
 
     </div>
   )

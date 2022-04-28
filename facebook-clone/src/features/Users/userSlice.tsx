@@ -55,7 +55,9 @@ export const userSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(login.fulfilled, (state, action) => { })
+
         builder.addCase(register.fulfilled, (state, action) => { })
+        
         builder.addCase(searchUsers.fulfilled, (state, action) => {
             state.userList = action.payload
         })
@@ -63,7 +65,7 @@ export const userSlice = createSlice({
             state.currentUser = action.payload;
         })
         builder.addCase(searchUserById.fulfilled, (state, action) => {
-            state.currentFriend = action.payload;            
+            state.currentFriend = action.payload;
         })
     },
 });

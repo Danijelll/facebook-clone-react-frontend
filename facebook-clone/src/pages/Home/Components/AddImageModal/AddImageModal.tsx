@@ -7,11 +7,11 @@ import { IUploadImageData } from '../../../../interfaces/IImage';
 import './AddImageModal.scss'
 
 function AddImageModal() {
+    const userData = useSelector((state: RootStore) => state.user.currentUser);
     const [images, setImages] = useState<FileList | null>(null);
     const [caption, setCaption] = useState<string>('');
-    const dispatch = useDispatch();
 
-    const userData = useSelector((state: RootStore) => state.user.currentUser);
+    const dispatch = useDispatch();
 
     const handleImages = (e: React.FormEvent<HTMLInputElement>) => {
         const files = (e.target as HTMLInputElement).files;
@@ -32,21 +32,46 @@ function AddImageModal() {
     }
 
     return (
-        <div className='modal-background' onClick={() => dispatch(closeAddImageModal())}>
-            <div id='modal-container' onClick={(e) => e.stopPropagation()}>
-                <button id='close-modal-button' onClick={() => dispatch(closeAddImageModal())}> X </button>
+        <div className='modal-background'
+            onClick={() => dispatch(closeAddImageModal())}
+        >
+            <div id='modal-container'
+                onClick={(e) => e.stopPropagation()}
+            >
+                <button id='close-modal-button'
+                    onClick={() => dispatch(closeAddImageModal())}
+                >
+                    X
+                </button>
 
                 <div id='title'>
                     <h1>Add Images</h1>
                 </div>
 
                 <div id='body'>
-                    <input id='file-input' type="file" multiple onChange={handleImages} />
-                    <input type="text" value={caption} onChange={e => setCaption(e.target.value)} placeholder='Caption..' />
+
+                    <input
+                        id='file-input'
+                        type="file"
+                        multiple
+                        onChange={handleImages}
+                    />
+
+                    <input
+                        type="text"
+                        value={caption}
+                        onChange={e => setCaption(e.target.value)}
+                        placeholder='Caption..'
+                    />
+
                 </div>
 
                 <div id='footer'>
-                    <button id='upload-image' onClick={submit}>Upload Images</button>
+                    <button id='upload-image'
+                        onClick={submit}
+                    >
+                        Upload Images
+                    </button>
                 </div>
 
             </div>

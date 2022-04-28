@@ -17,11 +17,17 @@ interface ImageCarouselProps {
 
 function ImageCarousel(props: ImageCarouselProps) {
     const userData = useSelector((state: RootStore) => state.user.currentUser);
-    const { albumId,images, captions, createdOn } = props;
+    const { albumId, images, captions, createdOn } = props;
     const dispatch = useDispatch();
 
     const loadImages = () => {
-        return images?.map(image => <img height="450px" width="960px" key={image.imageUrl} src={image.imageUrl} alt={image.imageUrl} />)
+        return images?.map(image =>
+            <img height="450px"
+                width="960px"
+                key={image.imageUrl}
+                src={image.imageUrl}
+                alt={image.imageUrl}
+            />)
     }
 
     const settings = {
@@ -39,25 +45,25 @@ function ImageCarousel(props: ImageCarouselProps) {
                 <div id='image-slider-header'>
 
                     <img id='image-slider-user-image'
-                     src={userData?.profileImage} alt=""
+                        src={userData?.profileImage} alt=""
                     />
 
                     <p id='image-slider-username'>
                         {userData?.username}
                     </p>
 
-                    <div 
+                    <div
                         onClick={() => {
-                                dispatch(showCommentModal());
-                                dispatch(getAllAlbumComments(albumId))
-                            } 
-                        }
+                            dispatch(showCommentModal());
+                            dispatch(getAllAlbumComments(albumId))
+                        }}
                         id='image-slider-add-comment-button'
                     >
 
-                    <img id='image-slider-add-comment-button-svg'
-                        src="comment.svg" alt="commentSvg" 
-                    />
+                        <img id='image-slider-add-comment-button-svg'
+                            src="comment.svg"
+                            alt="commentSvg"
+                        />
 
                     </div>
                 </div>
@@ -72,7 +78,6 @@ function ImageCarousel(props: ImageCarouselProps) {
 
                 <div id='image-slider-comments'>
                     {captions &&
-
                         <div id='image-slider-caption-wrapper'>
                             <p id='image-slider-caption-username'>
                                 {userData?.username}

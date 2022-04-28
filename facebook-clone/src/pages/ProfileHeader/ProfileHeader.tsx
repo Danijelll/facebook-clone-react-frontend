@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkFriendRequestStatus, sendFriendRequest } from '../../features/Friendships/FriendshipSlice';
 import { RootStore } from '../../features/store';
-import { FriendRequestStatusEnum } from '../../Models/FriendRequestStatusEnum';
 import './ProfileHeader.scss'
 
 interface ProfileHeaderProps {
@@ -16,6 +15,7 @@ function ProfileHeader(props: ProfileHeaderProps) {
     const { profileImage, username, createdOn, showAddFriend } = props;
     const friendData = useSelector((state: RootStore) => state.user.currentFriend);
     const friendRequestStatus = useSelector((state: RootStore) => state.friendship.RequestStatus);
+
     const dispatch = useDispatch();
 
     let buttonText = '';
@@ -30,15 +30,26 @@ function ProfileHeader(props: ProfileHeaderProps) {
         <div id='profile-header-wrapper'>
             <div id='header'>
                 <div id='profile-image-container'>
-                    <img id='profile-image' src={profileImage} alt={profileImage} />
+                    <img id='profile-image'
+                        src={profileImage}
+                        alt={profileImage}
+                    />
                 </div>
             </div>
 
             <div id='about-user'>
-                <p id='user-name'>{username}</p>
-                <p id='joined'>Member since: {createdOn?.slice(0, 10)}</p>
+                <p id='user-name'>
+                    {username}
+                </p>
+                <p id='joined'>
+                    Member since: {createdOn?.slice(0, 10)}
+                </p>
             </div>
-            {showAddFriend && <button onClick={() => { dispatch(sendFriendRequest(friendData.id)) }} className={`addFriendButton-${friendRequestStatus}`}>{buttonText}</button>}
+            {showAddFriend &&
+                <button onClick={() => { dispatch(sendFriendRequest(friendData.id)) }}
+                    className={`addFriendButton-${friendRequestStatus}`}>
+                    {buttonText}
+                </button>}
         </div>
     )
 }

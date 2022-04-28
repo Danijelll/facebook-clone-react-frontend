@@ -10,19 +10,25 @@ function MyProfile() {
   const setShowCommentModal = useSelector((state: RootStore) => state.ui.setShowCommentModal);
   const userData = useSelector((state: RootStore) => state.user.currentUser);
   const albums = useSelector((state: RootStore) => state.album.userAlbums);
+
   const dispatch = useDispatch();
-
-
-  const renderAlbum = () => {
-    return albums?.map(album => <ImageCarousel key={album.id} albumId={album.id} createdOn={album.createdOn} captions={album.caption} images={album.images} />)
-  }
-
 
   useEffect(() => {
     if (userData?.id) {
       dispatch(getAllCurrentUserAlbums(userData?.id));
     }
   }, [userData])
+
+  const renderAlbum = () => {
+    return albums?.map(album =>
+      <ImageCarousel
+        key={album.id}
+        albumId={album.id}
+        createdOn={album.createdOn}
+        captions={album.caption}
+        images={album.images}
+      />)
+  }
 
   return (
     <div id='my-profile-wrapper'>

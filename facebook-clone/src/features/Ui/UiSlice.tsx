@@ -14,7 +14,7 @@ export const uiSlice = createSlice({
     },
     reducers: {
         showCommentModal(state) {
-            state.setShowCommentModal = true;            
+            state.setShowCommentModal = true;
         },
         closeCommentModal(state) {
             state.setShowCommentModal = false;

@@ -18,9 +18,7 @@ function CommentModal() {
     console.log(albumComments);
   }, [])
 
-
   return (
-
     <div className='comment-modal-background' onClick={() => dispatch(closeCommentModal())}>
       <div id='comment-modal-container' onClick={(e) => e.stopPropagation()}>
 

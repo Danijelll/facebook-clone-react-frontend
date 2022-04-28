@@ -11,6 +11,7 @@ function Nav() {
 
     return (
         <div className='navWrapper'>
+
             <Link to="/">
                 <div className='logo'>Facebook Clone</div>
             </Link>
@@ -18,7 +19,7 @@ function Nav() {
             {!userData?.id &&
 
                 <div className="options">
-                    
+
                     <Link to="/register">
                         <div className='navOptions'>Register</div>
                     </Link>

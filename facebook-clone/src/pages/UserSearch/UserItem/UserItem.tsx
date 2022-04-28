@@ -15,7 +15,6 @@ function UserItem(props: UserItemProps) {
     const dispatch: AppDispatch = useDispatch();
     const { userId, username, profileImage } = props;
 
-
     const navigate = useNavigate();
 
     const fetchUser = async () => {
@@ -27,10 +26,15 @@ function UserItem(props: UserItemProps) {
         }
     }
 
-
     return (
         <div onClick={fetchUser} id='user-item-wrapper'>
-            <img id='user-item-profile-image' src={profileImage} alt={profileImage} />
+
+            <img
+                id='user-item-profile-image'
+                src={profileImage}
+                alt={profileImage}
+            />
+            
             <div id='user-item-username'>{username}</div>
         </div>
     )

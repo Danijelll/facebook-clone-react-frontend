@@ -17,6 +17,7 @@ class UserService {
                 console.log(error);
             });
     }
+
     register(user: IRegister) {
         return axios.post('/register', user)
             .then(function (response) {
@@ -29,6 +30,7 @@ class UserService {
                 console.log(error);
             });
     }
+
     getCurrentUserData() {
         return axios.get('/home')
             .then(function (response) {
@@ -42,6 +44,7 @@ class UserService {
                 console.log(error);
             });
     }
+
     getUserByUsername(username: string) {
         return axios.get('/users/search/' + username)
             .then(function (response) {
@@ -55,6 +58,7 @@ class UserService {
                 console.log(error);
             });
     }
+
     getUserById(id: number) {
         return axios.get('/users/' + id)
             .then(function (response) {

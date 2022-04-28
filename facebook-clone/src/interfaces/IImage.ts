@@ -9,7 +9,7 @@ export interface IUploadImageData {
     images: FileList
 }
 
-export interface ImageData{
+export interface ImageData {
     userId: number,
     imageUrl: string
 }

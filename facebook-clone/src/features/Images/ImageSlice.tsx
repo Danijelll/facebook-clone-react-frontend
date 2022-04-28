@@ -19,7 +19,7 @@ export const imageSlice = createSlice({
     reducers: {
     },
     extraReducers: (builder) => {
-        builder.addCase(uploadImages.fulfilled, (state, action) => {})
+        builder.addCase(uploadImages.fulfilled, (state, action) => { })
     },
 });
 
