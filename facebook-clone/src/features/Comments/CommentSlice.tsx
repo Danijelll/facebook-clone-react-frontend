@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { ICommentData } from "../../interfaces/IComment";
+import { ICommentData, ICommentUploadData } from "../../interfaces/IComment";
 import CommentService from "../../services/CommentService";
 
 
@@ -15,6 +15,14 @@ const getAllAlbumComments = createAsyncThunk(
     }
 )
 
+const uploadComment = createAsyncThunk(
+    'comment/uploadComment',
+    async (comment : ICommentUploadData) => {
+        const response = await CommentService.uploadComment(comment);
+        return response;
+    }
+)
+
 export const commentSlice = createSlice({
     name: "comment",
     initialState: {
@@ -26,9 +34,11 @@ export const commentSlice = createSlice({
         builder.addCase(getAllAlbumComments.fulfilled, (state, action) => {
             state.currentAlbumComments = action.payload;
         })
+        builder.addCase(uploadComment.fulfilled, (state, action) => {
+        })
 
     },
 });
 
-export { getAllAlbumComments }
+export { getAllAlbumComments, uploadComment }
 export default commentSlice.reducer;

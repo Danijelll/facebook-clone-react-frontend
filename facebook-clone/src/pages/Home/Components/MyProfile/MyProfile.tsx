@@ -30,9 +30,17 @@ function MyProfile() {
       />)
   }
 
+  const renderCommentModal = () => {
+    return albums?.map(album =>
+      <CommentModal
+        key={album.id}
+        albumId={album.id}
+      />)
+  }
+
   return (
     <div id='my-profile-wrapper'>
-      {setShowCommentModal && <CommentModal />}
+      {setShowCommentModal && renderCommentModal()}
       <div className='album-item'>
         {renderAlbum()}
       </div>
