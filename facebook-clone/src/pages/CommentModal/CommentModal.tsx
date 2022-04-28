@@ -7,7 +7,7 @@ import CommentItem from './Components/CommentItem/CommentItem';
 
 
 function CommentModal() {
-  const albumComments = useSelector((state: RootStore) => state.album.currentAlbumComments);
+  const albumComments = useSelector((state: RootStore) => state.comment.currentAlbumComments);
   const dispatch = useDispatch();
 
   const renderComments = () => {

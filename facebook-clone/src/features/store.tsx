@@ -4,9 +4,7 @@ import image, { ImageSliceState } from './Images/ImageSlice'
 import album, { AlbumSliceState } from './Albums/AlbumSlice'
 import ui, { UiSliceState } from './Ui/UiSlice'
 import friendship, { FriendshipSliceState } from './Friendships/FriendshipSlice'
-
-
-
+import comment, { CommentSliceState } from './Comments/CommentSlice'
 
 export const store = configureStore({
   reducer: {
@@ -15,6 +13,7 @@ export const store = configureStore({
     album,
     ui,
     friendship,
+    comment,
 
   },
 });
@@ -27,4 +26,5 @@ export interface RootStore {
   album: AlbumSliceState;
   ui: UiSliceState;
   friendship: FriendshipSliceState;
+  comment: CommentSliceState;
 }

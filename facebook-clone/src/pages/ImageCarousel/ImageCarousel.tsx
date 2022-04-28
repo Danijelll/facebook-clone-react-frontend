@@ -6,7 +6,7 @@ import { ImageData } from '../../interfaces/IImage'
 import { RootStore } from '../../features/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { showCommentModal } from '../../features/Ui/UiSlice';
-import { getAllAlbumComments } from '../../features/Albums/AlbumSlice';
+import { getAllAlbumComments } from '../../features/Comments/CommentSlice';
 
 interface ImageCarouselProps {
     albumId: number,
