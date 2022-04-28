@@ -1,7 +1,8 @@
+import { unwrapResult } from '@reduxjs/toolkit';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { uploadComment } from '../../features/Comments/CommentSlice';
-import { RootStore } from '../../features/store';
+import { getAllAlbumComments, uploadComment } from '../../features/Comments/CommentSlice';
+import { AppDispatch, RootStore } from '../../features/store';
 import { closeCommentModal } from '../../features/Ui/UiSlice'
 import { ICommentUploadData } from '../../interfaces/IComment';
 import './CommentModal.scss'
@@ -13,19 +14,28 @@ interface CommentModalProps {
 
 function CommentModal(props: CommentModalProps) {
   const { albumId } = props;
-
   const albumComments = useSelector((state: RootStore) => state.comment.currentAlbumComments);
   const userData = useSelector((state: RootStore) => state.user.currentUser);
-  const dispatch = useDispatch();
+
+  const dispatch: AppDispatch = useDispatch();
 
   const [comment, setComment] = useState<ICommentUploadData>({
-    albumId: albumId,
+    albumId: 1021,
     userId: userData.id,
     text: '',
   });
 
   const handleInput = (field: string, value: string) => {
     setComment({ ...comment, [field]: value });
+  }
+
+  const handleUpload = async () => {
+    const result = await dispatch(uploadComment(comment));
+    const resultData = unwrapResult(result);
+
+    if (resultData) {
+      dispatch(getAllAlbumComments(1021))
+    }
   }
 
   const renderComments = () => {
@@ -49,7 +59,7 @@ function CommentModal(props: CommentModalProps) {
 
           <input onChange={e => handleInput('text', e.target.value)} id='upload-comment-input' type="text" placeholder='Add a comment...' />
 
-          <button onClick={() => dispatch(uploadComment(comment))} id='upload-comment-button'>Post</button>
+          <button onClick={handleUpload} id='upload-comment-button'>Post</button>
         </div>
 
         <div id='body'>
