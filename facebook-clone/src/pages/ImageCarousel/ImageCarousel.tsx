@@ -57,7 +57,6 @@ function ImageCarousel(props: ImageCarouselProps) {
                         onClick={() => {
                             dispatch(showCommentModal());
                             dispatch(getCurrentOpenAlbum(albumId))
-                            dispatch(getAllAlbumComments(albumId))
                         }}
                         id='image-slider-add-comment-button'
                     >

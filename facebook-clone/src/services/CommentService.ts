@@ -3,8 +3,8 @@ import axios from "./axios";
 
 
 class CommentService {
-    getAllAlbumComments(albumId: number) {
-        return axios.get('/comments/album/' + albumId + '?pageSize=100&pageNumber=0')
+    getAllAlbumComments(albumId: number, page :number) {
+        return axios.get('/comments/album/' + albumId + '?pageSize=10&pageNumber='+page)
             .then(function (response) {
                 const status = JSON.parse((response.status).toString());
 

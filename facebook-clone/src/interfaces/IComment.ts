@@ -13,3 +13,8 @@ export interface ICommentUploadData {
     userId: number,
     text: string,
 }
+
+export interface IAlbumCommentPageData{
+    albumId:number,
+    page:number,
+}

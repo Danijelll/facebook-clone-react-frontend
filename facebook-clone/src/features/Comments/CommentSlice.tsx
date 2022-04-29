@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { ICommentData, ICommentUploadData } from "../../interfaces/IComment";
+import { IAlbumCommentPageData, ICommentData, ICommentUploadData } from "../../interfaces/IComment";
 import CommentService from "../../services/CommentService";
 
 
@@ -9,15 +9,15 @@ export interface CommentSliceState {
 
 const getAllAlbumComments = createAsyncThunk(
     'comment/getAllAlbumComments',
-    async (albumId: number) => {
-        const response = await CommentService.getAllAlbumComments(albumId);
+    async (albumCommentPage: IAlbumCommentPageData) => {
+        const response = await CommentService.getAllAlbumComments(albumCommentPage.albumId, albumCommentPage.page);
         return response;
     }
 )
 
 const uploadComment = createAsyncThunk(
     'comment/uploadComment',
-    async (comment : ICommentUploadData) => {
+    async (comment: ICommentUploadData) => {
         const response = await CommentService.uploadComment(comment);
         return response;
     }

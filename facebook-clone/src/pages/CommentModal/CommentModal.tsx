@@ -15,17 +15,30 @@ function CommentModal() {
 
   const dispatch: AppDispatch = useDispatch();
 
+  let [page, setPage] = useState<number>(0)
   const [comment, setComment] = useState<ICommentUploadData>({
     albumId: currentOpenAlbum?.id,
     userId: userData?.id,
     text: '',
   })
 
+  let albumCommentPage = {
+    albumId: currentOpenAlbum?.id,
+    page: page,
+  }
+
   useEffect(() => {
-    console.log(currentOpenAlbum?.id);
-    
-  }, [])
-  
+    if (currentOpenAlbum?.id != null) {
+      albumCommentPage = {
+        albumId: currentOpenAlbum?.id,
+        page: page
+      }
+      dispatch(getAllAlbumComments(albumCommentPage))
+      comment.albumId = currentOpenAlbum.id
+    }
+
+  }, [currentOpenAlbum, page])
+
 
   const handleInput = (field: string, value: string) => {
     setComment({ ...comment, [field]: value });
@@ -36,7 +49,7 @@ function CommentModal() {
     const resultData = unwrapResult(result);
 
     if (resultData) {
-      dispatch(getAllAlbumComments(currentOpenAlbum.id)) 
+      dispatch(getAllAlbumComments(albumCommentPage))
     }
   }
 
@@ -62,6 +75,10 @@ function CommentModal() {
           <input onChange={e => handleInput('text', e.target.value)} id='upload-comment-input' type="text" placeholder='Add a comment...' />
 
           <button onClick={handleUpload} id='upload-comment-button'>Post</button>
+
+          <button onClick={() => setPage(page--)} >Previous Page</button>
+          <button onClick={() => setPage(page++)}>Next Page</button>
+          <p>Page {page}</p>
         </div>
 
         <div id='body'>
