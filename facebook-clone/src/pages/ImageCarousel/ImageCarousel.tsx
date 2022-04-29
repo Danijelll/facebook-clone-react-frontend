@@ -7,6 +7,7 @@ import { RootStore } from '../../features/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { showCommentModal } from '../../features/Ui/UiSlice';
 import { getAllAlbumComments } from '../../features/Comments/CommentSlice';
+import { getCurrentOpenAlbum } from '../../features/Albums/AlbumSlice';
 
 interface ImageCarouselProps {
     albumId: number,
@@ -55,6 +56,7 @@ function ImageCarousel(props: ImageCarouselProps) {
                     <div
                         onClick={() => {
                             dispatch(showCommentModal());
+                            dispatch(getCurrentOpenAlbum(albumId))
                             dispatch(getAllAlbumComments(albumId))
                         }}
                         id='image-slider-add-comment-button'

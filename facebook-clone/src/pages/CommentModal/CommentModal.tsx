@@ -1,5 +1,5 @@
 import { unwrapResult } from '@reduxjs/toolkit';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllAlbumComments, uploadComment } from '../../features/Comments/CommentSlice';
 import { AppDispatch, RootStore } from '../../features/store';
@@ -8,22 +8,24 @@ import { ICommentUploadData } from '../../interfaces/IComment';
 import './CommentModal.scss'
 import CommentItem from './Components/CommentItem/CommentItem';
 
-interface CommentModalProps {
-  albumId: number,
-}
-
-function CommentModal(props: CommentModalProps) {
-  const { albumId } = props;
+function CommentModal() {
   const albumComments = useSelector((state: RootStore) => state.comment.currentAlbumComments);
+  const currentOpenAlbum = useSelector((state: RootStore) => state.album.currentOpenAlbum);
   const userData = useSelector((state: RootStore) => state.user.currentUser);
 
   const dispatch: AppDispatch = useDispatch();
 
   const [comment, setComment] = useState<ICommentUploadData>({
-    albumId: 1021,
-    userId: userData.id,
+    albumId: currentOpenAlbum?.id,
+    userId: userData?.id,
     text: '',
-  });
+  })
+
+  useEffect(() => {
+    console.log(currentOpenAlbum?.id);
+    
+  }, [])
+  
 
   const handleInput = (field: string, value: string) => {
     setComment({ ...comment, [field]: value });
@@ -34,7 +36,7 @@ function CommentModal(props: CommentModalProps) {
     const resultData = unwrapResult(result);
 
     if (resultData) {
-      dispatch(getAllAlbumComments(1021))
+      dispatch(getAllAlbumComments(currentOpenAlbum.id)) 
     }
   }
 

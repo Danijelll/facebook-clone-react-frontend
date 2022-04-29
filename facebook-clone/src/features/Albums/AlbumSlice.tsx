@@ -5,6 +5,7 @@ import AlbumService from "../../services/AlbumService";
 
 export interface AlbumSliceState {
     userAlbums: Array<IAlbumData>;
+    currentOpenAlbum: IAlbumData;
 }
 
 const getAllCurrentUserAlbums = createAsyncThunk(
@@ -15,10 +16,19 @@ const getAllCurrentUserAlbums = createAsyncThunk(
     }
 )
 
+const getCurrentOpenAlbum = createAsyncThunk(
+    'albums/getCurrentOpenAlbum',
+    async (albumId: number) => {        
+        const response = await AlbumService.getCurrentOpenAlbum(albumId);
+        return response;
+    }
+)
+
 export const albumSlice = createSlice({
     name: "album",
     initialState: {
         userAlbums: undefined,
+        currentOpenAlbum: undefined,
     },
     reducers: {
     },
@@ -26,9 +36,12 @@ export const albumSlice = createSlice({
         builder.addCase(getAllCurrentUserAlbums.fulfilled, (state, action) => {
             state.userAlbums = action.payload;
         })
+        builder.addCase(getCurrentOpenAlbum.fulfilled, (state, action) => {
+            state.currentOpenAlbum = action.payload;            
+        })
 
     },
 });
 
-export { getAllCurrentUserAlbums }
+export { getAllCurrentUserAlbums, getCurrentOpenAlbum }
 export default albumSlice.reducer;
