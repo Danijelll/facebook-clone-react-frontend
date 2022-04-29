@@ -1,7 +1,10 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { deleteCommentById } from '../../../../features/Comments/CommentSlice';
 import './CommentItem.scss'
 
 interface CommentItemProps {
-  userId: number,
+  commentId: number
   username: string,
   profileImage: string,
   text: string,
@@ -10,7 +13,14 @@ interface CommentItemProps {
 
 
 function CommentItem(props: CommentItemProps) {
-  const { userId, username, profileImage, text, createdOn } = props;
+  const {  commentId, username, profileImage, text, createdOn } = props;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    console.log(commentId);
+    
+  }, [])
+  
 
   return (
     <div id='comment-item-wrapper'>
@@ -30,6 +40,7 @@ function CommentItem(props: CommentItemProps) {
         </div>
 
       </div>
+      <div onClick={() => dispatch(deleteCommentById(commentId))} id='comment-item-delete-button'>X</div>
     </div>
   )
 }

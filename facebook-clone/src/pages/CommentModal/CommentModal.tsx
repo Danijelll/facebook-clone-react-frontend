@@ -56,9 +56,9 @@ function CommentModal() {
   const renderComments = () => {
     return albumComments?.map(comment =>
       <CommentItem key={comment.createdOn.toString()}
+        commentId={comment.commentId}
         username={comment.username}
         profileImage={comment.profileImage}
-        userId={comment.userId}
         text={comment.text}
         createdOn={comment.createdOn}
       />)

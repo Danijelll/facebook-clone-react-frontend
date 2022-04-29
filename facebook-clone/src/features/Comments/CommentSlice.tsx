@@ -23,6 +23,14 @@ const uploadComment = createAsyncThunk(
     }
 )
 
+const deleteCommentById = createAsyncThunk(
+    'comment/deleteCommentById',
+    async (commentId: number) => {
+        const response = await CommentService.deleteCommentById(commentId);
+        return response;
+    }
+)
+
 export const commentSlice = createSlice({
     name: "comment",
     initialState: {
@@ -36,9 +44,11 @@ export const commentSlice = createSlice({
         })
         builder.addCase(uploadComment.fulfilled, (state, action) => {
         })
+        builder.addCase(deleteCommentById.fulfilled, (state, action) => {
+        })
 
     },
 });
 
-export { getAllAlbumComments, uploadComment }
+export { getAllAlbumComments, uploadComment, deleteCommentById }
 export default commentSlice.reducer;
