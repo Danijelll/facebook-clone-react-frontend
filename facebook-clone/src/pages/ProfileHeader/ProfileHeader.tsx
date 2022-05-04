@@ -6,13 +6,14 @@ import './ProfileHeader.scss'
 
 interface ProfileHeaderProps {
     profileImage: string,
+    coverImage: string,
     username: string,
     createdOn: string,
     showAddFriend: boolean
 }
 
 function ProfileHeader(props: ProfileHeaderProps) {
-    const { profileImage, username, createdOn, showAddFriend } = props;
+    const { profileImage, coverImage, username, createdOn, showAddFriend } = props;
     const friendData = useSelector((state: RootStore) => state.user.currentFriend);
     const friendRequestStatus = useSelector((state: RootStore) => state.friendship.RequestStatus);
 
@@ -28,7 +29,10 @@ function ProfileHeader(props: ProfileHeaderProps) {
 
     return (
         <div id='profile-header-wrapper'>
-            <div id='header'>
+            <div style={{
+                backgroundImage: `url(${coverImage})`
+            }}
+                id='header'>
                 <div id='profile-image-container'>
                     <img id='profile-image'
                         src={profileImage}

@@ -32,7 +32,7 @@ function Home() {
 
   useEffect(() => {
     if (userData?.id && !userData?.isEmailConfirmed) {
-      navigate('/confirmEmail')
+      navigate('/confirmEmail')      
     }
   }, [userData])
 
@@ -45,6 +45,7 @@ function Home() {
 
       <ProfileHeader
         profileImage={userData?.profileImage}
+        coverImage={userData?.coverImage}
         username={userData?.username}
         createdOn={userData?.createdOn}
         showAddFriend={false}

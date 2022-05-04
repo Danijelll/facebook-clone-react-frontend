@@ -24,6 +24,7 @@ function UserPage() {
         <div id='home-wrapper'>
             <ProfileHeader
                 profileImage={friendData?.profileImage}
+                coverImage={friendData?.coverImage}
                 username={friendData?.username}
                 createdOn={friendData?.createdOn}
                 showAddFriend={true}
