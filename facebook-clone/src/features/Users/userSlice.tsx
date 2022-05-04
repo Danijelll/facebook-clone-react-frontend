@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { ILogin, IRegister, IUserData, IUserListData, IUserUpdateProfileImageData } from "../../interfaces/IUser";
+import { ILogin, IRegister, IUserData, IUserListData, IUserUpdateCoverImageData, IUserUpdateProfileImageData } from "../../interfaces/IUser";
 import UserService from "../../services/UserService";
 
 export interface UserSliceState {
@@ -50,6 +50,13 @@ const editUserProfileImage = createAsyncThunk(
         return response;
     }
 )
+const editUserCoverImage = createAsyncThunk(
+    'user/editUserCoverImage',
+    async (data: IUserUpdateCoverImageData) => {
+        const response = await UserService.editUserCoverImage(data);
+        return response;
+    }
+)
 export const userSlice = createSlice({
     name: "user",
     initialState: {
@@ -76,8 +83,11 @@ export const userSlice = createSlice({
         builder.addCase(editUserProfileImage.fulfilled, (state, action) => {
             state.currentUser = action.payload;
         })
+        builder.addCase(editUserCoverImage.fulfilled, (state, action) => {
+            state.currentUser = action.payload;
+        })
     },
 });
 
-export { login, register, getCurrentUserData, searchUsers, searchUserById, editUserProfileImage };
+export { login, register, getCurrentUserData, searchUsers, searchUserById, editUserProfileImage, editUserCoverImage };
 export default userSlice.reducer;

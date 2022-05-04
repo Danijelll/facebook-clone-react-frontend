@@ -1,6 +1,6 @@
 import axios from "./axios";
 import { useNavigate } from "react-router-dom";
-import { ILogin, IRegister, IUserUpdateProfileImageData } from "../interfaces/IUser";
+import { ILogin, IRegister, IUserUpdateCoverImageData, IUserUpdateProfileImageData } from "../interfaces/IUser";
 
 class UserService {
 
@@ -74,13 +74,7 @@ class UserService {
     }
     editUserProfileImage(data: IUserUpdateProfileImageData) {
 
-        const userProfileImageUpdateData = {
-            id: data.id,
-            username: data.username,
-        };        
-
         const formData = new FormData();
-        formData.append('data', JSON.stringify(userProfileImageUpdateData));
         formData.append('profileImage', data.profileImage);
 
         return axios.put('/updateProfileImage', formData)
@@ -97,6 +91,26 @@ class UserService {
             });
 
     }
+    editUserCoverImage(data: IUserUpdateCoverImageData) {   
+
+        const formData = new FormData();
+        formData.append('coverImage', data.coverImage);
+
+        return axios.put('/updateProfileImage', formData)
+            .then(function (response) {
+                const status = JSON.parse((response.status).toString());
+
+                if (status == '200') {
+                    console.log(response.data);
+                    
+                    return response.data;
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+
+    }
 }
+
 
 export default new UserService;

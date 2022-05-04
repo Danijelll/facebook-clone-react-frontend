@@ -2,30 +2,46 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootStore } from '../../../../features/store';
 import { closeEditProfileModal } from '../../../../features/Ui/UiSlice';
-import { editUserProfileImage } from '../../../../features/Users/userSlice';
-import { IRegister, IUserData, IUserUpdateProfileImageData } from '../../../../interfaces/IUser';
+import { editUserCoverImage, editUserProfileImage } from '../../../../features/Users/userSlice';
+import { IRegister, IUserData, IUserUpdateCoverImageData, IUserUpdateProfileImageData } from '../../../../interfaces/IUser';
 
 function EditProfileModal() {
     const userData = useSelector((state: RootStore) => state.user.currentUser);
     const [profileImage, setProfileImage] = useState<FileList | null>();
+    const [coverImage, setCoverImage] = useState<FileList | null>();
 
     const handleProfileImage = (e: React.FormEvent<HTMLInputElement>) => {
         const file = (e.target as HTMLInputElement).files;
         setProfileImage(file);
     }
 
-    const submit = async () => {
+    const handleCoverImage = (e: React.FormEvent<HTMLInputElement>) => {
+        const file = (e.target as HTMLInputElement).files;
+        setCoverImage(file);
+    }
+
+    const submitProfileImage = async () => {
         if (!profileImage) {
             return;
         }
         const data = {
-            id: userData.id,
-            username: userData.username,
             profileImage: profileImage[0]
         } as IUserUpdateProfileImageData;
         console.log(data);
-        
+
         await dispatch(editUserProfileImage(data));
+    }
+
+    const submitCoverImage = async () => {
+        if (!coverImage) {
+            return;
+        }
+        const data = {
+            coverImage: coverImage[0]
+        } as IUserUpdateCoverImageData;
+        console.log(data);
+
+        await dispatch(editUserCoverImage(data));
     }
 
     const dispatch = useDispatch();
@@ -52,12 +68,24 @@ function EditProfileModal() {
                         multiple
                         onChange={handleProfileImage}
                     />
+
+                    <input
+                        id='file-input'
+                        type="file"
+                        multiple
+                        onChange={handleCoverImage}
+                    />
                 </div>
 
                 <div id='footer'>
                     <button id='upload-image'
-                        onClick={submit}>
+                        onClick={submitProfileImage}>
                         Update profile image
+                    </button>
+
+                    <button id='upload-image'
+                        onClick={submitCoverImage}>
+                        Update cover image
                     </button>
                 </div>
 
