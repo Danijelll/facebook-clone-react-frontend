@@ -1,13 +1,17 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom"
 import { RootStore } from "../../features/store";
 import { showAddImageModal } from "../../features/Ui/UiSlice";
+import HamburgerMenu from "../HamburgerMenu/HamburgerMenu";
 import '../Nav/Nav.scss'
 
 function Nav() {
     const userData = useSelector((state: RootStore) => state.user?.currentUser);
 
-    const dispatch = useDispatch();
+useEffect(() => {
+}, [userData])
+
 
     return (
         <div className='navWrapper'>
@@ -35,21 +39,8 @@ function Nav() {
 
                 <div className="options">
 
-                    <Link to="/home">
-                        <div className='navOptions'>My Profile</div>
-                    </Link>
+                    <HamburgerMenu/>
 
-                    <Link to="/userSearch">
-                        <div className='navOptions'>Search Users</div>
-                    </Link>
-
-                    <div onClick={() => dispatch(showAddImageModal())}>
-                        <div className='navOptions'>Upload Images</div>
-                    </div>
-
-                    <Link to="/logout">
-                        <div className='navOptions'>Logout</div>
-                    </Link>
                 </div>
             }
         </div>
