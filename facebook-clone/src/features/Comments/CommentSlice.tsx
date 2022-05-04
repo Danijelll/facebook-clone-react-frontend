@@ -40,7 +40,7 @@ export const commentSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(getAllAlbumComments.fulfilled, (state, action) => {
-            state.currentAlbumComments = action.payload;
+            state.currentAlbumComments = action.payload;            
         })
         builder.addCase(uploadComment.fulfilled, (state, action) => {
         })

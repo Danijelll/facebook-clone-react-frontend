@@ -9,10 +9,12 @@ import Feed from './Components/Feed/Feed';
 import MyProfile from './Components/MyProfile/MyProfile';
 import ProfileHeader from '../ProfileHeader/ProfileHeader';
 import './Home.scss'
+import EditProfileModal from './Components/EditProfileModal/EditProfileModal';
 
 function Home() {
   const userData = useSelector((state: RootStore) => state.user.currentUser);
   const setShowImageModal = useSelector((state: RootStore) => state.ui.setShowImageModal);
+  const setShowEditProfileModal = useSelector((state:RootStore) => state.ui.setShowEditProfileModal)
 
   const [mainContent, setMainContent] = useState(true)
   const [isLoading, setIsLoading] = useState(true);
@@ -39,6 +41,7 @@ function Home() {
       {isLoading && <Loader />}
 
       {setShowImageModal && <AddImageModal />}
+      {setShowEditProfileModal && <EditProfileModal/>}
 
       <ProfileHeader
         profileImage={userData?.profileImage}

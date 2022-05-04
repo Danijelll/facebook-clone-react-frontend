@@ -15,7 +15,7 @@ function CommentModal() {
 
   const dispatch: AppDispatch = useDispatch();
 
-  let [page, setPage] = useState<number>(0)
+  let [page, setPage] = useState<number>(1)
   const [comment, setComment] = useState<ICommentUploadData>({
     albumId: currentOpenAlbum?.id,
     userId: userData?.id,
@@ -77,7 +77,7 @@ function CommentModal() {
           <button onClick={handleUpload} id='upload-comment-button'>Post</button>
 
           <button onClick={() => setPage(page--)} >Previous Page</button>
-          <button onClick={() => setPage(page++)}>Next Page</button>
+          <button onClick={() => {setPage(page++);console.log(page)}}>Next Page</button>
           <p>Page {page}</p>
         </div>
 

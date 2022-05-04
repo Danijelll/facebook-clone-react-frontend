@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export interface UiSliceState {
     setShowImageModal: boolean;
     setShowCommentModal: boolean;
+    setShowEditProfileModal: boolean;
 
 }
 
@@ -10,7 +11,8 @@ export const uiSlice = createSlice({
     name: "ui",
     initialState: {
         setShowImageModal: false,
-        setShowCommentModal: false
+        setShowCommentModal: false,
+        setShowEditProfileModal: false
     },
     reducers: {
         showCommentModal(state) {
@@ -25,7 +27,16 @@ export const uiSlice = createSlice({
         closeAddImageModal(state) {
             state.setShowImageModal = false;
         },
+        showEditProfileModal(state) {
+            state.setShowEditProfileModal = true;
+        },
+        closeEditProfileModal(state) {
+            state.setShowEditProfileModal = false;
+        },
     },
 });
-export const { showAddImageModal, closeAddImageModal, showCommentModal, closeCommentModal } = uiSlice.actions
+export const {
+    showAddImageModal, closeAddImageModal,
+    showCommentModal, closeCommentModal,
+    showEditProfileModal, closeEditProfileModal } = uiSlice.actions
 export default uiSlice.reducer;
