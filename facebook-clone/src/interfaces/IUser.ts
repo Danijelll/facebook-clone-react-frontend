@@ -23,3 +23,15 @@ export interface IUserListData {
     username: string,
     profileImage: string,
 }
+
+export interface IUserUpdateProfileImageData {
+    id: number,
+    username: string,
+    profileImage: File,
+}
+
+export interface IUserUpdateCoverImageData {
+    id: number,
+    username: string,
+    coverImage: File,
+}

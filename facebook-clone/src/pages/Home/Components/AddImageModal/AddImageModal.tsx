@@ -33,14 +33,13 @@ function AddImageModal() {
 
     return (
         <div className='modal-background'
-            onClick={() => dispatch(closeAddImageModal())}
-        >
+            onClick={() => dispatch(closeAddImageModal())}>
+
             <div id='modal-container'
-                onClick={(e) => e.stopPropagation()}
-            >
+                onClick={(e) => e.stopPropagation()}>
+
                 <button id='close-modal-button'
-                    onClick={() => dispatch(closeAddImageModal())}
-                >
+                    onClick={() => dispatch(closeAddImageModal())}>
                     X
                 </button>
 
@@ -68,8 +67,7 @@ function AddImageModal() {
 
                 <div id='footer'>
                     <button id='upload-image'
-                        onClick={submit}
-                    >
+                        onClick={submit}>
                         Upload Images
                     </button>
                 </div>

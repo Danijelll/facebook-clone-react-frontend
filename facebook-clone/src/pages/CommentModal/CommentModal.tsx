@@ -29,10 +29,9 @@ function CommentModal() {
 
   useEffect(() => {
     if (currentOpenAlbum?.id != null) {
-      albumCommentPage = {
-        albumId: currentOpenAlbum?.id,
-        page: page
-      }
+      console.log(page)
+      // console.log(albumCommentPage);
+      
       dispatch(getAllAlbumComments(albumCommentPage))
       comment.albumId = currentOpenAlbum.id
     }
@@ -56,7 +55,7 @@ function CommentModal() {
   const renderComments = () => {
     return albumComments?.map(comment =>
       <CommentItem key={comment.createdOn.toString()}
-        commentId={comment.commentId}
+        commentId={comment.id}
         username={comment.username}
         profileImage={comment.profileImage}
         text={comment.text}
@@ -76,8 +75,8 @@ function CommentModal() {
 
           <button onClick={handleUpload} id='upload-comment-button'>Post</button>
 
-          <button onClick={() => setPage(page--)} >Previous Page</button>
-          <button onClick={() => {setPage(page++);console.log(page)}}>Next Page</button>
+          <button onClick={() => setPage(page-1)} >Previous Page</button>
+          <button onClick={() => {setPage(page+1)}}>Next Page</button>
           <p>Page {page}</p>
         </div>
 

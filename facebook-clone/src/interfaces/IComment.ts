@@ -1,5 +1,5 @@
 export interface ICommentData {
-    commentId: number,
+    id: number,
     albumId: number,
     userId: number,
     username:string,

@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { ILogin, IRegister, IUserData, IUserListData } from "../../interfaces/IUser";
+import { ILogin, IRegister, IUserData, IUserListData, IUserUpdateProfileImageData } from "../../interfaces/IUser";
 import UserService from "../../services/UserService";
 
 export interface UserSliceState {
@@ -43,7 +43,13 @@ const searchUserById = createAsyncThunk(
         return response;
     }
 )
-
+const editUserProfileImage = createAsyncThunk(
+    'user/editUserProfileImage',
+    async (data: IUserUpdateProfileImageData) => {
+        const response = await UserService.editUserProfileImage(data);
+        return response;
+    }
+)
 export const userSlice = createSlice({
     name: "user",
     initialState: {
@@ -57,7 +63,7 @@ export const userSlice = createSlice({
         builder.addCase(login.fulfilled, (state, action) => { })
 
         builder.addCase(register.fulfilled, (state, action) => { })
-        
+
         builder.addCase(searchUsers.fulfilled, (state, action) => {
             state.userList = action.payload
         })
@@ -67,8 +73,11 @@ export const userSlice = createSlice({
         builder.addCase(searchUserById.fulfilled, (state, action) => {
             state.currentFriend = action.payload;
         })
+        builder.addCase(editUserProfileImage.fulfilled, (state, action) => {
+            state.currentUser = action.payload;
+        })
     },
 });
 
-export { login, register, getCurrentUserData, searchUsers, searchUserById };
+export { login, register, getCurrentUserData, searchUsers, searchUserById, editUserProfileImage };
 export default userSlice.reducer;
