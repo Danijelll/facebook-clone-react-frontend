@@ -28,10 +28,7 @@ function CommentModal() {
   }
 
   useEffect(() => {
-    if (currentOpenAlbum?.id != null) {
-      console.log(page)
-      // console.log(albumCommentPage);
-      
+    if (currentOpenAlbum?.id != null) {      
       dispatch(getAllAlbumComments(albumCommentPage))
       comment.albumId = currentOpenAlbum.id
     }
@@ -54,7 +51,7 @@ function CommentModal() {
 
   const renderComments = () => {
     return albumComments?.map(comment =>
-      <CommentItem key={comment.createdOn.toString()}
+      <CommentItem key={comment.id}
         commentId={comment.id}
         username={comment.username}
         profileImage={comment.profileImage}

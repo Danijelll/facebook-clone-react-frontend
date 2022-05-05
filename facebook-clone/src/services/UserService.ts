@@ -96,7 +96,7 @@ class UserService {
         const formData = new FormData();
         formData.append('coverImage', data.coverImage);
 
-        return axios.put('/updateProfileImage', formData)
+        return axios.put('/updateCoverImage', formData)
             .then(function (response) {
                 const status = JSON.parse((response.status).toString());
 

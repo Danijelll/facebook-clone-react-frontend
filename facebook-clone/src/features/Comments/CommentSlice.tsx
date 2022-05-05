@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { IAlbumCommentPageData, ICommentData, ICommentUploadData } from "../../interfaces/IComment";
+import CommentItem from "../../pages/CommentModal/Components/CommentItem/CommentItem";
 import CommentService from "../../services/CommentService";
 
 
@@ -26,17 +27,18 @@ const uploadComment = createAsyncThunk(
 const deleteCommentById = createAsyncThunk(
     'comment/deleteCommentById',
     async (commentId: number) => {
-        const response = await CommentService.deleteCommentById(commentId);
-        return response;
+        await CommentService.deleteCommentById(commentId);
+        return commentId;
     }
 )
 
 export const commentSlice = createSlice({
     name: "comment",
     initialState: {
-        currentAlbumComments: undefined
+        currentAlbumComments: []
     },
     reducers: {
+
     },
     extraReducers: (builder) => {
         builder.addCase(getAllAlbumComments.fulfilled, (state, action) => {
@@ -45,6 +47,7 @@ export const commentSlice = createSlice({
         builder.addCase(uploadComment.fulfilled, (state, action) => {
         })
         builder.addCase(deleteCommentById.fulfilled, (state, action) => {
+            state.currentAlbumComments = state.currentAlbumComments.filter((commentItem: { id: number; })=>commentItem.id !== action.payload)
         })
 
     },

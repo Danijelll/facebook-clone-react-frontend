@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootStore } from '../../../../features/store';
 import { closeEditProfileModal } from '../../../../features/Ui/UiSlice';
 import { editUserCoverImage, editUserProfileImage } from '../../../../features/Users/userSlice';
-import { IRegister, IUserData, IUserUpdateCoverImageData, IUserUpdateProfileImageData } from '../../../../interfaces/IUser';
+import { IUserUpdateCoverImageData, IUserUpdateProfileImageData } from '../../../../interfaces/IUser';
 
 function EditProfileModal() {
     const userData = useSelector((state: RootStore) => state.user.currentUser);
@@ -27,7 +27,6 @@ function EditProfileModal() {
         const data = {
             profileImage: profileImage[0]
         } as IUserUpdateProfileImageData;
-        console.log(data);
 
         await dispatch(editUserProfileImage(data));
     }
@@ -39,7 +38,6 @@ function EditProfileModal() {
         const data = {
             coverImage: coverImage[0]
         } as IUserUpdateCoverImageData;
-        console.log(data);
 
         await dispatch(editUserCoverImage(data));
     }

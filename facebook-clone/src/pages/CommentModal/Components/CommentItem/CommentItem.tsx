@@ -17,7 +17,6 @@ function CommentItem(props: CommentItemProps) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(commentId);
     
   }, [])
   
