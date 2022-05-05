@@ -12,8 +12,8 @@ import './MyProfile.scss'
 function MyProfile() {
   const setShowCommentModal = useSelector((state: RootStore) => state.ui.setShowCommentModal);
   const setShowEditImageModal = useSelector((state: RootStore) => state.ui.setShowEditImageModal);
+  const currentOpenAlbum = useSelector((state: RootStore) => state.album.currentOpenAlbum);
   const setShowDeleteImageModal = useSelector((state: RootStore) => state.ui.setShowDeleteImageModal);
-  const userAlbums = useSelector((state: RootStore) => state.album.userAlbums);
   const userData = useSelector((state: RootStore) => state.user.currentUser);
   const albums = useSelector((state: RootStore) => state.album.userAlbums);
   const images = useSelector((state: RootStore) => state.image.userImages);
@@ -25,7 +25,7 @@ function MyProfile() {
     if (userData?.id) {
       dispatch(getAllCurrentUserAlbums(userData?.id));
     }
-  }, [userData,images,userAlbums])
+  }, [userData,images,currentOpenAlbum])
 
   const renderAlbum = () => {
     return albums?.map(album =>

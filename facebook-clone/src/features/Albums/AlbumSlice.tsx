@@ -58,6 +58,7 @@ export const albumSlice = createSlice({
             state.userAlbums = state.userAlbums.filter((album: { id: number; }) => album.id !== action.payload)
         })
         builder.addCase(updateAlbumCaption.fulfilled, (state, action) => {
+            state.currentOpenAlbum = action.payload
         })
     },
 });

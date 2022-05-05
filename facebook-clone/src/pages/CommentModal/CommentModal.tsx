@@ -85,7 +85,7 @@ function CommentModal() {
           </button>
         </div>
 
-        <div id='body'>
+        <div id='comment-modal-body'>
           {renderComments()}
         </div>
 
