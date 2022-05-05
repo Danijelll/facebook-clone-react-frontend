@@ -10,6 +10,11 @@ function ImageMenuModal() {
     const [caption, setCaption] = useState(currentOpenAlbum?.caption)
     const dispatch = useDispatch();
 
+    const handleEdit = async () => {
+        await dispatch(updateAlbumCaption(albumUpdateData))
+        dispatch(closeEditImageModal())
+        }
+
     const albumUpdateData = {
         id: currentOpenAlbum?.id,
         caption: caption
@@ -34,7 +39,7 @@ function ImageMenuModal() {
                         placeholder={currentOpenAlbum?.caption}
                     />
 
-                    <button onClick={() => dispatch(updateAlbumCaption(albumUpdateData))}>
+                    <button onClick={() => handleEdit()}>
                         Edit caption
                     </button>
                     
