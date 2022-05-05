@@ -10,6 +10,7 @@ import { getCurrentOpenAlbum } from '../../features/Albums/AlbumSlice';
 
 interface ImageCarouselProps {
     albumId: number,
+    userId:number,
     images: ImageData[],
     captions: string,
     createdOn: Date,
@@ -17,7 +18,7 @@ interface ImageCarouselProps {
 
 function ImageCarousel(props: ImageCarouselProps) {
     const userData = useSelector((state: RootStore) => state.user.currentUser);
-    const { albumId, images, captions, createdOn } = props;
+    const { albumId, userId, images, captions, createdOn } = props;
     const dispatch = useDispatch();
 
     const loadImages = () => {
@@ -52,13 +53,11 @@ function ImageCarousel(props: ImageCarouselProps) {
                         {userData?.username}
                     </p>
 
-                    <div
-                        onClick={() => {
-                            dispatch(showCommentModal());
-                            dispatch(getCurrentOpenAlbum(albumId))
-                        }}
-                        id='image-slider-add-comment-button'
-                    >
+                    <div onClick={() => {
+                        dispatch(showCommentModal());
+                        dispatch(getCurrentOpenAlbum(albumId))
+                    }}
+                        id='image-slider-add-comment-button'>
 
                         <img id='image-slider-add-comment-button-svg'
                             src="comment.svg"
@@ -66,6 +65,19 @@ function ImageCarousel(props: ImageCarouselProps) {
                         />
 
                     </div>
+
+                    {userData?.id == userId &&
+                    <div onClick={() => {
+                        dispatch(showCommentModal());
+                    }}
+                        id='image-slider-menu-button'>
+
+                        <img id='image-slider-menu-button-svg'
+                            src="menu.svg"
+                            alt="menuSvg"
+                        />
+                    </div>
+                    }
                 </div>
 
                 <div id='image-slider-created-on'>

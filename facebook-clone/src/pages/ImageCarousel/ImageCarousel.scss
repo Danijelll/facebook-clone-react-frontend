@@ -56,6 +56,18 @@
     height: 35px;
 }
 
+#image-slider-menu-button {
+    filter: invert(94%) sepia(100%) saturate(0%) hue-rotate(224deg) brightness(105%) contrast(105%);
+    object-fit: cover;
+    height: 15px;
+    width: 15px;
+    cursor: pointer;
+}
+
+#image-slider-menu-button-svg {
+    height: 15px;
+}
+
 #image-slider-created-on {
     font-size: 13px;
     margin-left: 15px;
