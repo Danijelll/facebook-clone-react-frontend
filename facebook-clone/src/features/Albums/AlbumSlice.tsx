@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { IAlbumData } from "../../interfaces/IAlbum";
+import { IAlbumData, IAlbumUpdateData } from "../../interfaces/IAlbum";
 import AlbumService from "../../services/AlbumService";
 
 
@@ -18,7 +18,7 @@ const getAllCurrentUserAlbums = createAsyncThunk(
 
 const getCurrentOpenAlbum = createAsyncThunk(
     'albums/getCurrentOpenAlbum',
-    async (albumId: number) => {        
+    async (albumId: number) => {
         const response = await AlbumService.getCurrentOpenAlbum(albumId);
         return response;
     }
@@ -26,12 +26,19 @@ const getCurrentOpenAlbum = createAsyncThunk(
 
 const deleteAlbumById = createAsyncThunk(
     'albums/deleteAlbumById',
-    async (albumId: number) => {        
+    async (albumId: number) => {
         await AlbumService.deleteAlbumById(albumId);
         return albumId;
     }
 )
 
+const updateAlbumCaption = createAsyncThunk(
+    'albums/updateAlbumCaption',
+    async (albumUpdateData: IAlbumUpdateData) => {
+        const response = await AlbumService.updateAlbumCaption(albumUpdateData);
+        return response;
+    }
+)
 export const albumSlice = createSlice({
     name: "album",
     initialState: {
@@ -45,13 +52,15 @@ export const albumSlice = createSlice({
             state.userAlbums = action.payload;
         })
         builder.addCase(getCurrentOpenAlbum.fulfilled, (state, action) => {
-            state.currentOpenAlbum = action.payload;            
+            state.currentOpenAlbum = action.payload;
         })
         builder.addCase(deleteAlbumById.fulfilled, (state, action) => {
-            state.userAlbums = state.userAlbums.filter((album: { id: number; })=>album.id !== action.payload)            
+            state.userAlbums = state.userAlbums.filter((album: { id: number; }) => album.id !== action.payload)
+        })
+        builder.addCase(updateAlbumCaption.fulfilled, (state, action) => {
         })
     },
 });
 
-export { getAllCurrentUserAlbums, getCurrentOpenAlbum, deleteAlbumById }
+export { getAllCurrentUserAlbums, getCurrentOpenAlbum, deleteAlbumById, updateAlbumCaption }
 export default albumSlice.reducer;

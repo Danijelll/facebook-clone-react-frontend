@@ -7,7 +7,6 @@ import { closeDeleteImageModal } from '../../features/Ui/UiSlice';
 
 function DeleteImageModal() {
     const currentOpenAlbum = useSelector((state: RootStore) => state.album.currentOpenAlbum);
-
     const dispatch = useDispatch();
 
     const handleDelete = async () => {

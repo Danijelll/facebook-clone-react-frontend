@@ -7,3 +7,8 @@ export interface IAlbumData {
     createdOn: Date
     images: ImageData[]
 }
+
+export interface IAlbumUpdateData {
+    id: number
+    caption: string
+}
