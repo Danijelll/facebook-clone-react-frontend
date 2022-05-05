@@ -3,6 +3,8 @@ import { IUploadImageData } from "../../interfaces/IImage";
 import ImageService from "../../services/ImageService";
 
 export interface ImageSliceState {
+    userImages: Array<IUploadImageData>;
+
 }
 
 const uploadImages = createAsyncThunk(
@@ -15,11 +17,15 @@ const uploadImages = createAsyncThunk(
 
 export const imageSlice = createSlice({
     name: "image",
-    initialState: { userImages: {} },
+    initialState: {
+        userImages: [undefined]
+    },
     reducers: {
     },
     extraReducers: (builder) => {
-        builder.addCase(uploadImages.fulfilled, (state, action) => { })
+        builder.addCase(uploadImages.fulfilled, (state, action) => {
+            state.userImages.push(action.payload);            
+        })
     },
 });
 

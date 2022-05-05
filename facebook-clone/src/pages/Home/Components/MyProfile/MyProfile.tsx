@@ -10,6 +10,8 @@ function MyProfile() {
   const setShowCommentModal = useSelector((state: RootStore) => state.ui.setShowCommentModal);
   const userData = useSelector((state: RootStore) => state.user.currentUser);
   const albums = useSelector((state: RootStore) => state.album.userAlbums);
+  const images = useSelector((state: RootStore) => state.image.userImages);
+
 
   const dispatch = useDispatch();
 
@@ -17,16 +19,16 @@ function MyProfile() {
     if (userData?.id) {
       dispatch(getAllCurrentUserAlbums(userData?.id));
     }
-  }, [userData])
+  }, [userData,images])
 
   const renderAlbum = () => {
     return albums?.map(album =>
       <ImageCarousel
-        key={album.id}
-        albumId={album.id}
-        createdOn={album.createdOn}
-        captions={album.caption}
-        images={album.images}
+        key={album?.id}
+        albumId={album?.id}
+        createdOn={album?.createdOn}
+        captions={album?.caption}
+        images={album?.images}
       />)
   }
 

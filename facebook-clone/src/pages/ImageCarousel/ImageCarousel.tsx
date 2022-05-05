@@ -69,7 +69,7 @@ function ImageCarousel(props: ImageCarouselProps) {
                 </div>
 
                 <div id='image-slider-created-on'>
-                    {createdOn.toString().slice(0, 10)}
+                    {createdOn?.toString().slice(0, 10)}
                 </div>
 
                 <Slider className='image-slider' {...settings}>

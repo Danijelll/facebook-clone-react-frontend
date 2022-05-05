@@ -29,6 +29,7 @@ function AddImageModal() {
         } as IUploadImageData;
 
         await dispatch(uploadImages(data));
+        dispatch(closeAddImageModal())
     }
 
     return (
