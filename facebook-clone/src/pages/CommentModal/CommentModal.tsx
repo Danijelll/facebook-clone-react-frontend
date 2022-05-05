@@ -28,7 +28,7 @@ function CommentModal() {
   }
 
   useEffect(() => {
-    if (currentOpenAlbum?.id != null) {      
+    if (currentOpenAlbum?.id != null) {
       dispatch(getAllAlbumComments(albumCommentPage))
       comment.albumId = currentOpenAlbum.id
     }
@@ -72,9 +72,17 @@ function CommentModal() {
 
           <button onClick={handleUpload} id='upload-comment-button'>Post</button>
 
-          <button onClick={() => setPage(page-1)} >Previous Page</button>
-          <button onClick={() => {setPage(page+1)}}>Next Page</button>
-          <p>Page {page}</p>
+          <button
+            id='comment-modal-page-button'
+            onClick={() => setPage(page - 1)}>
+            Previous Page
+          </button>
+          <p id='comment-modal-page-text'>Page {page}</p>
+          <button
+            id='comment-modal-page-button'
+            onClick={() => { setPage(page + 1) }}>
+            Next Page
+          </button>
         </div>
 
         <div id='body'>

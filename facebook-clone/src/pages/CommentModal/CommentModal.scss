@@ -59,9 +59,25 @@
 
 #upload-comment-button {
     border: none;
-    padding: 5px 10px;
+    padding: 2px 15px;
     background-color: rgb(11, 79, 190);
     color: white;
     border-radius: 5px;
     cursor: pointer;
+    margin-right: auto;
+}
+
+#comment-modal-page-button{
+    border: 1px solid white;
+    padding: 2px 5px;
+    font-size: 12px;
+    background-color: rgba(84, 84, 84, 0.201);
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#comment-modal-page-text{
+    margin: 10px 10px;
+    color: white;
 }
