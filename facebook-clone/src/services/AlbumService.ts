@@ -27,6 +27,13 @@ class AlbumService {
                 console.log(error);
             });
     }
+
+    deleteAlbumById(albumId: number) {
+        return axios.delete('/albums/' + albumId) 
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
 }
 
 export default new AlbumService

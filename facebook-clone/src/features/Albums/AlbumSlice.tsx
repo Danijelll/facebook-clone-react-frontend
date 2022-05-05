@@ -24,10 +24,18 @@ const getCurrentOpenAlbum = createAsyncThunk(
     }
 )
 
+const deleteAlbumById = createAsyncThunk(
+    'albums/deleteAlbumById',
+    async (albumId: number) => {        
+        await AlbumService.deleteAlbumById(albumId);
+        return albumId;
+    }
+)
+
 export const albumSlice = createSlice({
     name: "album",
     initialState: {
-        userAlbums: undefined,
+        userAlbums: [],
         currentOpenAlbum: undefined,
     },
     reducers: {
@@ -39,9 +47,11 @@ export const albumSlice = createSlice({
         builder.addCase(getCurrentOpenAlbum.fulfilled, (state, action) => {
             state.currentOpenAlbum = action.payload;            
         })
-
+        builder.addCase(deleteAlbumById.fulfilled, (state, action) => {
+            state.userAlbums = state.userAlbums.filter((album: { id: number; })=>album.id !== action.payload)            
+        })
     },
 });
 
-export { getAllCurrentUserAlbums, getCurrentOpenAlbum }
+export { getAllCurrentUserAlbums, getCurrentOpenAlbum, deleteAlbumById }
 export default albumSlice.reducer;

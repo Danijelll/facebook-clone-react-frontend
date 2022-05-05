@@ -3,11 +3,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllCurrentUserAlbums } from '../../../../features/Albums/AlbumSlice';
 import { RootStore } from '../../../../features/store';
 import CommentModal from '../../../CommentModal/CommentModal';
+import DeleteImageModal from '../../../DeleteImageModal/DeleteImageModal';
+import EditImageModal from '../../../EditImageModal/EditImageModal';
+import ImageMenuModal from '../../../EditImageModal/EditImageModal';
 import ImageCarousel from '../../../ImageCarousel/ImageCarousel';
 import './MyProfile.scss'
 
 function MyProfile() {
   const setShowCommentModal = useSelector((state: RootStore) => state.ui.setShowCommentModal);
+  const setShowEditImageModal = useSelector((state: RootStore) => state.ui.setShowEditImageModal);
+  const setShowDeleteImageModal = useSelector((state: RootStore) => state.ui.setShowDeleteImageModal);
   const userData = useSelector((state: RootStore) => state.user.currentUser);
   const albums = useSelector((state: RootStore) => state.album.userAlbums);
   const images = useSelector((state: RootStore) => state.image.userImages);
@@ -35,6 +40,8 @@ function MyProfile() {
 
   return (
     <div id='my-profile-wrapper'>
+      {setShowEditImageModal && <EditImageModal />}
+      {setShowDeleteImageModal && <DeleteImageModal />}
       {setShowCommentModal && <CommentModal/>}
       <div className='album-item'>
         {renderAlbum()}

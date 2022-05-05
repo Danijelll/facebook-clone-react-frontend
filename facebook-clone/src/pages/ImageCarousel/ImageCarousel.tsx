@@ -5,12 +5,13 @@ import "slick-carousel/slick/slick-theme.css";
 import { ImageData } from '../../interfaces/IImage'
 import { RootStore } from '../../features/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { showCommentModal } from '../../features/Ui/UiSlice';
+import { showCommentModal, showDeleteImageModal, showEditImageModal } from '../../features/Ui/UiSlice';
 import { getCurrentOpenAlbum } from '../../features/Albums/AlbumSlice';
+import ImageMenuModal from '../EditImageModal/EditImageModal';
 
 interface ImageCarouselProps {
     albumId: number,
-    userId:number,
+    userId: number,
     images: ImageData[],
     captions: string,
     createdOn: Date,
@@ -53,11 +54,11 @@ function ImageCarousel(props: ImageCarouselProps) {
                         {userData?.username}
                     </p>
 
-                    <div onClick={() => {
-                        dispatch(showCommentModal());
-                        dispatch(getCurrentOpenAlbum(albumId))
-                    }}
-                        id='image-slider-add-comment-button'>
+                    <div id='image-slider-add-comment-button'
+                        onClick={() => {
+                            dispatch(showCommentModal());
+                            dispatch(getCurrentOpenAlbum(albumId))
+                        }}>
 
                         <img id='image-slider-add-comment-button-svg'
                             src="comment.svg"
@@ -67,16 +68,31 @@ function ImageCarousel(props: ImageCarouselProps) {
                     </div>
 
                     {userData?.id == userId &&
-                    <div onClick={() => {
-                        dispatch(showCommentModal());
-                    }}
-                        id='image-slider-menu-button'>
+                        <div style={{display:"flex"}}>
+                            <div onClick={() => {
+                                dispatch(showEditImageModal());
+                                dispatch(getCurrentOpenAlbum(albumId))
+                            }}
+                                id='image-slider-menu-button'>
 
-                        <img id='image-slider-menu-button-svg'
-                            src="menu.svg"
-                            alt="menuSvg"
-                        />
-                    </div>
+                                <img id='image-slider-menu-button-svg'
+                                    src="edit.svg"
+                                    alt="editSvg"
+                                />
+                            </div>
+
+                            <div onClick={() => {
+                                dispatch(showDeleteImageModal());
+                                dispatch(getCurrentOpenAlbum(albumId))
+                            }}
+                                id='image-slider-menu-button'>
+
+                                <img id='image-slider-menu-button-svg'
+                                    src="trash.svg"
+                                    alt="trashSvg"
+                                />
+                            </div>
+                        </div>
                     }
                 </div>
 
