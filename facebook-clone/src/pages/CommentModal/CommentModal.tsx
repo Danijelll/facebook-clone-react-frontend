@@ -75,13 +75,13 @@ function CommentModal() {
           <button
             id='comment-modal-page-button'
             onClick={() => setPage(page - 1)}>
-            Previous Page
+            &lt;
           </button>
           <p id='comment-modal-page-text'>Page {page}</p>
           <button
             id='comment-modal-page-button'
             onClick={() => { setPage(page + 1) }}>
-            Next Page
+            &gt;
           </button>
         </div>
 

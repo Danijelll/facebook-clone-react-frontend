@@ -13,7 +13,7 @@ function ImageMenuModal() {
     const handleEdit = async () => {
         await dispatch(updateAlbumCaption(albumUpdateData))
         dispatch(closeEditImageModal())
-        }
+    }
 
     const albumUpdateData = {
         id: currentOpenAlbum?.id,
@@ -34,16 +34,20 @@ function ImageMenuModal() {
 
                 <div id='body'>
                     <input
+                        id='edit-image-modal-input'
                         onChange={e => setCaption(e.target.value)}
                         type="text"
                         placeholder={currentOpenAlbum?.caption}
                     />
 
-                    <button onClick={() => handleEdit()}>
+                    <button
+                        id='edit-image-modal-edit-button'
+                        onClick={() => handleEdit()}>
                         Edit caption
                     </button>
-                    
-                    <button>Cancel</button>
+
+                    <button id='edit-image-modal-cancel-button'>
+                        Cancel</button>
                 </div>
 
             </div>

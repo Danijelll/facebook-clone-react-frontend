@@ -68,26 +68,28 @@ function ImageCarousel(props: ImageCarouselProps) {
                     </div>
 
                     {userData?.id == userId &&
-                        <div style={{display:"flex"}}>
-                            <div onClick={() => {
-                                dispatch(showEditImageModal());
-                                dispatch(getCurrentOpenAlbum(albumId))
-                            }}
-                                id='image-slider-menu-button'>
+                        <div style={{ display: "flex" }}>
+                            <div
+                                id='image-slider-edit-button'
+                                onClick={() => {
+                                    dispatch(showEditImageModal());
+                                    dispatch(getCurrentOpenAlbum(albumId))
+                                }}>
 
-                                <img id='image-slider-menu-button-svg'
+                                <img id='image-slider-edit-button-svg'
                                     src="edit.svg"
                                     alt="editSvg"
                                 />
                             </div>
 
-                            <div onClick={() => {
-                                dispatch(showDeleteImageModal());
-                                dispatch(getCurrentOpenAlbum(albumId))
-                            }}
-                                id='image-slider-menu-button'>
+                            <div
+                                id='image-slider-delete-button'
+                                onClick={() => {
+                                    dispatch(showDeleteImageModal());
+                                    dispatch(getCurrentOpenAlbum(albumId))
+                                }}>
 
-                                <img id='image-slider-menu-button-svg'
+                                <img id='image-slider-delete-button-svg'
                                     src="trash.svg"
                                     alt="trashSvg"
                                 />
