@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { checkFriendRequestStatus, sendFriendRequest } from '../../features/Friendships/FriendshipSlice';
+import { useSelector } from 'react-redux';
 import { RootStore } from '../../features/store';
+import FriendRequestStatusButton from './FriendRequestStatusButton/FriendRequestStatusButton';
 import './ProfileHeader.scss'
 
 interface ProfileHeaderProps {
@@ -14,18 +14,13 @@ interface ProfileHeaderProps {
 
 function ProfileHeader(props: ProfileHeaderProps) {
     const { profileImage, coverImage, username, createdOn, showAddFriend } = props;
-    const friendData = useSelector((state: RootStore) => state.user.currentFriend);
-    const friendRequestStatus = useSelector((state: RootStore) => state.friendship.RequestStatus);
+    const refreshButton = useSelector((state: RootStore) => state.friendship.RefreshButton);
 
-    const dispatch = useDispatch();
-
-    let buttonText = '';
 
     useEffect(() => {
-        if (friendData != undefined && friendRequestStatus?.toString() !== '') { //AAAAAAAAAA
-            dispatch(checkFriendRequestStatus(friendData?.id))
-        }
-    })
+
+    }, [refreshButton])
+
 
     return (
         <div id='profile-header-wrapper'>
@@ -50,10 +45,8 @@ function ProfileHeader(props: ProfileHeaderProps) {
                 </p>
             </div>
             {showAddFriend &&
-                <button onClick={() => { dispatch(sendFriendRequest(friendData.id)) }}
-                    className={`addFriendButton-${friendRequestStatus}`}>
-                    {buttonText}
-                </button>}
+                <FriendRequestStatusButton />
+            }
         </div>
     )
 }

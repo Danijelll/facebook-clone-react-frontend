@@ -16,7 +16,14 @@ class FriendshipService {
                 console.log(error);
             });
     }
-    
+
+    cancelFriendRequest(friendId: number) {
+        return axios.delete('/cancelRequest/' + friendId)
+            .then().catch(function (error) {
+                console.log(error);
+            });
+    }
+
     checkFriendRequestStatus(friendId: number) {
         return axios.get('/friendRequestStatus/' + friendId)
             .then(function (response) {

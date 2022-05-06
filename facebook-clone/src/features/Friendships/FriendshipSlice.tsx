@@ -1,16 +1,26 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { BooleanLiteral } from "typescript";
 import { FriendRequestStatusEnum } from "../../Models/FriendRequestStatusEnum";
 import FriendshipService from "../../services/FriendshipService";
 
 export interface FriendshipSliceState {
     RequestStatus: FriendRequestStatusEnum;
+    RefreshButton: boolean;
 }
 
 const sendFriendRequest = createAsyncThunk(
     'friendships/sendFriendRequest',
     async (friendId: number) => {
-        const response = await FriendshipService.sendFriendRequest(friendId);
-        return response;
+        await FriendshipService.sendFriendRequest(friendId);
+        return true;
+    }
+)
+
+const cancelFriendRequest = createAsyncThunk(
+    'friendships/cancelFriendRequest',
+    async (friendId: number) => {
+        await FriendshipService.cancelFriendRequest(friendId);
+        return true;
     }
 )
 
@@ -24,17 +34,25 @@ const checkFriendRequestStatus = createAsyncThunk(
 
 export const friendshipSlice = createSlice({
     name: "friendships",
-    initialState: { RequestStatus: '' as any /** CHANGE ANY */ },
+    initialState: {
+         RequestStatus: undefined,
+         RefreshButton:false
+        },
     reducers: {
     },
     extraReducers: (builder) => {
-        builder.addCase(sendFriendRequest.fulfilled, (state, action) => { })
+        builder.addCase(sendFriendRequest.fulfilled, (state, action) => {
+            state.RefreshButton = !state.RefreshButton
+        })
         builder.addCase(checkFriendRequestStatus.fulfilled, (state, action) => {
             state.RequestStatus = action.payload
+        })
+        builder.addCase(cancelFriendRequest.fulfilled, (state, action) => {
+            state.RefreshButton = !state.RefreshButton
         })
 
     },
 
 });
-export { sendFriendRequest, checkFriendRequestStatus }
+export { sendFriendRequest, checkFriendRequestStatus, cancelFriendRequest }
 export default friendshipSlice.reducer;
