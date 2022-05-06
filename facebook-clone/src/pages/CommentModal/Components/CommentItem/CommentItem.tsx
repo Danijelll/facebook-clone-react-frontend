@@ -1,9 +1,12 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { deleteCommentById } from '../../../../features/Comments/CommentSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteCommentById, getCommentById } from '../../../../features/Comments/CommentSlice';
+import { RootStore } from '../../../../features/store';
+import { showEditCommentModal } from '../../../../features/Ui/UiSlice';
 import './CommentItem.scss'
 
 interface CommentItemProps {
+  userId: number,
   commentId: number
   username: string,
   profileImage: string,
@@ -13,13 +16,15 @@ interface CommentItemProps {
 
 
 function CommentItem(props: CommentItemProps) {
-  const {  commentId, username, profileImage, text, createdOn } = props;
+  const currentOpenAlbum = useSelector((state: RootStore) => state.album.currentOpenAlbum);
+  const userData = useSelector((state: RootStore) => state.user.currentUser);
+  const { userId, commentId, username, profileImage, text, createdOn } = props;
   const dispatch = useDispatch();
 
   useEffect(() => {
-    
+
   }, [])
-  
+
 
   return (
     <div id='comment-item-wrapper'>
@@ -28,6 +33,9 @@ function CommentItem(props: CommentItemProps) {
 
         <div id='comment-item-username'>
           {username}
+          {userId === userData.id &&
+            <img src='edit.svg' onClick={() => { dispatch(showEditCommentModal()); dispatch(getCommentById(commentId)) }} id='comment-item-edit-button'></img>
+          }
         </div>
 
         <div id='comment-item-text'>
@@ -35,11 +43,13 @@ function CommentItem(props: CommentItemProps) {
         </div>
 
         <div id='comment-item-time'>
-          {createdOn.toString().slice(0,10)}
+          {createdOn.toString().slice(0, 10)}
         </div>
 
       </div>
-      <div onClick={() => dispatch(deleteCommentById(commentId))} id='comment-item-delete-button'>X</div>
+      {currentOpenAlbum.userId === userData.id &&
+        <div onClick={() => dispatch(deleteCommentById(commentId))} id='comment-item-delete-button'>X</div>
+      }
     </div>
   )
 }

@@ -14,12 +14,20 @@
     margin: inherit;
 }
 
+#comment-item-edit-button{
+    filter: invert(94%) sepia(100%) saturate(0%) hue-rotate(224deg) brightness(105%) contrast(105%);
+    margin-left: 10px;
+    height: 15px;
+    cursor: pointer;
+}
+
 #comment-item-content {
     padding-top: 5px;
 }
 
 #comment-item-username {
     color: white;
+    display: flex;
     font-size: 12px;
 }
 

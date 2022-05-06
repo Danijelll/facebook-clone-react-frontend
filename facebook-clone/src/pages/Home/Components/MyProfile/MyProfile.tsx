@@ -4,6 +4,7 @@ import { getAllCurrentUserAlbums } from '../../../../features/Albums/AlbumSlice'
 import { RootStore } from '../../../../features/store';
 import CommentModal from '../../../CommentModal/CommentModal';
 import DeleteImageModal from '../../../DeleteImageModal/DeleteImageModal';
+import EditCommentModal from '../../../EditCommentModal/EditCommentModal';
 import EditImageModal from '../../../EditImageModal/EditImageModal';
 import ImageMenuModal from '../../../EditImageModal/EditImageModal';
 import ImageCarousel from '../../../ImageCarousel/ImageCarousel';
@@ -14,6 +15,7 @@ function MyProfile() {
   const setShowEditImageModal = useSelector((state: RootStore) => state.ui.setShowEditImageModal);
   const currentOpenAlbum = useSelector((state: RootStore) => state.album.currentOpenAlbum);
   const setShowDeleteImageModal = useSelector((state: RootStore) => state.ui.setShowDeleteImageModal);
+  const setShowEditCommentModal = useSelector((state: RootStore) => state.ui.setShowEditCommentModal);
   const userData = useSelector((state: RootStore) => state.user.currentUser);
   const albums = useSelector((state: RootStore) => state.album.userAlbums);
   const images = useSelector((state: RootStore) => state.image.userImages);
@@ -25,7 +27,7 @@ function MyProfile() {
     if (userData?.id) {
       dispatch(getAllCurrentUserAlbums(userData?.id));
     }
-  }, [userData,images,currentOpenAlbum])
+  }, [userData, images, currentOpenAlbum])
 
   const renderAlbum = () => {
     return albums?.map(album =>
@@ -43,7 +45,8 @@ function MyProfile() {
     <div id='my-profile-wrapper'>
       {setShowEditImageModal && <EditImageModal />}
       {setShowDeleteImageModal && <DeleteImageModal />}
-      {setShowCommentModal && <CommentModal/>}
+      {setShowCommentModal && <CommentModal />}
+      {setShowEditCommentModal && <EditCommentModal />}
       <div className='album-item'>
         {renderAlbum()}
       </div>
