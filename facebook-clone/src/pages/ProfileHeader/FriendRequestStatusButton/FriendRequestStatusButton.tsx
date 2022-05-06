@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { cancelFriendRequest, checkFriendRequestStatus, sendFriendRequest } from '../../../features/Friendships/FriendshipSlice';
+import { cancelFriendRequest, checkFriendRequestStatus, confirmFriendRequest, sendFriendRequest } from '../../../features/Friendships/FriendshipSlice';
 import { RootStore } from '../../../features/store';
 import { FriendRequestStatusEnum } from '../../../Models/FriendRequestStatusEnum';
 import './FriendRequestStatusButton.scss'
@@ -37,6 +37,7 @@ function FriendRequestStatusButton() {
             if (friendRequestStatus === FriendRequestStatusEnum.PendingIncoming) {
                 setButtonText(buttonText => ('Accept Friend Request'));
                 setClassName(className => ('friend-request-button-pending-incoming'));
+                handleOnClick = () => dispatch(confirmFriendRequest(currentFriend?.id));
             }
         }
     }, [friendRequestStatus, currentFriend, handleOnClick])

@@ -23,6 +23,13 @@ const cancelFriendRequest = createAsyncThunk(
         return true;
     }
 )
+const confirmFriendRequest = createAsyncThunk(
+    'friendships/confirmFriendRequest',
+    async (friendId: number) => {
+        await FriendshipService.confirmFriendRequest(friendId);
+        return true;
+    }
+)
 
 const checkFriendRequestStatus = createAsyncThunk(
     'friendships/checkFriendRequestStatus',
@@ -35,9 +42,9 @@ const checkFriendRequestStatus = createAsyncThunk(
 export const friendshipSlice = createSlice({
     name: "friendships",
     initialState: {
-         RequestStatus: undefined,
-         RefreshButton:false
-        },
+        RequestStatus: undefined,
+        RefreshButton: false
+    },
     reducers: {
     },
     extraReducers: (builder) => {
@@ -54,5 +61,5 @@ export const friendshipSlice = createSlice({
     },
 
 });
-export { sendFriendRequest, checkFriendRequestStatus, cancelFriendRequest }
+export { sendFriendRequest, checkFriendRequestStatus, cancelFriendRequest, confirmFriendRequest }
 export default friendshipSlice.reducer;
