@@ -6,12 +6,13 @@ import CommentModal from '../../../CommentModal/CommentModal';
 import DeleteImageModal from '../../../DeleteImageModal/DeleteImageModal';
 import EditCommentModal from '../../../EditCommentModal/EditCommentModal';
 import EditImageModal from '../../../EditImageModal/EditImageModal';
-import ImageMenuModal from '../../../EditImageModal/EditImageModal';
 import ImageCarousel from '../../../ImageCarousel/ImageCarousel';
+import UserSearchModal from '../../../UserSearch/UserSearchModal';
 import './MyProfile.scss'
 
 function MyProfile() {
   const setShowCommentModal = useSelector((state: RootStore) => state.ui.setShowCommentModal);
+  const setShowUserSearchModal = useSelector((state: RootStore) => state.ui.setShowUserSearchModal);
   const setShowEditImageModal = useSelector((state: RootStore) => state.ui.setShowEditImageModal);
   const currentOpenAlbum = useSelector((state: RootStore) => state.album.currentOpenAlbum);
   const setShowDeleteImageModal = useSelector((state: RootStore) => state.ui.setShowDeleteImageModal);
@@ -47,6 +48,7 @@ function MyProfile() {
       {setShowDeleteImageModal && <DeleteImageModal />}
       {setShowCommentModal && <CommentModal />}
       {setShowEditCommentModal && <EditCommentModal />}
+      {setShowUserSearchModal && <UserSearchModal />}
       <div className='album-item'>
         {renderAlbum()}
       </div>

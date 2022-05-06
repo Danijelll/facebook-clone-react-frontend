@@ -5,7 +5,6 @@ import Register from './pages/Register/Register';
 import Home from './pages/Home/Home';
 import Nav from './components/Nav/Nav';
 import ConfirmEmail from './pages/ConfirmEmail/ConfirmEmail';
-import UserSearch from './pages/UserSearch/UserSearch';
 import UserPage from './pages/UserPage/UserPage';
 
 function App() {
@@ -18,7 +17,6 @@ function App() {
           <Route path='/' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/home' element={<Home />} />
-          <Route path='/userSearch' element={<UserSearch />} />
           <Route path='/userPage' element={<UserPage />} />
           <Route path='/confirmEmail' element={<ConfirmEmail />} />
         </Routes>
