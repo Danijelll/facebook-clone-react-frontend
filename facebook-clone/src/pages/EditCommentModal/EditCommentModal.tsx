@@ -5,7 +5,7 @@ import { RootStore } from '../../features/store';
 import { closeEditCommentModal } from '../../features/Ui/UiSlice';
 
 function EditCommentModal() {
-    const currentOpenComment = useSelector((state: RootStore) => state.comment.currentOpenAlbum);
+    const currentOpenComment = useSelector((state: RootStore) => state.comment.currentOpenComment);
     const currentOpenAlbum = useSelector((state: RootStore) => state.album.currentOpenAlbum);
     const [commentText, setCommentText] = useState(currentOpenAlbum?.caption)
     const dispatch = useDispatch();

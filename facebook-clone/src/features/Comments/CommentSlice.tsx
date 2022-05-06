@@ -6,7 +6,7 @@ import CommentService from "../../services/CommentService";
 
 export interface CommentSliceState {
     currentAlbumComments: Array<ICommentData>;
-    currentOpenAlbum:ICommentData
+    currentOpenComment:ICommentData
 }
 
 const getAllAlbumComments = createAsyncThunk(
@@ -53,7 +53,7 @@ export const commentSlice = createSlice({
     name: "comment",
     initialState: {
         currentAlbumComments: [],
-        currentOpenAlbum: undefined,
+        currentOpenComment: undefined,
     },
     reducers: {
 
@@ -68,7 +68,10 @@ export const commentSlice = createSlice({
             state.currentAlbumComments = state.currentAlbumComments.filter((commentItem: { id: number; })=>commentItem.id !== action.payload)
         })
         builder.addCase(getCommentById.fulfilled, (state, action) => {
-            state.currentOpenAlbum = action.payload;
+            state.currentOpenComment = action.payload;
+        })
+        builder.addCase(updateComment.fulfilled, (state, action) => {
+            state.currentOpenComment = action.payload;
         })
     },
 });

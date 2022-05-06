@@ -9,6 +9,7 @@ import './CommentModal.scss'
 import CommentItem from './Components/CommentItem/CommentItem';
 
 function CommentModal() {
+  const currentOpenComment = useSelector((state: RootStore) => state.comment.currentOpenComment);
   const albumComments = useSelector((state: RootStore) => state.comment.currentAlbumComments);
   const currentOpenAlbum = useSelector((state: RootStore) => state.album.currentOpenAlbum);
   const userData = useSelector((state: RootStore) => state.user.currentUser);
@@ -33,7 +34,7 @@ function CommentModal() {
       comment.albumId = currentOpenAlbum.id
     }
 
-  }, [currentOpenAlbum, page])
+  }, [currentOpenAlbum, page, currentOpenComment])
 
 
   const handleInput = (field: string, value: string) => {
