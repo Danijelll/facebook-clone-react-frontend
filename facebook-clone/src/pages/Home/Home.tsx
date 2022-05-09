@@ -44,6 +44,7 @@ function Home() {
       {setShowEditProfileModal && <EditProfileModal/>}
 
       <ProfileHeader
+        id={userData?.id}
         profileImage={userData?.profileImage}
         coverImage={userData?.coverImage}
         username={userData?.username}

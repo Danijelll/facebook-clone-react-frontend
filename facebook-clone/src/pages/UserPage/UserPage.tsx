@@ -23,6 +23,7 @@ function UserPage() {
     return (
         <div id='home-wrapper'>
             <ProfileHeader
+                id = {friendData?.id}
                 profileImage={friendData?.profileImage}
                 coverImage={friendData?.coverImage}
                 username={friendData?.username}

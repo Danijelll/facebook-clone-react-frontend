@@ -5,9 +5,7 @@ class AlbumService {
     getAllCurrentUserAlbums(userId: number) {
         return axios.get('/albums/search/' + userId + '?pageSize=0&pageNumber=0')
             .then(function (response) {
-                const status = JSON.parse((response.status).toString());
-
-                if (status == '200') {
+                if (response.status === 200) {
                     return response.data;
                 }
             }).catch(function (error) {
@@ -18,9 +16,7 @@ class AlbumService {
     getCurrentOpenAlbum(albumId: number) {
         return axios.get('/albums/' + albumId)
             .then(function (response) {
-                const status = JSON.parse((response.status).toString());
-
-                if (status == '200') {
+                if (response.status === 200) {
                     return response.data;
                 }
             }).catch(function (error) {
@@ -38,9 +34,7 @@ class AlbumService {
     updateAlbumCaption(albumUpdateData: any) {
         return axios.put('/albums', albumUpdateData)
             .then(function (response) {
-                const status = JSON.parse((response.status).toString());
-
-                if (status == '200') {
+                if (response.status === 200) {
                     return response.data;
                 }
             }).catch(function (error) {

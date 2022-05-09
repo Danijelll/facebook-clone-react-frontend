@@ -8,9 +8,7 @@ class UserService {
         return axios.post('/login', user)
             .then(function (response) {
                 localStorage.setItem('token', response.data)
-                const status = JSON.parse((response.status).toString());
-
-                if (status == '200') {
+                if (response.status === 200) {
                     return true;
                 }
             }).catch(function (error) {
@@ -21,9 +19,7 @@ class UserService {
     register(user: IRegister) {
         return axios.post('/register', user)
             .then(function (response) {
-                const status = JSON.parse((response.status).toString());
-
-                if (status == '200') {
+                if (response.status === 200) {
                     return true;
                 }
             }).catch(function (error) {
@@ -34,11 +30,8 @@ class UserService {
     getCurrentUserData() {
         return axios.get('/home')
             .then(function (response) {
-                const status = JSON.parse((response.status).toString());
-
-                if (status == '200') {
+                if (response.status === 200) {
                     return response.data;
-
                 }
             }).catch(function (error) {
                 console.log(error);
@@ -48,11 +41,8 @@ class UserService {
     getUserByUsername(username: string) {
         return axios.get('/users/search/' + username)
             .then(function (response) {
-                const status = JSON.parse((response.status).toString());
-
-                if (status == '200') {
+                if (response.status === 200) {
                     return response.data;
-
                 }
             }).catch(function (error) {
                 console.log(error);
@@ -62,11 +52,8 @@ class UserService {
     getUserById(id: number) {
         return axios.get('/users/' + id)
             .then(function (response) {
-                const status = JSON.parse((response.status).toString());
-
-                if (status == '200') {
+                if (response.status === 200) {
                     return response.data;
-
                 }
             }).catch(function (error) {
                 console.log(error);
@@ -79,11 +66,7 @@ class UserService {
 
         return axios.put('/updateProfileImage', formData)
             .then(function (response) {
-                const status = JSON.parse((response.status).toString());
-
-                if (status == '200') {
-                    console.log(response.data);
-                    
+                if (response.status === 200) {
                     return response.data;
                 }
             }).catch(function (error) {
@@ -98,11 +81,7 @@ class UserService {
 
         return axios.put('/updateCoverImage', formData)
             .then(function (response) {
-                const status = JSON.parse((response.status).toString());
-
-                if (status == '200') {
-                    console.log(response.data);
-                    
+                if (response.status === 200) {
                     return response.data;
                 }
             }).catch(function (error) {

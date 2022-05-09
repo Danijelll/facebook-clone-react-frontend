@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { cancelFriendRequest, checkFriendRequestStatus, confirmFriendRequest, sendFriendRequest } from '../../../features/Friendships/FriendshipSlice';
+import { checkFriendRequestStatus, confirmFriendRequest, deleteFriendRequest, sendFriendRequest } from '../../../features/Friendships/FriendshipSlice';
 import { RootStore } from '../../../features/store';
 import { FriendRequestStatusEnum } from '../../../Models/FriendRequestStatusEnum';
 import './FriendRequestStatusButton.scss'
@@ -13,30 +13,31 @@ function FriendRequestStatusButton() {
 
     const dispatch = useDispatch();
     let handleOnClick = () => console.log('aaa');
-    ;
 
     useEffect(() => {
         if (currentFriend?.id !== undefined) {
             dispatch(checkFriendRequestStatus(currentFriend?.id))
 
+            console.log('status', friendRequestStatus);
+
             if (friendRequestStatus === FriendRequestStatusEnum.Friends) {
-                setButtonText(buttonText => ('Friends'));
-                setClassName(className => ('friend-request-button-friends'));
-                handleOnClick = () => console.log('bbb')
+                setButtonText(() => ('Remove Friend'));
+                setClassName(() => ('friend-request-button-friends'));
+                handleOnClick = () => dispatch(deleteFriendRequest(currentFriend?.id));
             }
             if (friendRequestStatus === FriendRequestStatusEnum.NoRequest) {
-                setButtonText(buttonText => ('Add Friend'));
-                setClassName(className => ('friend-request-button-no-request'));
+                setButtonText(() => ('Add Friend'));
+                setClassName(() => ('friend-request-button-no-request'));
                 handleOnClick = () => dispatch(sendFriendRequest(currentFriend?.id));
             }
             if (friendRequestStatus === FriendRequestStatusEnum.PendingOutgoing) {
-                setButtonText(buttonText => ('Cancel Friend Request'));
-                setClassName(className => ('friend-request-button-pending-outgoing'));
-                handleOnClick = () => dispatch(cancelFriendRequest(currentFriend?.id));
+                setButtonText(() => ('Cancel Friend Request'));
+                setClassName(() => ('friend-request-button-pending-outgoing'));
+                handleOnClick = () => dispatch(deleteFriendRequest(currentFriend?.id));
             }
             if (friendRequestStatus === FriendRequestStatusEnum.PendingIncoming) {
-                setButtonText(buttonText => ('Accept Friend Request'));
-                setClassName(className => ('friend-request-button-pending-incoming'));
+                setButtonText(() => ('Accept Friend Request'));
+                setClassName(() => ('friend-request-button-pending-incoming'));
                 handleOnClick = () => dispatch(confirmFriendRequest(currentFriend?.id));
             }
         }

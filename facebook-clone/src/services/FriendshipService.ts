@@ -7,18 +7,16 @@ class FriendshipService {
         return axios.post('/addFriend/' + friendId)
             .then(function (response) {
                 localStorage.getItem('token')
-                const status = JSON.parse((response.status).toString());
-
-                if (status == '200') {
-                    return true;
+                if (response.status === 200) {
+                    return response.data;
                 }
             }).catch(function (error) {
                 console.log(error);
             });
     }
-
-    cancelFriendRequest(friendId: number) {
-        return axios.delete('/cancelRequest/' + friendId)
+    
+    deleteFriendRequest(friendId: number) {
+        return axios.delete('/deleteRequest/' + friendId)
             .then().catch(function (error) {
                 console.log(error);
             });
@@ -28,10 +26,8 @@ class FriendshipService {
         return axios.put('/confirmFriend/' + friendId)
             .then(function (response) {
                 localStorage.getItem('token')
-                const status = JSON.parse((response.status).toString());
-
-                if (status == '200') {
-                    return true;
+                if (response.status === 200) {
+                    return response.data;
                 }
             }).catch(function (error) {
                 console.log(error);
@@ -42,9 +38,7 @@ class FriendshipService {
         return axios.get('/friendRequestStatus/' + friendId)
             .then(function (response) {
                 localStorage.getItem('token')
-                const status = JSON.parse((response.status).toString());
-
-                if (status == '200') {
+                if (response.status === 200) {
                     return response.data;
                 }
             }).catch(function (error) {

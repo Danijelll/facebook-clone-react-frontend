@@ -5,6 +5,7 @@ import FriendRequestStatusButton from './FriendRequestStatusButton/FriendRequest
 import './ProfileHeader.scss'
 
 interface ProfileHeaderProps {
+    id: number,
     profileImage: string,
     coverImage: string,
     username: string,
@@ -13,14 +14,8 @@ interface ProfileHeaderProps {
 }
 
 function ProfileHeader(props: ProfileHeaderProps) {
-    const { profileImage, coverImage, username, createdOn, showAddFriend } = props;
-    const refreshButton = useSelector((state: RootStore) => state.friendship.RefreshButton);
-
-
-    useEffect(() => {
-
-    }, [refreshButton])
-
+    const userData = useSelector((state: RootStore) => state.user.currentUser);
+    const { id, profileImage, coverImage, username, createdOn, showAddFriend } = props;
 
     return (
         <div id='profile-header-wrapper'>
@@ -44,7 +39,7 @@ function ProfileHeader(props: ProfileHeaderProps) {
                     Member since: {createdOn?.slice(0, 10)}
                 </p>
             </div>
-            {showAddFriend &&
+            {showAddFriend && id !== userData?.id &&
                 <FriendRequestStatusButton />
             }
         </div>

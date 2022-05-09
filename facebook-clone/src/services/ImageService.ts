@@ -19,9 +19,7 @@ class ImageService {
 
         return axios.post('/albums', formData)
             .then(function (response) {
-                const status = JSON.parse((response.status).toString());
-
-                if (status == '200') {
+                if (response.status === 200) {
                     return response.data;
                 }
             }).catch(function (error) {
