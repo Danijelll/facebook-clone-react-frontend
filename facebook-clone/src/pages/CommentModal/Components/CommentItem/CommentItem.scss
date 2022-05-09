@@ -1,0 +1,48 @@
+#comment-item-wrapper {
+    margin: 10px;
+    padding: 5px;
+    display: flex;
+    border-radius: 15px;
+    background-color: #1a1a1a;
+}
+
+#comment-item-profile-image {
+    border-radius: 50%;
+    background-color: white;
+    height: 42px;
+    width: 42px;
+    margin: inherit;
+}
+
+#comment-item-edit-button{
+    filter: invert(94%) sepia(100%) saturate(0%) hue-rotate(224deg) brightness(105%) contrast(105%);
+    margin-left: 10px;
+    height: 15px;
+    cursor: pointer;
+}
+
+#comment-item-content {
+    padding-top: 5px;
+}
+
+#comment-item-username {
+    color: white;
+    display: flex;
+    font-size: 12px;
+}
+
+#comment-item-text {
+    color: white;
+    font-size: 15px;
+}
+
+#comment-item-time {
+    color: rgba(255, 255, 255, 0.242);
+    font-size: 11px;
+}
+
+#comment-item-delete-button {
+    color: crimson;
+    cursor: pointer;
+    margin-left: auto;
+}

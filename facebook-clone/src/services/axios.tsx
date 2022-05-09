@@ -3,7 +3,7 @@ import axios from "axios";
 const token = localStorage.getItem('token');
 
 const axiosInstance = axios.create({
-    baseURL:"https://localhost:5001",
+    baseURL: "https://localhost:5001",
     headers: {
         Authorization: 'Bearer '.concat(token ?? '')
     }
@@ -12,7 +12,10 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use((config) => {
     const token = localStorage.getItem('token');
 
-    config.headers = { ...config.headers, Authorization: 'Bearer '.concat(token ?? '') };
+    config.headers = {
+        ...config.headers,
+        Authorization: 'Bearer '.concat(token ?? '')
+    };
 
     return config;
 });

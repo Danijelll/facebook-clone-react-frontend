@@ -8,7 +8,7 @@ a {
     margin: auto;
     height: 60px;
     display: flex;
-    background-color: #171717;
+    background-color: #1e1e1e;
     justify-content: space-between;
     text-decoration: none;
 }
@@ -24,6 +24,7 @@ a {
 .options {
     margin: auto 10px auto;
     display: flex;
+    cursor: pointer;
 }
 
 .navOptions {
@@ -31,6 +32,7 @@ a {
     margin: auto 15px;
     text-decoration: none;
     color: white;
+    cursor: pointer;
 }
 
 .navOptions:hover {
@@ -38,4 +40,3 @@ a {
     transition: all 0.3s ease;
 
 }
-

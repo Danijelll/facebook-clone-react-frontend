@@ -13,14 +13,14 @@ function Register() {
 
   const [registerData, setRegisterData] = useState<IRegister>({
     username: '',
-    email:'',
+    email: '',
     password: ''
   } as IRegister);
 
   const navigate = useNavigate();
 
   const handleInput = (field: string, value: string) => {
-    setRegisterData({...registerData, [field]: value});
+    setRegisterData({ ...registerData, [field]: value });
   }
 
   const handleRegister = async () => {
@@ -35,11 +35,41 @@ function Register() {
   return (
     <div className='wrapper'>
 
-      <input className="input" value={registerData.username} onChange={e => handleInput('username', e.target.value)} placeholder='Username...' />
-      <input className="input" value={registerData.email} onChange={e => handleInput('email', e.target.value)} type="email" placeholder='Email...' />
-      <input className="input" value={registerData.password} onChange={e => handleInput('password', e.target.value)} type="password" placeholder='Password...' />
-      <button onClick={handleRegister} className="button">Register</button>
-      <p className="link-text">Already have an account? <Link className="link" to="/">Login</Link></p>
+      <input
+        className="input"
+        value={registerData.username}
+        onChange={e => handleInput('username', e.target.value)}
+        placeholder='Username...'
+      />
+
+      <input
+        className="input"
+        value={registerData.email}
+        onChange={e => handleInput('email', e.target.value)}
+        type="email"
+        placeholder='Email...'
+      />
+
+      <input
+        className="input"
+        value={registerData.password}
+        onChange={e => handleInput('password', e.target.value)}
+        type="password"
+        placeholder='Password...'
+      />
+
+      <button
+        onClick={handleRegister}
+        className="button">
+        Register
+      </button>
+
+      <p className="link-text">
+        Already have an account?
+        <Link className="link" to="/">
+          Login
+        </Link>
+      </p>
 
     </div>
   )

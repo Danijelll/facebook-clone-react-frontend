@@ -1,21 +1,28 @@
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom"
 import { RootStore } from "../../features/store";
+import HamburgerMenu from "../HamburgerMenu/HamburgerMenu";
 import '../Nav/Nav.scss'
 
 function Nav() {
-    const userData = useSelector((state: RootStore) => state.user.currentUser);
+    const userData = useSelector((state: RootStore) => state.user?.currentUser);
+
+useEffect(() => {
+}, [userData])
+
 
     return (
         <div className='navWrapper'>
+
             <Link to="/">
                 <div className='logo'>Facebook Clone</div>
             </Link>
 
-            {!userData.id &&
+            {!userData?.id &&
 
                 <div className="options">
-                    
+
                     <Link to="/register">
                         <div className='navOptions'>Register</div>
                     </Link>
@@ -27,25 +34,12 @@ function Nav() {
                 </div>
             }
 
-            {userData.id &&
+            {userData?.id &&
 
                 <div className="options">
 
-                    <Link to="/home">
-                        <div className='navOptions'>My Profile</div>
-                    </Link>
+                    <HamburgerMenu/>
 
-                    <Link to="/friends">
-                        <div className='navOptions'>Friends</div>
-                    </Link>
-
-                    <Link to="/upload">
-                        <div className='navOptions'>Upload Images</div>
-                    </Link>
-
-                    <Link to="/logout">
-                        <div className='navOptions'>Logout</div>
-                    </Link>
                 </div>
             }
         </div>
