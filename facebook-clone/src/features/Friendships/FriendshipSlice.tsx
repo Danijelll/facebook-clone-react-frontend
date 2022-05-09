@@ -53,13 +53,13 @@ export const friendshipSlice = createSlice({
             state.requestStatus = FriendRequestStatusEnum.PendingOutgoing;    
         })
         builder.addCase(checkFriendRequestStatus.fulfilled, (state, action) => {
-            state.requestStatus = action.payload
+            state.requestStatus = action.payload;
         })
         builder.addCase(confirmFriendRequest.fulfilled, (state, action) => {
-            state.requestStatus = FriendRequestStatusEnum.Friends
+            state.requestStatus = FriendRequestStatusEnum.Friends;
         })
         builder.addCase(deleteFriendRequest.fulfilled, (state, action) => {
-            state.requestStatus = FriendRequestStatusEnum.NoRequest
+            state.requestStatus = FriendRequestStatusEnum.NoRequest;
         })
 
     },
