@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteCommentById, getCommentById } from '../../../../features/Comments/CommentSlice';
 import { RootStore } from '../../../../features/store';
-import { showEditCommentModal } from '../../../../features/Ui/UiSlice';
+import { toggleEditCommentModal } from '../../../../features/Ui/UiSlice';
 import './CommentItem.scss'
 
 interface CommentItemProps {
@@ -34,7 +34,7 @@ function CommentItem(props: CommentItemProps) {
         <div id='comment-item-username'>
           {username}
           {userId === userData.id &&
-            <img src='edit.svg' onClick={() => { dispatch(showEditCommentModal()); dispatch(getCommentById(commentId)) }} id='comment-item-edit-button'></img>
+            <img src='edit.svg' onClick={() => { dispatch(toggleEditCommentModal()); dispatch(getCommentById(commentId)) }} id='comment-item-edit-button'></img>
           }
         </div>
 

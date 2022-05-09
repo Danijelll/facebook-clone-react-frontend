@@ -4,7 +4,7 @@ import { FriendRequestStatusEnum } from "../../Models/FriendRequestStatusEnum";
 import FriendshipService from "../../services/FriendshipService";
 
 export interface FriendshipSliceState {
-    RequestStatus: FriendRequestStatusEnum | undefined;
+    requestStatus: FriendRequestStatusEnum | undefined;
 }
 
 const sendFriendRequest = createAsyncThunk(
@@ -40,7 +40,7 @@ const checkFriendRequestStatus = createAsyncThunk(
 )
 
 const initialState: FriendshipSliceState = { 
-    RequestStatus: undefined
+    requestStatus: undefined
  }
 
 export const friendshipSlice = createSlice({
@@ -50,16 +50,16 @@ export const friendshipSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(sendFriendRequest.fulfilled, (state, action) => {            
-            state.RequestStatus = FriendRequestStatusEnum.PendingOutgoing;    
+            state.requestStatus = FriendRequestStatusEnum.PendingOutgoing;    
         })
         builder.addCase(checkFriendRequestStatus.fulfilled, (state, action) => {
-            state.RequestStatus = action.payload
+            state.requestStatus = action.payload
         })
         builder.addCase(confirmFriendRequest.fulfilled, (state, action) => {
-            state.RequestStatus = FriendRequestStatusEnum.Friends
+            state.requestStatus = FriendRequestStatusEnum.Friends
         })
         builder.addCase(deleteFriendRequest.fulfilled, (state, action) => {
-            state.RequestStatus = FriendRequestStatusEnum.NoRequest
+            state.requestStatus = FriendRequestStatusEnum.NoRequest
         })
 
     },

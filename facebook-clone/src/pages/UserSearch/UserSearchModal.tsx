@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useDebounce } from 'use-debounce';
 import { RootStore } from '../../features/store';
-import { closeUserSearchModal } from '../../features/Ui/UiSlice';
+import { toggleUserSearchModal } from '../../features/Ui/UiSlice';
 import { searchUsers } from '../../features/Users/userSlice';
 import UserItem from './UserItem/UserItem';
 import './UserSearchModal.scss'
@@ -32,7 +32,7 @@ function UserSearch() {
     }
 
     return (
-        <div className='comment-modal-background' onClick={() => dispatch(closeUserSearchModal())}>
+        <div className='comment-modal-background' onClick={() => dispatch(toggleUserSearchModal())}>
             <div onClick={(e) => e.stopPropagation()} id='user-search-wrapper'>
                 <div id='user-search-header'>
                     <input

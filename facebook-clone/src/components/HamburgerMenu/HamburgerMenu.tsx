@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { showAddImageModal, showEditProfileModal, showUserSearchModal } from '../../features/Ui/UiSlice';
+import { toggleAddImageModal, toggleEditProfileModal, toggleUserSearchModal } from '../../features/Ui/UiSlice';
 import './HamburgerMenu.scss'
 
 function HamburgerMenu() {
@@ -20,19 +20,19 @@ function HamburgerMenu() {
                 </li>
 
                 <li className="menu__item">
-                <div onClick={() => dispatch(showEditProfileModal())}>
+                <div onClick={() => dispatch(toggleEditProfileModal())}>
                         <div className='navOptions'>Edit Profile</div>
                     </div>
                 </li>
 
                 <li className="menu__item">
-                <div onClick={() => dispatch(showUserSearchModal())}>
+                <div onClick={() => dispatch(toggleUserSearchModal())}>
                         <div className='navOptions'>User Search</div>
                     </div>
                 </li>
 
                 <li className="menu__item">
-                    <div onClick={() => dispatch(showAddImageModal())}>
+                    <div onClick={() => dispatch(toggleAddImageModal())}>
                         <div className='navOptions'>Upload Images</div>
                     </div>
                 </li>

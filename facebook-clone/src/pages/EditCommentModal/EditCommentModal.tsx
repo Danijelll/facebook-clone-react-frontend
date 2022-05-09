@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { updateComment } from '../../features/Comments/CommentSlice';
 import { RootStore } from '../../features/store';
-import { closeEditCommentModal } from '../../features/Ui/UiSlice';
+import { toggleEditCommentModal } from '../../features/Ui/UiSlice';
 
 function EditCommentModal() {
     const currentOpenComment = useSelector((state: RootStore) => state.comment.currentOpenComment);
@@ -12,7 +12,7 @@ function EditCommentModal() {
 
     const handleEdit = async () => {
         await dispatch(updateComment(commentUpdateData))
-        dispatch(closeEditCommentModal())
+        dispatch(toggleEditCommentModal())
     }
 
     const commentUpdateData = {
@@ -23,13 +23,13 @@ function EditCommentModal() {
 
     return (
         <div className='modal-background'
-            onClick={() => dispatch(closeEditCommentModal())}>
+            onClick={() => dispatch(toggleEditCommentModal())}>
 
             <div id='image-menu-modal-container'
                 onClick={(e) => e.stopPropagation()}>
 
                 <button id='image-menu-close-modal-button'
-                    onClick={() => dispatch(closeEditCommentModal())}>
+                    onClick={() => dispatch(toggleEditCommentModal())}>
                     X
                 </button>
 

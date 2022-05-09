@@ -7,7 +7,7 @@ import './FriendRequestStatusButton.scss'
 
 function FriendRequestStatusButton() {
     const currentFriend = useSelector((state: RootStore) => state.user.currentFriend);
-    const friendRequestStatus = useSelector((state: RootStore) => state.friendship.RequestStatus);
+    const friendRequestStatus = useSelector((state: RootStore) => state.friendship.requestStatus);
     const [buttonText, setButtonText] = useState('')
     const [className, setClassName] = useState('')
 

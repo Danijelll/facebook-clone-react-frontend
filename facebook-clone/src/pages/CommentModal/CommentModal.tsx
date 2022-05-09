@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllAlbumComments, uploadComment } from '../../features/Comments/CommentSlice';
 import { AppDispatch, RootStore } from '../../features/store';
-import { closeCommentModal } from '../../features/Ui/UiSlice'
+import { toggleCommentModal } from '../../features/Ui/UiSlice'
 import { ICommentUploadData } from '../../interfaces/IComment';
 import './CommentModal.scss'
 import CommentItem from './Components/CommentItem/CommentItem';
@@ -63,7 +63,7 @@ function CommentModal() {
   }
 
   return (
-    <div className='comment-modal-background' onClick={() => dispatch(closeCommentModal())}>
+    <div className='comment-modal-background' onClick={() => dispatch(toggleCommentModal())}>
       <div id='comment-modal-container' onClick={(e) => e.stopPropagation()}>
 
         <div id='upload-comment-wrapper'>

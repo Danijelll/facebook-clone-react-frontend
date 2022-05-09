@@ -24,56 +24,35 @@ export const uiSlice = createSlice({
 
     },
     reducers: {
-        showCommentModal(state) {
-            state.setShowCommentModal = true;
+        toggleCommentModal(state) {
+            state.setShowCommentModal = !state.setShowCommentModal;
         },
-        closeCommentModal(state) {
-            state.setShowCommentModal = false;
+        toggleAddImageModal(state) {
+            state.setShowImageModal = !state.setShowImageModal;
         },
-        showAddImageModal(state) {
-            state.setShowImageModal = true;
+        toggleEditProfileModal(state) {
+            state.setShowEditProfileModal = !state.setShowEditProfileModal;
         },
-        closeAddImageModal(state) {
-            state.setShowImageModal = false;
+        toggleEditImageModal(state) {
+            state.setShowEditImageModal = !state.setShowEditImageModal;
         },
-        showEditProfileModal(state) {
-            state.setShowEditProfileModal = true;
+        toggleDeleteImageModal(state) {
+            state.setShowDeleteImageModal = !state.setShowDeleteImageModal;
         },
-        closeEditProfileModal(state) {
-            state.setShowEditProfileModal = false;
+        toggleEditCommentModal(state) {
+            state.setShowEditCommentModal = !state.setShowEditCommentModal;
         },
-        showEditImageModal(state) {
-            state.setShowEditImageModal = true;
-        },
-        closeEditImageModal(state) {
-            state.setShowEditImageModal = false;
-        },
-        showDeleteImageModal(state) {
-            state.setShowDeleteImageModal = true;
-        },
-        closeDeleteImageModal(state) {
-            state.setShowDeleteImageModal = false;
-        },
-        showEditCommentModal(state) {
-            state.setShowEditCommentModal = true;
-        },
-        closeEditCommentModal(state) {
-            state.setShowEditCommentModal = false;
-        },
-        showUserSearchModal(state) {
-            state.setShowUserSearchModal = true;
-        },
-        closeUserSearchModal(state) {
-            state.setShowUserSearchModal = false;
+        toggleUserSearchModal(state) {
+            state.setShowUserSearchModal = !state.setShowUserSearchModal;
         },
     },
 });
 export const {
-    showAddImageModal, closeAddImageModal,
-    showCommentModal, closeCommentModal,
-    showEditProfileModal, closeEditProfileModal,
-    showEditImageModal, closeEditImageModal,
-    showDeleteImageModal, closeDeleteImageModal,
-    showEditCommentModal, closeEditCommentModal,
-    showUserSearchModal, closeUserSearchModal } = uiSlice.actions
+    toggleAddImageModal,
+    toggleCommentModal,
+    toggleEditProfileModal,
+    toggleEditImageModal,
+    toggleDeleteImageModal,
+    toggleEditCommentModal,
+    toggleUserSearchModal } = uiSlice.actions
 export default uiSlice.reducer;

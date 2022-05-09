@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootStore } from '../../../../features/store';
-import { closeEditProfileModal } from '../../../../features/Ui/UiSlice';
+import { toggleEditProfileModal } from '../../../../features/Ui/UiSlice';
 import { editUserCoverImage, editUserProfileImage } from '../../../../features/Users/userSlice';
 import { IUserUpdateCoverImageData, IUserUpdateProfileImageData } from '../../../../interfaces/IUser';
 
@@ -45,13 +45,13 @@ function EditProfileModal() {
     const dispatch = useDispatch();
     return (
         <div className='modal-background'
-            onClick={() => dispatch(closeEditProfileModal())}>
+            onClick={() => dispatch(toggleEditProfileModal())}>
 
             <div id='modal-container'
                 onClick={(e) => e.stopPropagation()}>
 
                 <button id='close-modal-button'
-                    onClick={() => dispatch(closeEditProfileModal())}>
+                    onClick={() => dispatch(toggleEditProfileModal())}>
                     X
                 </button>
 

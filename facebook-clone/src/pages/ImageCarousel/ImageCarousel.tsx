@@ -5,9 +5,8 @@ import "slick-carousel/slick/slick-theme.css";
 import { ImageData } from '../../interfaces/IImage'
 import { RootStore } from '../../features/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { showCommentModal, showDeleteImageModal, showEditImageModal } from '../../features/Ui/UiSlice';
+import { toggleCommentModal, toggleDeleteImageModal, toggleEditImageModal } from '../../features/Ui/UiSlice';
 import { getCurrentOpenAlbum } from '../../features/Albums/AlbumSlice';
-import ImageMenuModal from '../EditImageModal/EditImageModal';
 
 interface ImageCarouselProps {
     albumId: number,
@@ -56,7 +55,7 @@ function ImageCarousel(props: ImageCarouselProps) {
 
                     <div id='image-slider-add-comment-button'
                         onClick={() => {
-                            dispatch(showCommentModal());
+                            dispatch(toggleCommentModal());
                             dispatch(getCurrentOpenAlbum(albumId))
                         }}>
 
@@ -72,7 +71,7 @@ function ImageCarousel(props: ImageCarouselProps) {
                             <div
                                 id='image-slider-edit-button'
                                 onClick={() => {
-                                    dispatch(showEditImageModal());
+                                    dispatch(toggleEditImageModal());
                                     dispatch(getCurrentOpenAlbum(albumId))
                                 }}>
 
@@ -85,7 +84,7 @@ function ImageCarousel(props: ImageCarouselProps) {
                             <div
                                 id='image-slider-delete-button'
                                 onClick={() => {
-                                    dispatch(showDeleteImageModal());
+                                    dispatch(toggleDeleteImageModal());
                                     dispatch(getCurrentOpenAlbum(albumId))
                                 }}>
 

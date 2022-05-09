@@ -1,6 +1,6 @@
 import './EditImageModal.scss'
 import { useDispatch, useSelector } from 'react-redux';
-import { closeEditImageModal } from '../../features/Ui/UiSlice';
+import { toggleEditImageModal } from '../../features/Ui/UiSlice';
 import { RootStore } from '../../features/store';
 import { useState } from 'react';
 import { updateAlbumCaption } from '../../features/Albums/AlbumSlice';
@@ -12,7 +12,7 @@ function ImageMenuModal() {
 
     const handleEdit = async () => {
         await dispatch(updateAlbumCaption(albumUpdateData))
-        dispatch(closeEditImageModal())
+        dispatch(toggleEditImageModal())
     }
 
     const albumUpdateData = {
@@ -22,13 +22,13 @@ function ImageMenuModal() {
 
     return (
         <div className='modal-background'
-            onClick={() => dispatch(closeEditImageModal())}>
+            onClick={() => dispatch(toggleEditImageModal())}>
 
             <div id='image-menu-modal-container'
                 onClick={(e) => e.stopPropagation()}>
 
                 <button id='image-menu-close-modal-button'
-                    onClick={() => dispatch(closeEditImageModal())}>
+                    onClick={() => dispatch(toggleEditImageModal())}>
                     X
                 </button>
 
