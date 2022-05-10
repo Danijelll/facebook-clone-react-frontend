@@ -14,7 +14,19 @@ class FriendshipService {
                 console.log(error);
             });
     }
-    
+
+    getAllIncomingFriendRequests(page: number) {
+        return axios.get('/friendRequests/?pageSize=10&pageNumber=' + page)
+            .then(function (response) {
+                localStorage.getItem('token')
+                if (response.status === 200) {
+                    return response.data;
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+    }
+
     deleteFriendRequest(friendId: number) {
         return axios.delete('/deleteRequest/' + friendId)
             .then().catch(function (error) {

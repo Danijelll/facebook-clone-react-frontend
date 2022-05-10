@@ -6,12 +6,14 @@ import CommentModal from '../../../CommentModal/CommentModal';
 import DeleteImageModal from '../../../DeleteImageModal/DeleteImageModal';
 import EditCommentModal from '../../../EditCommentModal/EditCommentModal';
 import EditImageModal from '../../../EditImageModal/EditImageModal';
+import FriendRequestModal from '../../../FriendRequestModal/FriendRequestModal';
 import ImageCarousel from '../../../ImageCarousel/ImageCarousel';
 import UserSearchModal from '../../../UserSearch/UserSearchModal';
 import './MyProfile.scss'
 
 function MyProfile() {
   const setShowCommentModal = useSelector((state: RootStore) => state.ui.setShowCommentModal);
+  const setShowFriendRequestModal = useSelector((state: RootStore) => state.ui.setShowFriendRequestModal);
   const setShowUserSearchModal = useSelector((state: RootStore) => state.ui.setShowUserSearchModal);
   const setShowEditImageModal = useSelector((state: RootStore) => state.ui.setShowEditImageModal);
   const currentOpenAlbum = useSelector((state: RootStore) => state.album.currentOpenAlbum);
@@ -46,6 +48,7 @@ function MyProfile() {
     <div id='my-profile-wrapper'>
       {setShowEditImageModal && <EditImageModal />}
       {setShowDeleteImageModal && <DeleteImageModal />}
+      {setShowFriendRequestModal && <FriendRequestModal />}
       {setShowCommentModal && <CommentModal />}
       {setShowEditCommentModal && <EditCommentModal />}
       {setShowUserSearchModal && <UserSearchModal />}
