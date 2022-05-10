@@ -12,7 +12,7 @@ function FriendRequestStatusButton() {
     const [className, setClassName] = useState('')
 
     const dispatch = useDispatch();
-    let handleOnClick = () => console.log('aaa');
+    let handleOnClick = () => {};
 
     useEffect(() => {
         if (currentFriend?.id !== undefined) {

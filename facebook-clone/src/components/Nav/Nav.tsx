@@ -1,23 +1,38 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom"
 import { RootStore } from "../../features/store";
+import { getCurrentUserData } from "../../features/Users/userSlice";
 import HamburgerMenu from "../HamburgerMenu/HamburgerMenu";
 import '../Nav/Nav.scss'
 
 function Nav() {
     const userData = useSelector((state: RootStore) => state.user?.currentUser);
+    const dispatch = useDispatch();
 
-useEffect(() => {
-}, [userData])
+    useEffect(() => {
+        dispatch(getCurrentUserData)
+    }, [userData])
 
 
     return (
         <div className='navWrapper'>
 
-            <Link to="/">
-                <div className='logo'>Facebook Clone</div>
-            </Link>
+            {!userData?.id &&
+
+                <Link to="/">
+                    <div className='logo'>Facebook Clone</div>
+                </Link>
+
+            }
+
+            {userData?.id &&
+
+                <Link to="/home">
+                    <div className='logo'>Facebook Clone</div>
+                </Link>
+
+            }
 
             {!userData?.id &&
 
@@ -38,7 +53,7 @@ useEffect(() => {
 
                 <div className="options">
 
-                    <HamburgerMenu/>
+                    <HamburgerMenu />
 
                 </div>
             }
