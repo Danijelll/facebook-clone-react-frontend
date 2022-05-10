@@ -1,21 +1,19 @@
 import { unwrapResult } from '@reduxjs/toolkit';
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { AppDispatch, RootStore } from '../../../features/store';
 import { searchUserById } from '../../../features/Users/userSlice';
 
 interface FriendRequestItemProps {
-    id: number
     firstUserId: number
-    secondUserId: number
     createdOn: Date
 }
 
 function FriendRequestItem(props: FriendRequestItemProps) {
     const friendData = useSelector((state: RootStore) => state.user.currentFriend);
     const dispatch: AppDispatch = useDispatch();
-    const { id, firstUserId, secondUserId, createdOn } = props;
+    const { firstUserId, createdOn } = props;
 
     useEffect(() => {
       dispatch(searchUserById(firstUserId))

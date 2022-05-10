@@ -7,7 +7,6 @@ import FriendRequestItem from './FriendRequestItem/FriendRequestItem';
 import './FriendRequestModal.scss'
 
 function FriendRequestModal() {
-    const userData = useSelector((state: RootStore) => state.user.currentUser);
     const friendRequestList = useSelector((state: RootStore) => state.friendship.friendRequestList);
     const [page, setPage] = useState(1)
 
@@ -22,9 +21,7 @@ function FriendRequestModal() {
         return friendRequestList?.map(request =>
             <FriendRequestItem
                 key={request.id}
-                id={request.id}
                 firstUserId={request.firstUserId}
-                secondUserId={request.secondUserId}
                 createdOn={request.createdOn}
             />)
     }
