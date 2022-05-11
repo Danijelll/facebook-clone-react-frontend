@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { IAlbumData, IAlbumUpdateData, IAlbumWithUserData } from "../../interfaces/IAlbum";
+import { IAlbumData, IAlbumsPerPage, IAlbumUpdateData, IAlbumWithUserData } from "../../interfaces/IAlbum";
 import AlbumService from "../../services/AlbumService";
 
 
@@ -26,8 +26,8 @@ const getCurrentOpenAlbum = createAsyncThunk(
 )
 const getAllFriendsAlbumsWithImages = createAsyncThunk(
     'albums/getAllFriendsAlbumsWithImages',
-    async () => {
-        const response = await AlbumService.getAllFriendsAlbumsWithImages();
+    async (postOnPage: IAlbumsPerPage) => {
+        const response = await AlbumService.getAllFriendsAlbumsWithImages(postOnPage.itemsPerPage, postOnPage.page);
         return response;
     }
 )

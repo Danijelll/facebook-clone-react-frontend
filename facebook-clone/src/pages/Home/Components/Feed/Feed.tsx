@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllFriendsAlbumsWithImages } from '../../../../features/Albums/AlbumSlice';
 import { RootStore } from '../../../../features/store';
@@ -20,6 +20,14 @@ function Feed() {
   const userFriendsAlbums = useSelector((state: RootStore) => state.album.userFriendsAlbums);
   const dispatch = useDispatch();
 
+  let [page, setPage] = useState<number>(1)
+  let [itemsPerPage, setItemsPerPage] = useState<number>(10)
+
+  let postOnPage = {
+    itemsPerPage: itemsPerPage,
+    page: page,
+  }
+
   const renderAlbum = () => {
     return userFriendsAlbums?.map(album =>
       <ImageCarousel
@@ -35,10 +43,10 @@ function Feed() {
   }
 
   useEffect(() => {
-    dispatch(getAllFriendsAlbumsWithImages())
+    dispatch(getAllFriendsAlbumsWithImages(postOnPage))
     console.log(userFriendsAlbums);
     
-  }, [])
+  }, [page])
   
   return (
     <div id='my-profile-wrapper'>
@@ -49,6 +57,17 @@ function Feed() {
       {setShowEditCommentModal && <EditCommentModal />}
       {setShowUserSearchModal && <UserSearchModal />}
       <div className='album-item'>
+      <button
+            id='comment-modal-page-button'
+            onClick={() => setPage(page - 1)}>
+            &lt;
+          </button>
+          <p id='comment-modal-page-text'>Page {page}</p>
+          <button
+            id='comment-modal-page-button'
+            onClick={() => { setPage(page + 1) }}>
+            &gt;
+          </button>
         {renderAlbum()}
       </div>
     </div>

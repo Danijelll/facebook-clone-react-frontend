@@ -20,6 +20,11 @@ function Home() {
   const [mainContent, setMainContent] = useState(true)
   const [isLoading, setIsLoading] = useState(true);
 
+  let postOnPage = {
+    itemsPerPage: 10,
+    page: 1,
+  }
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -73,7 +78,7 @@ function Home() {
               borderBottom: mainContent ? '' : 'none',
               borderLeft: mainContent ? '' : 'none'
             }}
-            onClick={() => {setMainContent(false); dispatch(getAllFriendsAlbumsWithImages())}}
+            onClick={() => {setMainContent(false); dispatch(getAllFriendsAlbumsWithImages(postOnPage))}}
             id='feed-button'>
             Feed
           </div>

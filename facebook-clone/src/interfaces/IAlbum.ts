@@ -13,6 +13,11 @@ export interface IAlbumUpdateData {
     caption: string
 }
 
+export interface IAlbumsPerPage {
+    itemsPerPage: number
+    page: number
+}
+
 export interface IAlbumWithUserData {
     id: number
     userId: number
