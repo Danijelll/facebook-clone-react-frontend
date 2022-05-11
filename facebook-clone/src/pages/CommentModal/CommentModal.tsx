@@ -14,6 +14,8 @@ function CommentModal() {
   const currentOpenAlbum = useSelector((state: RootStore) => state.album.currentOpenAlbum);
   const userData = useSelector((state: RootStore) => state.user.currentUser);
 
+  const [nextPageContent, setnNextPageContent] = useState();
+
   const dispatch: AppDispatch = useDispatch();
 
   let [page, setPage] = useState<number>(1)
@@ -28,10 +30,11 @@ function CommentModal() {
     page: page,
   }
 
+
+
   useEffect(() => {
     if (currentOpenAlbum?.id != null) {
       dispatch(getAllAlbumComments(albumCommentPage))
-      
       comment.albumId = currentOpenAlbum.id
     }
 
@@ -42,9 +45,9 @@ function CommentModal() {
     setComment({ ...comment, [field]: value });
   }
 
-  const handleUpload = async () => {    
+  const handleUpload = async () => {
     const result = await dispatch(uploadComment(comment));
-    const resultData = unwrapResult(result);    
+    const resultData = unwrapResult(result);
 
     if (resultData) {
       dispatch(getAllAlbumComments(albumCommentPage))
@@ -54,7 +57,7 @@ function CommentModal() {
   const renderComments = () => {
     return albumComments?.map(comment =>
       <CommentItem key={comment.id}
-        userId ={comment.userId}
+        userId={comment.userId}
         commentId={comment.id}
         username={comment.username}
         profileImage={comment.profileImage}
@@ -83,7 +86,7 @@ function CommentModal() {
           <p id='comment-modal-page-text'>Page {page}</p>
           <button
             id='comment-modal-page-button'
-            onClick={() => setPage(page + 1) }>
+            onClick={() => setPage(page + 1)}>
             &gt;
           </button>
         </div>

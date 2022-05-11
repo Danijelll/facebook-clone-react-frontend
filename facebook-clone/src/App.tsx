@@ -6,7 +6,7 @@ import Home from './pages/Home/Home';
 import Nav from './components/Nav/Nav';
 import ConfirmEmail from './pages/ConfirmEmail/ConfirmEmail';
 import UserPage from './pages/UserPage/UserPage';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootStore } from './features/store';
 import EditImageModal from './pages/EditImageModal/EditImageModal';
 import DeleteImageModal from './pages/DeleteImageModal/DeleteImageModal';
@@ -16,6 +16,9 @@ import EditCommentModal from './pages/EditCommentModal/EditCommentModal';
 import UserSearchModal from './pages/UserSearch/UserSearchModal';
 import AddImageModal from './pages/Home/Components/AddImageModal/AddImageModal';
 import EditProfileModal from './pages/Home/Components/EditProfileModal/EditProfileModal';
+import { useEffect, useState } from 'react';
+import { getCurrentUserData } from './features/Users/userSlice';
+import Loader from './components/Loader/Loader';
 
 function App() {
   const setShowCommentModal = useSelector((state: RootStore) => state.ui.setShowCommentModal);
@@ -25,7 +28,19 @@ function App() {
   const setShowDeleteImageModal = useSelector((state: RootStore) => state.ui.setShowDeleteImageModal);
   const setShowEditCommentModal = useSelector((state: RootStore) => state.ui.setShowEditCommentModal);
   const setShowImageModal = useSelector((state: RootStore) => state.ui.setShowImageModal);
-  const setShowEditProfileModal = useSelector((state:RootStore) => state.ui.setShowEditProfileModal)
+  const setShowEditProfileModal = useSelector((state: RootStore) => state.ui.setShowEditProfileModal)
+
+  const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(true);
+
+
+  useEffect(() => {
+    const getData = async () => {
+      await dispatch(getCurrentUserData());
+      setIsLoading(false);
+    }
+    getData();
+  }, [])
 
   return (
     <div className='root'>
@@ -33,7 +48,7 @@ function App() {
 
       <Router>
         <Nav />
-
+        {isLoading && <Loader />}
         {setShowImageModal && <AddImageModal />}
         {setShowEditProfileModal && <EditProfileModal />}
         {setShowEditImageModal && <EditImageModal />}
@@ -55,3 +70,7 @@ function App() {
 }
 
 export default App;
+function setIsLoading(arg0: boolean) {
+  throw new Error('Function not implemented.');
+}
+

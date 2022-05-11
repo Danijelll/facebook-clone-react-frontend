@@ -14,7 +14,6 @@ function Home() {
   const userData = useSelector((state: RootStore) => state.user.currentUser);
 
   const [mainContent, setMainContent] = useState(true)
-  const [isLoading, setIsLoading] = useState(true);
 
   let postOnPage = {
     itemsPerPage: 10,
@@ -25,14 +24,6 @@ function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const getData = async () => {
-      await dispatch(getCurrentUserData());
-      setIsLoading(false);
-    }
-    getData();
-  }, [])
-
-  useEffect(() => {
     if (userData?.id && !userData?.isEmailConfirmed) {
       navigate('/confirmEmail')      
     }
@@ -40,8 +31,6 @@ function Home() {
 
   return (
     <div id='home-wrapper'>
-      {isLoading && <Loader />}
-
       <ProfileHeader
         id={userData?.id}
         profileImage={userData?.profileImage}
