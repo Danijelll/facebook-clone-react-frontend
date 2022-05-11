@@ -9,6 +9,7 @@ import EditImageModal from '../../../EditImageModal/EditImageModal';
 import FriendRequestModal from '../../../FriendRequestModal/FriendRequestModal';
 import ImageCarousel from '../../../ImageCarousel/ImageCarousel';
 import UserSearchModal from '../../../UserSearch/UserSearchModal';
+import './Feed.scss'
 
 function Feed() {
   const setShowCommentModal = useSelector((state: RootStore) => state.ui.setShowCommentModal);
@@ -45,9 +46,9 @@ function Feed() {
   useEffect(() => {
     dispatch(getAllFriendsAlbumsWithImages(postOnPage))
     console.log(userFriendsAlbums);
-    
-  }, [page])
-  
+
+  }, [postOnPage])
+
   return (
     <div id='my-profile-wrapper'>
       {setShowEditImageModal && <EditImageModal />}
@@ -57,7 +58,9 @@ function Feed() {
       {setShowEditCommentModal && <EditCommentModal />}
       {setShowUserSearchModal && <UserSearchModal />}
       <div className='album-item'>
-      <button
+        {renderAlbum()}
+        <div id='friend-request-modal-page-buttons'>
+          <button
             id='comment-modal-page-button'
             onClick={() => setPage(page - 1)}>
             &lt;
@@ -68,7 +71,14 @@ function Feed() {
             onClick={() => { setPage(page + 1) }}>
             &gt;
           </button>
-        {renderAlbum()}
+        </div>
+        <div id='feed-posts-per-page-button-wrapper'>
+          <p id='feed-posts-per-page-button-text' >Posts per page</p>
+          <button id='feed-posts-per-page-button' onClick={()=>setItemsPerPage(3)}>3</button>
+          <button id='feed-posts-per-page-button' onClick={()=>setItemsPerPage(5)}>5</button>
+          <button id='feed-posts-per-page-button' onClick={()=>setItemsPerPage(10)}>10</button>
+
+        </div>
       </div>
     </div>
   )

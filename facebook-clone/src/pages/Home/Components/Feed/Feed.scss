@@ -1,0 +1,19 @@
+#feed-posts-per-page-button-wrapper{
+    display: flex;
+    justify-content: center;
+}
+
+#feed-posts-per-page-button-text{
+    color: rgba(255, 255, 255, 0.242)
+}
+
+#feed-posts-per-page-button{
+    border: 1px solid rgba(84, 84, 84, 0.201);
+    padding: 2px 5px;
+    margin: 2px;
+    font-size: 12px;
+    background-color: rgba(84, 84, 84, 0.201);
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
