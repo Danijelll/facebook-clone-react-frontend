@@ -24,13 +24,24 @@ class AlbumService {
             });
     }
 
+    getAllFriendsAlbumsWithImages() {
+        return axios.get('/feed')
+            .then(function (response) {
+                if (response.status === 200) {                    
+                    return response.data;
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+    }
+
     deleteAlbumById(albumId: number) {
-        return axios.delete('/albums/' + albumId) 
+        return axios.delete('/albums/' + albumId)
             .catch(function (error) {
                 console.log(error);
             });
     }
-    
+
     updateAlbumCaption(albumUpdateData: any) {
         return axios.put('/albums', albumUpdateData)
             .then(function (response) {

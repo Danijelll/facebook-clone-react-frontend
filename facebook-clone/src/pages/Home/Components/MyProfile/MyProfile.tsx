@@ -37,6 +37,8 @@ function MyProfile() {
       <ImageCarousel
         key={album?.id}
         albumId={album?.id}
+        username={userData?.username}
+        userProfileImage={userData?.profileImage}
         userId={album?.userId}
         createdOn={album?.createdOn}
         captions={album?.caption}

@@ -10,6 +10,7 @@ import MyProfile from './Components/MyProfile/MyProfile';
 import ProfileHeader from '../ProfileHeader/ProfileHeader';
 import './Home.scss'
 import EditProfileModal from './Components/EditProfileModal/EditProfileModal';
+import { getAllFriendsAlbumsWithImages } from '../../features/Albums/AlbumSlice';
 
 function Home() {
   const userData = useSelector((state: RootStore) => state.user.currentUser);
@@ -72,7 +73,7 @@ function Home() {
               borderBottom: mainContent ? '' : 'none',
               borderLeft: mainContent ? '' : 'none'
             }}
-            onClick={() => setMainContent(false)}
+            onClick={() => {setMainContent(false); dispatch(getAllFriendsAlbumsWithImages())}}
             id='feed-button'>
             Feed
           </div>
