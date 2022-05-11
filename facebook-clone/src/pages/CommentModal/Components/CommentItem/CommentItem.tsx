@@ -7,7 +7,7 @@ import './CommentItem.scss'
 
 interface CommentItemProps {
   userId: number,
-  commentId: number
+  commentId: number,
   username: string,
   profileImage: string,
   text: string,
@@ -20,11 +20,6 @@ function CommentItem(props: CommentItemProps) {
   const userData = useSelector((state: RootStore) => state.user.currentUser);
   const { userId, commentId, username, profileImage, text, createdOn } = props;
   const dispatch = useDispatch();
-
-  useEffect(() => {
-
-  }, [])
-
 
   return (
     <div id='comment-item-wrapper'>
@@ -47,7 +42,7 @@ function CommentItem(props: CommentItemProps) {
         </div>
 
       </div>
-      {currentOpenAlbum.userId === userData.id &&
+      {(currentOpenAlbum?.userId === userData?.id || userId === userData?.id) &&
         <div onClick={() => dispatch(deleteCommentById(commentId))} id='comment-item-delete-button'>X</div>
       }
     </div>

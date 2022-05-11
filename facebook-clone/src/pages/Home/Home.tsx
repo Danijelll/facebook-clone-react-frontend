@@ -4,18 +4,14 @@ import { useNavigate } from 'react-router';
 import Loader from '../../components/Loader/Loader';
 import { RootStore } from '../../features/store';
 import { getCurrentUserData } from '../../features/Users/userSlice'
-import AddImageModal from './Components/AddImageModal/AddImageModal';
 import Feed from './Components/Feed/Feed';
 import MyProfile from './Components/MyProfile/MyProfile';
 import ProfileHeader from '../ProfileHeader/ProfileHeader';
 import './Home.scss'
-import EditProfileModal from './Components/EditProfileModal/EditProfileModal';
 import { getAllFriendsAlbumsWithImages } from '../../features/Albums/AlbumSlice';
 
 function Home() {
   const userData = useSelector((state: RootStore) => state.user.currentUser);
-  const setShowImageModal = useSelector((state: RootStore) => state.ui.setShowImageModal);
-  const setShowEditProfileModal = useSelector((state:RootStore) => state.ui.setShowEditProfileModal)
 
   const [mainContent, setMainContent] = useState(true)
   const [isLoading, setIsLoading] = useState(true);
@@ -45,9 +41,6 @@ function Home() {
   return (
     <div id='home-wrapper'>
       {isLoading && <Loader />}
-
-      {setShowImageModal && <AddImageModal />}
-      {setShowEditProfileModal && <EditProfileModal/>}
 
       <ProfileHeader
         id={userData?.id}
