@@ -48,7 +48,7 @@ class UserService {
                 console.log(error);
             });
     }
-    
+
     getUserByUsernameWithBanned(username: string) {
         return axios.get('users/searchWithBanned/' + username)
             .then(function (response) {
@@ -120,6 +120,10 @@ class UserService {
             }).catch(function (error) {
                 console.log(error);
             });
+
+    }
+    logout() {
+        return localStorage.removeItem('token')
 
     }
 }

@@ -1,14 +1,15 @@
 import { unwrapResult } from '@reduxjs/toolkit';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { register } from "../../features/Users/userSlice";
 import { Link, useNavigate } from 'react-router-dom';
-import { AppDispatch } from '../../features/store';
+import { AppDispatch, RootStore } from '../../features/store';
 import { IRegister } from '../../interfaces/IUser';
 import './Register.scss'
 
 
 function Register() {
+  const userData = useSelector((state: RootStore) => state.user.currentUser);
   const dispatch: AppDispatch = useDispatch();
 
   const [registerData, setRegisterData] = useState<IRegister>({
@@ -16,6 +17,12 @@ function Register() {
     email: '',
     password: ''
   } as IRegister);
+
+  useEffect(() => {
+    if(userData?.id){
+      navigate('/home');
+    }
+  }, [userData])
 
   const navigate = useNavigate();
 

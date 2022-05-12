@@ -65,6 +65,13 @@ const editUserCoverImage = createAsyncThunk(
         return response;
     }
 )
+const logout = createAsyncThunk(
+    'user/logout',
+    async () => {
+        await UserService.logout();
+        return true;
+    }
+)
 const unbanUser = createAsyncThunk(
     'user/unbanUser',
     async (id: number) => {
@@ -87,9 +94,6 @@ export const userSlice = createSlice({
         currentFriend: undefined,
     },
     reducers: {
-        clearCurrentUserData: (state) => {
-            state.currentUser = undefined
-        }
     },
     extraReducers: (builder) => {
         builder.addCase(login.fulfilled, (state, action) => { })
@@ -124,7 +128,7 @@ export const userSlice = createSlice({
 });
 
 export {
-    login, register,
+    login, register, logout,
     getCurrentUserData,
     searchUsers,
     searchUserById,
@@ -133,5 +137,4 @@ export {
     unbanUser, banUser,
     searchUsersWithBanned,
 };
-export const { clearCurrentUserData } = userSlice.actions;
 export default userSlice.reducer;

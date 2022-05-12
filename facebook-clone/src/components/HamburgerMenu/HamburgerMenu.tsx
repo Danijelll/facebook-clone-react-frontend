@@ -1,10 +1,22 @@
+import { unwrapResult } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { AppDispatch } from '../../features/store';
 import { toggleAddImageModal, toggleEditProfileModal, toggleFriendRequestModal, toggleUserSearchModal } from '../../features/Ui/UiSlice';
+import { logout } from '../../features/Users/userSlice';
 import './HamburgerMenu.scss'
 
 function HamburgerMenu() {
-    const dispatch = useDispatch();
+    const dispatch: AppDispatch = useDispatch();
+    const navigate = useNavigate();
+    const handleLogout = async () => {
+        const result = await dispatch(logout());
+        const resultData = unwrapResult(result);
+    
+        if (resultData) {
+          navigate('/');
+        }
+      }
     return (
         <div className="hamburger-menu">
             <input id="menu__toggle" type="checkbox" />
@@ -44,9 +56,9 @@ function HamburgerMenu() {
                 </li>
 
                 <li className="menu__item">
-                    <Link to="/logout">
+                    <div onClick={handleLogout}>
                         <div className='navOptions'>Logout</div>
-                    </Link>
+                    </div>
                 </li>
             </ul>
         </div>

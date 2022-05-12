@@ -1,17 +1,25 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useLocation } from "react-router-dom"
 import { login } from "../../features/Users/userSlice";
 import { unwrapResult } from '@reduxjs/toolkit'
 import './Login.scss'
-import { AppDispatch } from "../../features/store";
+import { AppDispatch, RootStore } from "../../features/store";
 import { ILogin } from "../../interfaces/IUser";
 import { ILoginProps } from "../../interfaces/IRouterProps";
 
 function Login() {
+  const userData = useSelector((state: RootStore) => state.user.currentUser);
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+
+  useEffect(() => {
+    if(userData?.id){
+      navigate('/home');
+    }
+  }, [userData])
+  
 
   const [loginData, setLoginData] = useState<ILogin>({
     username: '',
