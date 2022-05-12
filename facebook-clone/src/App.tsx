@@ -17,7 +17,7 @@ import UserSearchModal from './pages/UserSearch/UserSearchModal';
 import AddImageModal from './pages/Home/Components/AddImageModal/AddImageModal';
 import EditProfileModal from './pages/Home/Components/EditProfileModal/EditProfileModal';
 import { useEffect, useState } from 'react';
-import { getCurrentUserData } from './features/Users/userSlice';
+import { clearCurrentUserData, getCurrentUserData } from './features/Users/userSlice';
 import Loader from './components/Loader/Loader';
 
 function App() {
@@ -38,6 +38,9 @@ function App() {
     const getData = async () => {
       await dispatch(getCurrentUserData());
       setIsLoading(false);
+      return () => {
+        dispatch(clearCurrentUserData())
+    }
     }
     getData();
   }, [])

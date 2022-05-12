@@ -36,6 +36,14 @@ const searchUsers = createAsyncThunk(
         return response;
     }
 )
+const searchUsersWithBanned = createAsyncThunk(
+    'user/searchUsersWithBanned',
+    async (username: string) => {
+        const response = await UserService.getUserByUsernameWithBanned(username);
+        return response;
+    }
+)
+
 const searchUserById = createAsyncThunk(
     'user/searchUserById',
     async (id: number) => {
@@ -79,6 +87,9 @@ export const userSlice = createSlice({
         currentFriend: undefined,
     },
     reducers: {
+        clearCurrentUserData: (state) => {
+            state.currentUser = undefined
+        }
     },
     extraReducers: (builder) => {
         builder.addCase(login.fulfilled, (state, action) => { })
@@ -106,6 +117,9 @@ export const userSlice = createSlice({
         builder.addCase(banUser.fulfilled, (state, action) => {
             state.currentFriend = action.payload;
         })
+        builder.addCase(searchUsersWithBanned.fulfilled, (state, action) => {
+            state.userList = action.payload;
+        })
     },
 });
 
@@ -116,6 +130,8 @@ export {
     searchUserById,
     editUserProfileImage,
     editUserCoverImage,
-    unbanUser, banUser
+    unbanUser, banUser,
+    searchUsersWithBanned,
 };
+export const { clearCurrentUserData } = userSlice.actions;
 export default userSlice.reducer;

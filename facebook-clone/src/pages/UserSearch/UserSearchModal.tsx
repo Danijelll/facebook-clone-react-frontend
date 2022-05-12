@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useDebounce } from 'use-debounce';
 import { RootStore } from '../../features/store';
 import { toggleUserSearchModal } from '../../features/Ui/UiSlice';
-import { searchUsers } from '../../features/Users/userSlice';
+import { searchUsers, searchUsersWithBanned } from '../../features/Users/userSlice';
 import UserItem from './UserItem/UserItem';
 import './UserSearchModal.scss'
 
 function UserSearch() {
+    const userData = useSelector((state: RootStore) => state.user.currentUser);
     const [query, setQuery] = useState<string>();
     const [value] = useDebounce(query, 400);
     const userList = useSelector((state: RootStore) => state.user.userList);
@@ -15,9 +16,11 @@ function UserSearch() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (value !== undefined && value !== '') {
+        if (value !== undefined && value !== '' && userData?.role === 0) {
             dispatch(searchUsers(value))
-
+        }
+        if (value !== undefined && value !== '' && userData?.role === 1) {
+            dispatch(searchUsersWithBanned(value))
         }
     }, [value])
 

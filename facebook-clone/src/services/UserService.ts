@@ -48,6 +48,17 @@ class UserService {
                 console.log(error);
             });
     }
+    
+    getUserByUsernameWithBanned(username: string) {
+        return axios.get('users/searchWithBanned/' + username)
+            .then(function (response) {
+                if (response.status === 200) {
+                    return response.data;
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+    }
 
     getUserById(id: number) {
         return axios.get('/users/' + id)
