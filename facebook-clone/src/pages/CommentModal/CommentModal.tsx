@@ -14,8 +14,6 @@ function CommentModal() {
   const currentOpenAlbum = useSelector((state: RootStore) => state.album.currentOpenAlbum);
   const userData = useSelector((state: RootStore) => state.user.currentUser);
 
-  const [nextPageContent, setnNextPageContent] = useState();
-
   const dispatch: AppDispatch = useDispatch();
 
   let [page, setPage] = useState<number>(1)
@@ -29,12 +27,15 @@ function CommentModal() {
     albumId: currentOpenAlbum?.id,
     page: page,
   }
-
-
+  let nextAlbumCommentPage = {
+    albumId: currentOpenAlbum?.id,
+    page: page + 1,
+  }
 
   useEffect(() => {
     if (currentOpenAlbum?.id != null) {
       dispatch(getAllAlbumComments(albumCommentPage))
+
       comment.albumId = currentOpenAlbum.id
     }
 
@@ -51,6 +52,20 @@ function CommentModal() {
 
     if (resultData) {
       dispatch(getAllAlbumComments(albumCommentPage))
+    }
+  }
+
+  const handleNextPage = async () => {
+    const result = await dispatch(getAllAlbumComments(nextAlbumCommentPage));
+    const resultData = unwrapResult(result);
+
+    console.log(resultData);
+
+
+    if (resultData.length) {
+      console.log('+1');
+
+      setPage(page + 1)
     }
   }
 
@@ -86,7 +101,7 @@ function CommentModal() {
           <p id='comment-modal-page-text'>Page {page}</p>
           <button
             id='comment-modal-page-button'
-            onClick={() => setPage(page + 1)}>
+            onClick={() => handleNextPage()}>
             &gt;
           </button>
         </div>
