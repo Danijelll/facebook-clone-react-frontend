@@ -33,7 +33,6 @@ function App() {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
 
-
   useEffect(() => {
     const getData = async () => {
       await dispatch(getCurrentUserData());

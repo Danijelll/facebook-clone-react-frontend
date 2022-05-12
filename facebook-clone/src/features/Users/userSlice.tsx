@@ -94,6 +94,9 @@ export const userSlice = createSlice({
         currentFriend: undefined,
     },
     reducers: {
+        clearUserData: (state) => {
+            state.currentUser = undefined;
+        }
     },
     extraReducers: (builder) => {
         builder.addCase(login.fulfilled, (state, action) => { })
@@ -137,4 +140,5 @@ export {
     unbanUser, banUser,
     searchUsersWithBanned,
 };
+export const { clearUserData } = userSlice.actions
 export default userSlice.reducer;

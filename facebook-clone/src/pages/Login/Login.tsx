@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useLocation } from "react-router-dom"
-import { login } from "../../features/Users/userSlice";
+import { getCurrentUserData, login } from "../../features/Users/userSlice";
 import { unwrapResult } from '@reduxjs/toolkit'
 import './Login.scss'
 import { AppDispatch, RootStore } from "../../features/store";
@@ -32,6 +32,7 @@ function Login() {
 
   const handleLogin = async () => {
     const result = await dispatch(login(loginData));
+    dispatch(getCurrentUserData())
     const resultData = unwrapResult(result);
 
     if (resultData) {
