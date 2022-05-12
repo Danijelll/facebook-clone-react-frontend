@@ -27,6 +27,9 @@ function Home() {
     if (userData?.id && !userData?.isEmailConfirmed) {
       navigate('/confirmEmail')      
     }
+    if (!userData?.id) {
+      navigate('/')      
+    }
   }, [userData])
 
   return (
