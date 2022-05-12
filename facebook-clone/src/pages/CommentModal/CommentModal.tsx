@@ -58,13 +58,7 @@ function CommentModal() {
   const handleNextPage = async () => {
     const result = await dispatch(getAllAlbumComments(nextAlbumCommentPage));
     const resultData = unwrapResult(result);
-
-    console.log(resultData);
-
-
     if (resultData.length) {
-      console.log('+1');
-
       setPage(page + 1)
     }
   }
@@ -95,7 +89,7 @@ function CommentModal() {
 
           <button
             id='comment-modal-page-button'
-            onClick={() => setPage(page - 1)}>
+            onClick={() => {if(page > 1){setPage(page - 1)}} }>
             &lt;
           </button>
           <p id='comment-modal-page-text'>Page {page}</p>

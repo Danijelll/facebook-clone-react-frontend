@@ -70,6 +70,7 @@ export const albumSlice = createSlice({
             state.currentOpenAlbum = action.payload
         })
         builder.addCase(getAllFriendsAlbumsWithImages.fulfilled, (state, action) => {
+            if(action.payload.length)
             state.userFriendsAlbums = action.payload
         })
     },
