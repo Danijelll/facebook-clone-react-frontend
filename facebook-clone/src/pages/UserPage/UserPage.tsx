@@ -10,6 +10,7 @@ import './UserPage.scss'
 
 function UserPage() {
     const friendData = useSelector((state: RootStore) => state.user.currentFriend);
+    const userData = useSelector((state: RootStore) => state.user.currentUser);
     const dispatch = useDispatch();
     const location = useLocation();
     const userId = (location.state as IUserProps).userId

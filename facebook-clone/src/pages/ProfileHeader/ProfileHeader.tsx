@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { RootStore } from '../../features/store';
+import BanUserButton from './BanUserButton/BanUserButton';
 import FriendRequestStatusButton from './FriendRequestStatusButton/FriendRequestStatusButton';
 import './ProfileHeader.scss'
 
@@ -41,6 +42,9 @@ function ProfileHeader(props: ProfileHeaderProps) {
             </div>
             {showAddFriend && id !== userData?.id &&
                 <FriendRequestStatusButton />
+            }
+            {userData?.role === 1 && id !== userData?.id &&
+                <BanUserButton/>
             }
         </div>
     )

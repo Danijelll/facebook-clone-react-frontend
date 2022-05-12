@@ -74,7 +74,29 @@ class UserService {
             });
 
     }
-    editUserCoverImage(data: IUserUpdateCoverImageData) {   
+    unbanUser(id: number) {
+        return axios.put('/unbanUser/' + id)
+            .then(function (response) {
+                if (response.status === 200) {
+                    return response.data;
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+
+    }
+    banUser(id: number) {
+        return axios.put('/banUser/' + id)
+            .then(function (response) {
+                if (response.status === 200) {
+                    return response.data;
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+
+    }
+    editUserCoverImage(data: IUserUpdateCoverImageData) {
 
         const formData = new FormData();
         formData.append('coverImage', data.coverImage);

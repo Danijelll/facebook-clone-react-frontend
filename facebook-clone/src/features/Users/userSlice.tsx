@@ -57,6 +57,20 @@ const editUserCoverImage = createAsyncThunk(
         return response;
     }
 )
+const unbanUser = createAsyncThunk(
+    'user/unbanUser',
+    async (id: number) => {
+        const response = await UserService.unbanUser(id);
+        return response;
+    }
+)
+const banUser = createAsyncThunk(
+    'user/banUser',
+    async (id: number) => {
+        const response = await UserService.banUser(id);
+        return response;
+    }
+)
 export const userSlice = createSlice({
     name: "user",
     initialState: {
@@ -86,8 +100,22 @@ export const userSlice = createSlice({
         builder.addCase(editUserCoverImage.fulfilled, (state, action) => {
             state.currentUser = action.payload;
         })
+        builder.addCase(unbanUser.fulfilled, (state, action) => {
+            state.currentFriend = action.payload;
+        })
+        builder.addCase(banUser.fulfilled, (state, action) => {
+            state.currentFriend = action.payload;
+        })
     },
 });
 
-export { login, register, getCurrentUserData, searchUsers, searchUserById, editUserProfileImage, editUserCoverImage };
+export {
+    login, register,
+    getCurrentUserData,
+    searchUsers,
+    searchUserById,
+    editUserProfileImage,
+    editUserCoverImage,
+    unbanUser, banUser
+};
 export default userSlice.reducer;
