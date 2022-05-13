@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { ILogin, IRegister, IUserData, IUserListData, IUserUpdateCoverImageData, IUserUpdateProfileImageData } from "../../interfaces/IUser";
+import { ILogin, IRegister, ITwoFactorCode, IUserData, IUserListData, IUserUpdateCoverImageData, IUserUpdateProfileImageData } from "../../interfaces/IUser";
 import UserService from "../../services/UserService";
 
 export interface UserSliceState {
@@ -22,6 +22,15 @@ const register = createAsyncThunk(
         return response;
     }
 )
+
+const confirm2FA = createAsyncThunk(
+    'user/confirm2FA',
+    async (twoFactorLoginData: ITwoFactorCode) => {
+        const response = await UserService.confirm2FA(twoFactorLoginData.username, twoFactorLoginData.twoFactorCode);
+        return response;
+    }
+)
+
 const getCurrentUserData = createAsyncThunk(
     'user/getCurrentUserData',
     async () => {
@@ -127,6 +136,8 @@ export const userSlice = createSlice({
         builder.addCase(searchUsersWithBanned.fulfilled, (state, action) => {
             state.userList = action.payload;
         })
+        builder.addCase(confirm2FA.fulfilled, (state, action) => {
+        })
     },
 });
 
@@ -139,6 +150,7 @@ export {
     editUserCoverImage,
     unbanUser, banUser,
     searchUsersWithBanned,
+    confirm2FA
 };
 export const { clearUserData } = userSlice.actions
 export default userSlice.reducer;

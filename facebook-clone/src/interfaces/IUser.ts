@@ -5,6 +5,11 @@ export interface ILogin {
     password: string
 }
 
+export interface ITwoFactorCode {
+    username: string,
+    twoFactorCode: string
+}
+
 export interface IRegister {
     username: string,
     email: string,

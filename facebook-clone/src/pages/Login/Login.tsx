@@ -32,11 +32,9 @@ function Login() {
 
   const handleLogin = async () => {
     const result = await dispatch(login(loginData));
-    dispatch(getCurrentUserData())
-    const resultData = unwrapResult(result);
-
-    if (resultData) {
-      navigate('/home');
+    
+    if (result) {
+      navigate('/login' , { state: { username: loginData.username } });
     }
   }
 

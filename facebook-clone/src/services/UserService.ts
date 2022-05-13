@@ -7,7 +7,6 @@ class UserService {
     login(user: ILogin) {
         return axios.post('/login', user)
             .then(function (response) {
-                localStorage.setItem('token', response.data)
                 if (response.status === 200) {
                     return true;
                 }
@@ -19,6 +18,19 @@ class UserService {
     register(user: IRegister) {
         return axios.post('/register', user)
             .then(function (response) {
+                if (response.status === 200) {
+                    return true;
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+    }
+
+    confirm2FA(username :string, twoFactorCode: string) {
+        return axios.post('/login/'+username+'/'+twoFactorCode, )
+            .then(function (response) {
+
+                localStorage.setItem('token', response.data)
                 if (response.status === 200) {
                     return true;
                 }

@@ -19,6 +19,7 @@ import EditProfileModal from './pages/Home/Components/EditProfileModal/EditProfi
 import { useEffect, useState } from 'react';
 import { getCurrentUserData } from './features/Users/userSlice';
 import Loader from './components/Loader/Loader';
+import TwoFactorCode from './pages/2FACode/TwoFactorCode';
 
 function App() {
   const setShowCommentModal = useSelector((state: RootStore) => state.ui.setShowCommentModal);
@@ -62,6 +63,7 @@ function App() {
           <Route path='/home' element={<Home />} />
           <Route path='/userPage' element={<UserPage />} />
           <Route path='/confirmEmail' element={<ConfirmEmail />} />
+          <Route path='/login' element={<TwoFactorCode />} />
         </Routes>
       </Router>
     </div>
