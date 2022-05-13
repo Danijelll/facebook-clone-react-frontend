@@ -16,9 +16,9 @@ function FriendRequestItem(props: FriendRequestItemProps) {
     const { firstUserId, createdOn } = props;
 
     useEffect(() => {
-      dispatch(searchUserById(firstUserId))
+        dispatch(searchUserById(firstUserId))
     }, [])
-    
+
 
     const navigate = useNavigate();
 

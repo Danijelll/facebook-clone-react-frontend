@@ -19,7 +19,7 @@ function Register() {
   } as IRegister);
 
   useEffect(() => {
-    if(userData?.id){
+    if (userData?.id) {
       navigate('/home');
     }
   }, [userData])

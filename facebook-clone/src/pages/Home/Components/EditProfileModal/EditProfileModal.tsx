@@ -45,13 +45,16 @@ function EditProfileModal() {
     const dispatch = useDispatch();
     return (
         <div className='modal-background'
-            onClick={() => dispatch(toggleEditProfileModal())}>
+            onClick={() =>
+                dispatch(toggleEditProfileModal())}>
 
             <div id='modal-container'
-                onClick={(e) => e.stopPropagation()}>
+                onClick={(e) =>
+                    e.stopPropagation()}>
 
                 <button id='close-modal-button'
-                    onClick={() => dispatch(toggleEditProfileModal())}>
+                    onClick={() =>
+                        dispatch(toggleEditProfileModal())}>
                     X
                 </button>
 

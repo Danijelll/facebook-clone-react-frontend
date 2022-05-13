@@ -2,8 +2,8 @@ export interface ICommentData {
     id: number,
     albumId: number,
     userId: number,
-    username:string,
-    profileImage:string,
+    username: string,
+    profileImage: string,
     text: string,
     createdOn: Date,
 }
@@ -14,9 +14,9 @@ export interface ICommentUploadData {
     text: string,
 }
 
-export interface IAlbumCommentPageData{
-    albumId:number,
-    page:number,
+export interface IAlbumCommentPageData {
+    albumId: number,
+    page: number,
 }
 
 export interface ICommentUpdateData {

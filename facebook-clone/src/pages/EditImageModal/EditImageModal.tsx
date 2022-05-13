@@ -22,13 +22,16 @@ function ImageMenuModal() {
 
     return (
         <div className='modal-background'
-            onClick={() => dispatch(toggleEditImageModal())}>
+            onClick={() =>
+                dispatch(toggleEditImageModal())}>
 
             <div id='image-menu-modal-container'
-                onClick={(e) => e.stopPropagation()}>
+                onClick={(e) =>
+                    e.stopPropagation()}>
 
                 <button id='image-menu-close-modal-button'
-                    onClick={() => dispatch(toggleEditImageModal())}>
+                    onClick={() =>
+                        dispatch(toggleEditImageModal())}>
                     X
                 </button>
 

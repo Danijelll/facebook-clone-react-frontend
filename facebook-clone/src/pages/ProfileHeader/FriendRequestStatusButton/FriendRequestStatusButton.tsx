@@ -12,13 +12,13 @@ function FriendRequestStatusButton() {
     const [className, setClassName] = useState('')
 
     const dispatch = useDispatch();
-    let handleOnClick = () => {};
+    let handleOnClick = () => { };
 
     useEffect(() => {
         if (currentFriend?.id !== undefined) {
             dispatch(checkFriendRequestStatus(currentFriend?.id))
 
-             switch (friendRequestStatus) {
+            switch (friendRequestStatus) {
                 case FriendRequestStatusEnum.Friends: {
                     setButtonText(() => ('Remove Friend'));
                     setClassName(() => ('friend-request-button-friends'));
@@ -49,7 +49,9 @@ function FriendRequestStatusButton() {
 
 
     return (
-        <button onClick={() => handleOnClick()} className={className}>
+        <button
+            onClick={() => handleOnClick()}
+            className={className}>
             {buttonText}
         </button>
     )

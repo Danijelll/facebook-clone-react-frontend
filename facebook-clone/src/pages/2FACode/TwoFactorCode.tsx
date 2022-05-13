@@ -15,7 +15,7 @@ function TwoFactorCode() {
   const username = (location.state as I2FAProps).username
   const [twoFactorCode, setTwoFactorCode] = useState('')
 
-  const twoFactorLoginData ={
+  const twoFactorLoginData = {
     username,
     twoFactorCode
   };
@@ -31,10 +31,19 @@ function TwoFactorCode() {
   }
 
   return (
-      <div id='two-factor-wrapper'>
-          <input placeholder='Enter the 2FA Code sent to your email' className='two-factor-input' onChange={e => setTwoFactorCode(e.target.value)} type="text" />
-          <button className='button' onClick={handle2FA}>Confirm Login</button>
-      </div>
+    <div id='two-factor-wrapper'>
+      <input
+        placeholder='Enter the 2FA Code sent to your email'
+        className='two-factor-input'
+        onChange={e => setTwoFactorCode(e.target.value)}
+        type="text" />
+
+      <button
+        className='button'
+        onClick={handle2FA}>
+        Confirm Login
+      </button>
+    </div>
   )
 }
 

@@ -15,11 +15,11 @@ function Login() {
   const location = useLocation();
 
   useEffect(() => {
-    if(userData?.id){
+    if (userData?.id) {
       navigate('/home');
     }
   }, [userData])
-  
+
 
   const [loginData, setLoginData] = useState<ILogin>({
     username: '',
@@ -32,9 +32,9 @@ function Login() {
 
   const handleLogin = async () => {
     const result = await dispatch(login(loginData));
-    
+
     if (result) {
-      navigate('/login' , { state: { username: loginData.username } });
+      navigate('/login', { state: { username: loginData.username } });
     }
   }
 
@@ -72,8 +72,7 @@ function Login() {
       <p className="link-text">
         Dont have an account?
         <Link className="link"
-          to="/register"
-        >
+          to="/register">
           Register
         </Link>
       </p>

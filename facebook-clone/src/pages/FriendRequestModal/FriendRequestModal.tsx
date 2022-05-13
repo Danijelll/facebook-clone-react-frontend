@@ -27,23 +27,33 @@ function FriendRequestModal() {
     }
 
     return (
-        <div className='comment-modal-background' onClick={() => dispatch(toggleFriendRequestModal())}>
-            <div onClick={(e) => e.stopPropagation()} id='friend-request-wrapper'>
+        <div
+            className='comment-modal-background'
+            onClick={() =>
+                dispatch(toggleFriendRequestModal())}>
+
+            <div
+                id='friend-request-wrapper'
+                onClick={(e) =>
+                    e.stopPropagation()}>
+
                 <div>
                     {renderFriendList()}
                 </div>
+
                 <div id='friend-request-modal-page-buttons'>
-                <button
-                    id='comment-modal-page-button'
-                    onClick={() => setPage(page - 1)}>
-                    &lt;
-                </button>
-                <p id='comment-modal-page-text'>Page {page}</p>
-                <button
-                    id='comment-modal-page-button'
-                    onClick={() => { setPage(page + 1) }}>
-                    &gt;
-                </button>
+                    <button
+                        id='comment-modal-page-button'
+                        onClick={() =>
+                            setPage(page - 1)}>
+                        &lt;
+                    </button>
+                    <p id='comment-modal-page-text'>Page {page}</p>
+                    <button
+                        id='comment-modal-page-button'
+                        onClick={() => { setPage(page + 1) }}>
+                        &gt;
+                    </button>
                 </div>
             </div>
         </div >

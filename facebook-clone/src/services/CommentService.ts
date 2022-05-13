@@ -13,6 +13,7 @@ class CommentService {
                 console.log(error);
             });
     }
+
     getCommentById(commentId: number) {
         return axios.get('/comments/' + commentId)
             .then(function (response) {
@@ -23,6 +24,7 @@ class CommentService {
                 console.log(error);
             });
     }
+
     uploadComment(comment: ICommentUploadData) {
         return axios.post('/comments', comment)
             .then(function (response) {
@@ -33,6 +35,7 @@ class CommentService {
                 console.log(error);
             });
     }
+
     deleteCommentById(commentId: number) {
         return axios.delete('/comments/' + commentId)
             .then(function (response) {
@@ -41,6 +44,7 @@ class CommentService {
                 console.log(error);
             });
     }
+    
     updateComment(comment: ICommentUpdateData) {
         return axios.put('/comments', comment)
             .then(function (response) {

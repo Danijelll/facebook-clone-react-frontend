@@ -25,9 +25,9 @@ class AlbumService {
     }
 
     getAllFriendsAlbumsWithImages(postsPerPage: number, page: number) {
-        return axios.get('/feed?pageSize='+postsPerPage+'&pageNumber='+page)
+        return axios.get('/feed?pageSize=' + postsPerPage + '&pageNumber=' + page)
             .then(function (response) {
-                if (response.status === 200) {                    
+                if (response.status === 200) {
                     return response.data;
                 }
             }).catch(function (error) {

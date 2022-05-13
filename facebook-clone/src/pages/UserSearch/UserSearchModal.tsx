@@ -35,8 +35,14 @@ function UserSearch() {
     }
 
     return (
-        <div className='comment-modal-background' onClick={() => dispatch(toggleUserSearchModal())}>
-            <div onClick={(e) => e.stopPropagation()} id='user-search-wrapper'>
+        <div
+            className='comment-modal-background'
+            onClick={() => dispatch(toggleUserSearchModal())}>
+
+            <div
+                id='user-search-wrapper'
+                onClick={(e) => e.stopPropagation()}>
+                    
                 <div id='user-search-header'>
                     <input
                         id='user-search-input'

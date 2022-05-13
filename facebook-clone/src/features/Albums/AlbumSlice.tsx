@@ -70,11 +70,17 @@ export const albumSlice = createSlice({
             state.currentOpenAlbum = action.payload
         })
         builder.addCase(getAllFriendsAlbumsWithImages.fulfilled, (state, action) => {
-            if(action.payload.length)
-            state.userFriendsAlbums = action.payload
+            if (action.payload.length)
+                state.userFriendsAlbums = action.payload
         })
     },
 });
 
-export { getAllCurrentUserAlbums, getCurrentOpenAlbum, deleteAlbumById, updateAlbumCaption, getAllFriendsAlbumsWithImages }
+export {
+    getAllCurrentUserAlbums,
+    getCurrentOpenAlbum,
+    deleteAlbumById,
+    updateAlbumCaption,
+    getAllFriendsAlbumsWithImages
+}
 export default albumSlice.reducer;

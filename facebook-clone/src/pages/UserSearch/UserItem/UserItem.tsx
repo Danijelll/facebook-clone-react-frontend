@@ -34,7 +34,7 @@ function UserItem(props: UserItemProps) {
                 src={profileImage}
                 alt={profileImage}
             />
-            
+
             <div id='user-item-username'>{username}</div>
         </div>
     )

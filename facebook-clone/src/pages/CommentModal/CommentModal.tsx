@@ -76,28 +76,46 @@ function CommentModal() {
   }
 
   return (
-    <div className='comment-modal-background' onClick={() => dispatch(toggleCommentModal())}>
-      <div id='comment-modal-container' onClick={(e) => e.stopPropagation()}>
+    <div className='comment-modal-background'
+      onClick={() => dispatch(toggleCommentModal())}>
+      <div id='comment-modal-container'
+        onClick={(e) => e.stopPropagation()}>
 
         <div id='upload-comment-wrapper'>
 
-          <img id='upload-comment-image' src={userData.profileImage} alt={userData.profileImage} />
+          <img
+            id='upload-comment-image'
+            src={userData.profileImage}
+            alt={userData.profileImage}
+          />
 
-          <input onChange={e => handleInput('text', e.target.value)} id='upload-comment-input' type="text" placeholder='Add a comment...' />
+          <input
+            onChange={e => handleInput('text', e.target.value)}
+            id='upload-comment-input'
+            type="text"
+            placeholder='Add a comment...'
+          />
 
-          <button onClick={handleUpload} id='upload-comment-button'>Post</button>
+          <button
+            onClick={handleUpload}
+            id='upload-comment-button'>
+            Post
+          </button>
 
           <button
             id='comment-modal-page-button'
-            onClick={() => {if(page > 1){setPage(page - 1)}} }>
+            onClick={() => { if (page > 1) { setPage(page - 1) } }}>
             &lt;
           </button>
+
           <p id='comment-modal-page-text'>Page {page}</p>
+
           <button
             id='comment-modal-page-button'
             onClick={() => handleNextPage()}>
             &gt;
           </button>
+
         </div>
 
         <div id='comment-modal-body'>

@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { BooleanLiteral } from "typescript";
 import { IFriendRequest } from "../../interfaces/IFriendRequest";
 import { FriendRequestStatusEnum } from "../../Models/FriendRequestStatusEnum";
 import FriendshipService from "../../services/FriendshipService";

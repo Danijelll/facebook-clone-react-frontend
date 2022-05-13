@@ -21,7 +21,7 @@ export interface IUserData {
     username: string,
     profileImage: string,
     coverImage: string,
-    role:UserRoleEnum,
+    role: UserRoleEnum,
     isEmailConfirmed: boolean,
     isBanned: boolean,
     createdOn: string

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { RootStore } from '../../../features/store';
 import { banUser, unbanUser } from '../../../features/Users/userSlice';
@@ -26,12 +26,14 @@ function BanUserButton() {
                 break;
             }
         }
-    },[currentFriend, handleOnClick])
+    }, [currentFriend, handleOnClick])
 
 
 
     return (
-        <button onClick={() => handleOnClick()} className={className}>
+        <button
+            onClick={() => handleOnClick()}
+            className={className}>
             {buttonText}
         </button>
     )

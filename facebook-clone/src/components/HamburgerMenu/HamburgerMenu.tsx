@@ -22,15 +22,21 @@ function HamburgerMenu() {
 
     return (
         <div className="hamburger-menu">
-            <input id="menu__toggle" type="checkbox" />
-            <label className="menu__btn" htmlFor="menu__toggle">
+            <input
+                id="menu__toggle"
+                type="checkbox" />
+            <label
+                className="menu__btn"
+                htmlFor="menu__toggle">
                 <span></span>
             </label>
 
             <ul className="menu__box">
                 <li className="menu__item">
                     <Link to="/home">
-                        <div className='navOptions'>My Profile</div>
+                        <div className='navOptions'>
+                            My Profile
+                        </div>
                     </Link>
                 </li>
 

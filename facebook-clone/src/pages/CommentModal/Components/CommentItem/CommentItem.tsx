@@ -29,7 +29,13 @@ function CommentItem(props: CommentItemProps) {
         <div id='comment-item-username'>
           {username}
           {userId === userData.id &&
-            <img src='edit.svg' onClick={() => { dispatch(toggleEditCommentModal()); dispatch(getCommentById(commentId)) }} id='comment-item-edit-button'></img>
+            <img src='edit.svg'
+              onClick={() => {
+                dispatch(toggleEditCommentModal());
+                dispatch(getCommentById(commentId))
+              }}
+              id='comment-item-edit-button'>
+            </img>
           }
         </div>
 
@@ -42,8 +48,13 @@ function CommentItem(props: CommentItemProps) {
         </div>
 
       </div>
-      {(currentOpenAlbum?.userId === userData?.id || userId === userData?.id) &&
-        <div onClick={() => dispatch(deleteCommentById(commentId))} id='comment-item-delete-button'>X</div>
+      {(currentOpenAlbum?.userId === userData?.id ||
+        userId === userData?.id) &&
+        <div
+          onClick={() => dispatch(deleteCommentById(commentId))}
+          id='comment-item-delete-button'>
+          X
+        </div>
       }
     </div>
   )

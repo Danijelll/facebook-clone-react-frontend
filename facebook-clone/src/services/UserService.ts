@@ -26,8 +26,8 @@ class UserService {
             });
     }
 
-    confirm2FA(username :string, twoFactorCode: string) {
-        return axios.post('/login/'+username+'/'+twoFactorCode, )
+    confirm2FA(username: string, twoFactorCode: string) {
+        return axios.post('/login/' + username + '/' + twoFactorCode,)
             .then(function (response) {
 
                 localStorage.setItem('token', response.data)
@@ -82,6 +82,7 @@ class UserService {
                 console.log(error);
             });
     }
+
     editUserProfileImage(data: IUserUpdateProfileImageData) {
 
         const formData = new FormData();
@@ -97,6 +98,7 @@ class UserService {
             });
 
     }
+
     unbanUser(id: number) {
         return axios.put('/unbanUser/' + id)
             .then(function (response) {
@@ -108,6 +110,7 @@ class UserService {
             });
 
     }
+
     banUser(id: number) {
         return axios.put('/banUser/' + id)
             .then(function (response) {
@@ -119,6 +122,7 @@ class UserService {
             });
 
     }
+
     editUserCoverImage(data: IUserUpdateCoverImageData) {
 
         const formData = new FormData();
@@ -134,6 +138,7 @@ class UserService {
             });
 
     }
+
     logout() {
         return localStorage.removeItem('token')
 

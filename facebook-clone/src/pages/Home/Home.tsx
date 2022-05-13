@@ -25,10 +25,10 @@ function Home() {
 
   useEffect(() => {
     if (userData?.id && !userData?.isEmailConfirmed) {
-      navigate('/confirmEmail')      
+      navigate('/confirmEmail')
     }
     if (!userData?.id) {
-      navigate('/')      
+      navigate('/')
     }
   }, [userData])
 
@@ -63,7 +63,10 @@ function Home() {
               borderBottom: mainContent ? '' : 'none',
               borderLeft: mainContent ? '' : 'none'
             }}
-            onClick={() => {setMainContent(false); dispatch(getAllFriendsAlbumsWithImages(postOnPage))}}
+            onClick={() => {
+              setMainContent(false);
+              dispatch(getAllFriendsAlbumsWithImages(postOnPage))
+            }}
             id='feed-button'>
             Feed
           </div>
