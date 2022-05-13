@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from 'react-router';
 import { AppDispatch } from '../../features/store';
 import { confirm2FA, getCurrentUserData } from '../../features/Users/userSlice';
 import { I2FAProps } from '../../interfaces/IRouterProps';
-import { ILogin, ITwoFactorCode } from '../../interfaces/IUser';
+import './TwoFactorCode.scss'
 
 function TwoFactorCode() {
   const dispatch: AppDispatch = useDispatch();
@@ -31,9 +31,9 @@ function TwoFactorCode() {
   }
 
   return (
-      <div>
-          <input onChange={e => setTwoFactorCode(e.target.value)} type="text" />
-          <button onClick={handle2FA}>2fa</button>
+      <div id='two-factor-wrapper'>
+          <input className='two-factor-input' onChange={e => setTwoFactorCode(e.target.value)} type="text" />
+          <button className='button' onClick={handle2FA}>Confirm Login</button>
       </div>
   )
 }
