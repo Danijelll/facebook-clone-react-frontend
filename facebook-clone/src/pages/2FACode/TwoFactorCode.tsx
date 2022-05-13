@@ -32,7 +32,7 @@ function TwoFactorCode() {
 
   return (
       <div id='two-factor-wrapper'>
-          <input className='two-factor-input' onChange={e => setTwoFactorCode(e.target.value)} type="text" />
+          <input placeholder='Enter the 2FA Code sent to your email' className='two-factor-input' onChange={e => setTwoFactorCode(e.target.value)} type="text" />
           <button className='button' onClick={handle2FA}>Confirm Login</button>
       </div>
   )
