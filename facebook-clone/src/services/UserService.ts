@@ -50,8 +50,8 @@ class UserService {
             });
     }
 
-    getUserByUsername(username: string) {
-        return axios.get('/users/search/' + username)
+    getUserByUsername(username: string|undefined, page: number) {
+        return axios.get('/users/search/' + username + '?pageSize=0&pageNumber=' + page)
             .then(function (response) {
                 if (response.status === 200) {
                     return response.data;
@@ -61,8 +61,8 @@ class UserService {
             });
     }
 
-    getUserByUsernameWithBanned(username: string) {
-        return axios.get('users/searchWithBanned/' + username)
+    getUserByUsernameWithBanned(username: string|undefined, page: number) {
+        return axios.get('users/searchWithBanned/' + username + '?pageSize=0&pageNumber=' + page)
             .then(function (response) {
                 if (response.status === 200) {
                     return response.data;

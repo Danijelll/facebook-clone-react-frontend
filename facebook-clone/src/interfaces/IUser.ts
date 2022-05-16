@@ -10,6 +10,11 @@ export interface ITwoFactorCode {
     twoFactorCode: string
 }
 
+export interface IUsersPerPage {
+    username: string | undefined,
+    page: number
+}
+
 export interface IRegister {
     username: string,
     email: string,

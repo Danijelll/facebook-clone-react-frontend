@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { ILogin, IRegister, ITwoFactorCode, IUserData, IUserListData, IUserUpdateCoverImageData, IUserUpdateProfileImageData } from "../../interfaces/IUser";
+import { ILogin, IRegister, ITwoFactorCode, IUserData, IUserListData, IUsersPerPage, IUserUpdateCoverImageData, IUserUpdateProfileImageData } from "../../interfaces/IUser";
 import UserService from "../../services/UserService";
 
 export interface UserSliceState {
@@ -40,15 +40,15 @@ const getCurrentUserData = createAsyncThunk(
 )
 const searchUsers = createAsyncThunk(
     'user/searchUsers',
-    async (username: string) => {
-        const response = await UserService.getUserByUsername(username);
+    async (usersOnPage: IUsersPerPage) => {
+        const response = await UserService.getUserByUsername(usersOnPage.username, usersOnPage.page);
         return response;
     }
 )
 const searchUsersWithBanned = createAsyncThunk(
     'user/searchUsersWithBanned',
-    async (username: string) => {
-        const response = await UserService.getUserByUsernameWithBanned(username);
+    async (usersOnPage: IUsersPerPage) => {
+        const response = await UserService.getUserByUsernameWithBanned(usersOnPage.username, usersOnPage.page);
         return response;
     }
 )
@@ -113,7 +113,8 @@ export const userSlice = createSlice({
         builder.addCase(register.fulfilled, (state, action) => { })
 
         builder.addCase(searchUsers.fulfilled, (state, action) => {
-            state.userList = action.payload
+            if (action.payload.length)
+                state.userList = action.payload
         })
         builder.addCase(getCurrentUserData.fulfilled, (state, action) => {
             state.currentUser = action.payload;
@@ -134,7 +135,8 @@ export const userSlice = createSlice({
             state.currentFriend = action.payload;
         })
         builder.addCase(searchUsersWithBanned.fulfilled, (state, action) => {
-            state.userList = action.payload;
+            if (action.payload.length)
+                state.userList = action.payload;
         })
         builder.addCase(confirm2FA.fulfilled, (state, action) => {
         })
