@@ -5,9 +5,7 @@ import { toggleErrorModal } from '../../features/Ui/UiSlice';
 function ErrorModal() {
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
-        
+    useEffect(() => {        
     }, [])
 
     return (

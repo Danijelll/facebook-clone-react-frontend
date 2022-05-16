@@ -16,7 +16,14 @@ class UserService {
                     return true;
                 }
             }).catch((error) => {
+                let e:Error= error;
                 console.log(error);
+                console.log(e.message);
+                console.log(e.stack);
+                console.log(e);
+                
+                
+                
                 this.store.dispatch(toggleErrorModal())
             });
     }
