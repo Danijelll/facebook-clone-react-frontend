@@ -1,69 +1,70 @@
-import { useDispatch } from "react-redux";
 import { toggleErrorModal } from "../features/Ui/UiSlice";
 import { ICommentUpdateData, ICommentUploadData } from "../interfaces/IComment";
 import axios from "./axios";
 
 class CommentService {
+    store: any;
+
+    injectStore(store: any) {
+        this.store = store;
+    }
     getAllAlbumComments(albumId: number, page: number) {
         return axios.get('/comments/album/' + albumId + '?pageSize=10&pageNumber=' + page)
-            .then(function (response) {
+            .then((response) => {
                 if (response.status === 200) {
                     return response.data;
                 }
-            }).catch(function (error) {
+            }).catch((error) => {
                 console.log(error);
-                const dispatch = useDispatch();
-                dispatch(toggleErrorModal())
+                this.store.dispatch(toggleErrorModal())
             });
     }
 
     getCommentById(commentId: number) {
         return axios.get('/comments/' + commentId)
-            .then(function (response) {
+            .then((response) => {
                 if (response.status === 200) {
                     return response.data;
                 }
-            }).catch(function (error) {
+            }).catch((error) => {
                 console.log(error);
-                const dispatch = useDispatch();
-                dispatch(toggleErrorModal())
+                this.store.dispatch(toggleErrorModal())
             });
     }
 
     uploadComment(comment: ICommentUploadData) {
         return axios.post('/comments', comment)
-            .then(function (response) {
+            .then((response) => {
                 if (response.status === 200) {
                     return response.data;
                 }
-            }).catch(function (error) {
+            }).catch((error) => {
                 console.log(error);
-                const dispatch = useDispatch();
-                dispatch(toggleErrorModal())
+                this.store.dispatch(toggleErrorModal())
             });
     }
 
     deleteCommentById(commentId: number) {
         return axios.delete('/comments/' + commentId)
-            .then(function (response) {
-
-            }).catch(function (error) {
+            .then((response) => {
+                if (response.status === 200) {
+                    return true;
+                }
+            }).catch((error) => {
                 console.log(error);
-                const dispatch = useDispatch();
-                dispatch(toggleErrorModal())
+                this.store.dispatch(toggleErrorModal())
             });
     }
 
     updateComment(comment: ICommentUpdateData) {
         return axios.put('/comments', comment)
-            .then(function (response) {
+            .then((response) => {
                 if (response.status === 200) {
                     return response.data;
                 }
-            }).catch(function (error) {
+            }).catch((error) => {
                 console.log(error);
-                const dispatch = useDispatch();
-                dispatch(toggleErrorModal())
+                this.store.dispatch(toggleErrorModal())
             });
     }
 }

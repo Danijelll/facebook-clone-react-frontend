@@ -1,8 +1,6 @@
 import axios from "./axios";
 import { ILogin, IRegister, IUserUpdateCoverImageData, IUserUpdateProfileImageData } from "../interfaces/IUser";
-import { useDispatch } from "react-redux";
 import { toggleErrorModal } from "../features/Ui/UiSlice";
-// import { store } from '../features/store';
 
 class UserService {
     store: any;
@@ -15,7 +13,6 @@ class UserService {
         return axios.post('/login', user)
             .then((response) => {
                 if (response.status === 200) {
-                    this.store.dispatch(toggleErrorModal())
                     return true;
                 }
             }).catch((error) => {
@@ -26,81 +23,76 @@ class UserService {
 
     register(user: IRegister) {
         return axios.post('/register', user)
-            .then(function (response) {
+            .then((response) => {
                 if (response.status === 200) {
                     return true;
                 }
-            }).catch(function (error) {
+            }).catch((error) => {
                 console.log(error);
-                // const dispatch = useDispatch();
-                // dispatch(toggleErrorModal())
+                this.store.dispatch(toggleErrorModal())
             });
     }
 
     confirm2FA(username: string, twoFactorCode: string) {
         return axios.post('/login/' + username + '/' + twoFactorCode,)
-            .then(function (response) {
-
+            .then((response) => {
                 localStorage.setItem('token', response.data)
                 if (response.status === 200) {
                     return true;
                 }
-            }).catch(function (error) {
+            }).catch((error) => {
                 console.log(error);
-                // const dispatch = useDispatch();
-                // dispatch(toggleErrorModal())
+                this.store.dispatch(toggleErrorModal())
+
             });
     }
 
     getCurrentUserData() {
         return axios.get('/home')
-            .then(function (response) {
+            .then((response) => {
                 if (response.status === 200) {
                     return response.data;
                 }
-            }).catch(function (error) {
+            }).catch((error) => {
                 console.log(error);
-                // const dispatch = useDispatch();
-                // dispatch(toggleErrorModal())
+                this.store.dispatch(toggleErrorModal())
+
             });
     }
 
     getUserByUsername(username: string | undefined, page: number) {
         return axios.get('/users/search/' + username + '?pageSize=18&pageNumber=' + page)
-            .then(function (response) {
+            .then((response) => {
                 if (response.status === 200) {
                     return response.data;
                 }
-            }).catch(function (error) {
+            }).catch((error) => {
                 console.log(error);
-                // const dispatch = useDispatch();
-                // dispatch(toggleErrorModal())
+                this.store.dispatch(toggleErrorModal())
             });
     }
 
     getUserByUsernameWithBanned(username: string | undefined, page: number) {
         return axios.get('users/searchWithBanned/' + username + '?pageSize=18&pageNumber=' + page)
-            .then(function (response) {
+            .then((response) => {
                 if (response.status === 200) {
                     return response.data;
                 }
-            }).catch(function (error) {
+            }).catch((error) => {
                 console.log(error);
-                // const dispatch = useDispatch();
-                // dispatch(toggleErrorModal())
+                this.store.dispatch(toggleErrorModal())
             });
     }
 
     getUserById(id: number) {
         return axios.get('/users/' + id)
-            .then(function (response) {
+            .then((response) => {
                 if (response.status === 200) {
                     return response.data;
                 }
-            }).catch(function (error) {
+            }).catch((error) => {
                 console.log(error);
-                const dispatch = useDispatch();
-                dispatch(toggleErrorModal())
+                this.store.dispatch(toggleErrorModal())
             });
     }
 
@@ -110,42 +102,39 @@ class UserService {
         formData.append('profileImage', data.profileImage);
 
         return axios.put('/updateProfileImage', formData)
-            .then(function (response) {
+            .then((response) => {
                 if (response.status === 200) {
                     return response.data;
                 }
-            }).catch(function (error) {
+            }).catch((error) => {
                 console.log(error);
-                const dispatch = useDispatch();
-                dispatch(toggleErrorModal())
+                this.store.dispatch(toggleErrorModal())
             });
 
     }
 
     unbanUser(id: number) {
         return axios.put('/unbanUser/' + id)
-            .then(function (response) {
+            .then((response) => {
                 if (response.status === 200) {
                     return response.data;
                 }
-            }).catch(function (error) {
+            }).catch((error) => {
                 console.log(error);
-                const dispatch = useDispatch();
-                dispatch(toggleErrorModal())
+                this.store.dispatch(toggleErrorModal())
             });
 
     }
 
     banUser(id: number) {
         return axios.put('/banUser/' + id)
-            .then(function (response) {
+            .then((response) => {
                 if (response.status === 200) {
                     return response.data;
                 }
-            }).catch(function (error) {
+            }).catch((error) => {
                 console.log(error);
-                const dispatch = useDispatch();
-                dispatch(toggleErrorModal())
+                this.store.dispatch(toggleErrorModal())
             });
 
     }
@@ -156,14 +145,13 @@ class UserService {
         formData.append('coverImage', data.coverImage);
 
         return axios.put('/updateCoverImage', formData)
-            .then(function (response) {
+            .then((response) => {
                 if (response.status === 200) {
                     return response.data;
                 }
-            }).catch(function (error) {
+            }).catch((error) => {
                 console.log(error);
-                const dispatch = useDispatch();
-                dispatch(toggleErrorModal())
+                this.store.dispatch(toggleErrorModal())
             });
 
     }

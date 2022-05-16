@@ -1,9 +1,13 @@
-import { useDispatch } from "react-redux";
 import { toggleErrorModal } from "../features/Ui/UiSlice";
 import { IUploadImageData } from "../interfaces/IImage";
 import axios from "./axios";
 
 class ImageService {
+    store: any;
+
+    injectStore(store: any) {
+        this.store = store;
+    }
     uploadImages(data: IUploadImageData) {
 
         const imageUploadData = {
@@ -19,14 +23,13 @@ class ImageService {
         }
 
         return axios.post('/albums', formData)
-            .then(function (response) {
+            .then((response) => {
                 if (response.status === 200) {
                     return response.data;
                 }
-            }).catch(function (error) {
+            }).catch((error) => {
                 console.log(error);
-                const dispatch = useDispatch();
-                dispatch(toggleErrorModal())
+                this.store.dispatch(toggleErrorModal())
             });
     }
 }
