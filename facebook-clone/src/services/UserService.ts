@@ -1,17 +1,26 @@
 import axios from "./axios";
-import { useNavigate } from "react-router-dom";
 import { ILogin, IRegister, IUserUpdateCoverImageData, IUserUpdateProfileImageData } from "../interfaces/IUser";
+import { useDispatch } from "react-redux";
+import { toggleErrorModal } from "../features/Ui/UiSlice";
+// import { store } from '../features/store';
 
 class UserService {
+    store: any;
+
+    injectStore(store: any) {
+        this.store = store;
+    }
 
     login(user: ILogin) {
         return axios.post('/login', user)
-            .then(function (response) {
+            .then((response) => {
                 if (response.status === 200) {
+                    this.store.dispatch(toggleErrorModal())
                     return true;
                 }
-            }).catch(function (error) {
+            }).catch((error) => {
                 console.log(error);
+                this.store.dispatch(toggleErrorModal())
             });
     }
 
@@ -23,6 +32,8 @@ class UserService {
                 }
             }).catch(function (error) {
                 console.log(error);
+                // const dispatch = useDispatch();
+                // dispatch(toggleErrorModal())
             });
     }
 
@@ -36,6 +47,8 @@ class UserService {
                 }
             }).catch(function (error) {
                 console.log(error);
+                // const dispatch = useDispatch();
+                // dispatch(toggleErrorModal())
             });
     }
 
@@ -47,28 +60,34 @@ class UserService {
                 }
             }).catch(function (error) {
                 console.log(error);
+                // const dispatch = useDispatch();
+                // dispatch(toggleErrorModal())
             });
     }
 
-    getUserByUsername(username: string|undefined, page: number) {
-        return axios.get('/users/search/' + username + '?pageSize=0&pageNumber=' + page)
+    getUserByUsername(username: string | undefined, page: number) {
+        return axios.get('/users/search/' + username + '?pageSize=18&pageNumber=' + page)
             .then(function (response) {
                 if (response.status === 200) {
                     return response.data;
                 }
             }).catch(function (error) {
                 console.log(error);
+                // const dispatch = useDispatch();
+                // dispatch(toggleErrorModal())
             });
     }
 
-    getUserByUsernameWithBanned(username: string|undefined, page: number) {
-        return axios.get('users/searchWithBanned/' + username + '?pageSize=0&pageNumber=' + page)
+    getUserByUsernameWithBanned(username: string | undefined, page: number) {
+        return axios.get('users/searchWithBanned/' + username + '?pageSize=18&pageNumber=' + page)
             .then(function (response) {
                 if (response.status === 200) {
                     return response.data;
                 }
             }).catch(function (error) {
                 console.log(error);
+                // const dispatch = useDispatch();
+                // dispatch(toggleErrorModal())
             });
     }
 
@@ -80,6 +99,8 @@ class UserService {
                 }
             }).catch(function (error) {
                 console.log(error);
+                const dispatch = useDispatch();
+                dispatch(toggleErrorModal())
             });
     }
 
@@ -95,6 +116,8 @@ class UserService {
                 }
             }).catch(function (error) {
                 console.log(error);
+                const dispatch = useDispatch();
+                dispatch(toggleErrorModal())
             });
 
     }
@@ -107,6 +130,8 @@ class UserService {
                 }
             }).catch(function (error) {
                 console.log(error);
+                const dispatch = useDispatch();
+                dispatch(toggleErrorModal())
             });
 
     }
@@ -119,6 +144,8 @@ class UserService {
                 }
             }).catch(function (error) {
                 console.log(error);
+                const dispatch = useDispatch();
+                dispatch(toggleErrorModal())
             });
 
     }
@@ -135,13 +162,14 @@ class UserService {
                 }
             }).catch(function (error) {
                 console.log(error);
+                const dispatch = useDispatch();
+                dispatch(toggleErrorModal())
             });
 
     }
 
     logout() {
         return localStorage.removeItem('token')
-
     }
 }
 

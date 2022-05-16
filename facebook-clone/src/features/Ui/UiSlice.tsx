@@ -9,6 +9,8 @@ export interface UiSliceState {
     setShowEditCommentModal: boolean;
     setShowUserSearchModal: boolean;
     setShowFriendRequestModal: boolean;
+    setShowErrorModal: boolean,
+
 
 }
 
@@ -23,8 +25,7 @@ export const uiSlice = createSlice({
         setShowEditCommentModal: false,
         setShowUserSearchModal: false,
         setShowFriendRequestModal: false,
-
-
+        setShowErrorModal: false,
     },
     reducers: {
         toggleCommentModal(state) {
@@ -50,6 +51,9 @@ export const uiSlice = createSlice({
         },
         toggleFriendRequestModal(state) {
             state.setShowFriendRequestModal = !state.setShowFriendRequestModal
+        },
+        toggleErrorModal(state) {
+            state.setShowErrorModal = !state.setShowErrorModal
         }
     },
 });
@@ -61,5 +65,6 @@ export const {
     toggleDeleteImageModal,
     toggleEditCommentModal,
     toggleUserSearchModal,
-    toggleFriendRequestModal } = uiSlice.actions
+    toggleFriendRequestModal,
+    toggleErrorModal } = uiSlice.actions
 export default uiSlice.reducer;

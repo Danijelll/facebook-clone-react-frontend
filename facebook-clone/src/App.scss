@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+img {
+  pointer-events: none;
+}
+
 .root {
   background-color: #232323;
   overflow: auto;

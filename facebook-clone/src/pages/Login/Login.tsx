@@ -14,7 +14,7 @@ function Login() {
   const location = useLocation();
 
   useEffect(() => {
-    if (userData?.id) {
+    if (userData?.id != null) {
       navigate('/home');
     }
   }, [userData])
@@ -30,9 +30,9 @@ function Login() {
   }
 
   const handleLogin = async () => {
-    const result = await dispatch(login(loginData));
+    const result = await dispatch(login(loginData));    
 
-    if (result) {
+    if (result.payload) {
       navigate('/login', { state: { username: loginData.username } });
     }
   }

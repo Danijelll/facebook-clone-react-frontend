@@ -1,6 +1,7 @@
+import { useDispatch } from "react-redux";
+import { toggleErrorModal } from "../features/Ui/UiSlice";
 import { IUploadImageData } from "../interfaces/IImage";
 import axios from "./axios";
-
 
 class ImageService {
     uploadImages(data: IUploadImageData) {
@@ -24,6 +25,8 @@ class ImageService {
                 }
             }).catch(function (error) {
                 console.log(error);
+                const dispatch = useDispatch();
+                dispatch(toggleErrorModal())
             });
     }
 }

@@ -1,15 +1,18 @@
+import { useDispatch } from "react-redux";
+import { toggleErrorModal } from "../features/Ui/UiSlice";
 import axios from "./axios";
-
 
 class AlbumService {
     getAllCurrentUserAlbums(userId: number) {
-        return axios.get('/albums/search/' + userId + '?pageSize=0&pageNumber=0')
+        return axios.get('/albums/search/' + userId + '?pageSize=9999&pageNumber=0')
             .then(function (response) {
                 if (response.status === 200) {
                     return response.data;
                 }
             }).catch(function (error) {
                 console.log(error);
+                const dispatch = useDispatch();
+                dispatch(toggleErrorModal())
             });
     }
 
@@ -21,6 +24,8 @@ class AlbumService {
                 }
             }).catch(function (error) {
                 console.log(error);
+                const dispatch = useDispatch();
+                dispatch(toggleErrorModal())
             });
     }
 
@@ -32,6 +37,8 @@ class AlbumService {
                 }
             }).catch(function (error) {
                 console.log(error);
+                const dispatch = useDispatch();
+                dispatch(toggleErrorModal())
             });
     }
 
@@ -39,6 +46,8 @@ class AlbumService {
         return axios.delete('/albums/' + albumId)
             .catch(function (error) {
                 console.log(error);
+                const dispatch = useDispatch();
+                dispatch(toggleErrorModal())
             });
     }
 
@@ -50,6 +59,8 @@ class AlbumService {
                 }
             }).catch(function (error) {
                 console.log(error);
+                const dispatch = useDispatch();
+                dispatch(toggleErrorModal())
             });
     }
 }

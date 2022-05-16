@@ -11,7 +11,7 @@ export interface UserSliceState {
 const login = createAsyncThunk(
     'user/login',
     async (loginData: ILogin) => {
-        const response = await UserService.login(loginData);
+        const response = await UserService.login(loginData);        
         return response;
     }
 )
@@ -64,6 +64,8 @@ const editUserProfileImage = createAsyncThunk(
     'user/editUserProfileImage',
     async (data: IUserUpdateProfileImageData) => {
         const response = await UserService.editUserProfileImage(data);
+        console.log(response);
+        
         return response;
     }
 )
@@ -108,7 +110,8 @@ export const userSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        builder.addCase(login.fulfilled, (state, action) => { })
+        builder.addCase(login.fulfilled, (state, action) => {
+         })
 
         builder.addCase(register.fulfilled, (state, action) => { })
 

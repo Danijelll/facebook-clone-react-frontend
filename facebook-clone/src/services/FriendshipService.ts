@@ -1,6 +1,6 @@
-import { FriendRequestStatusEnum } from "../Models/FriendRequestStatusEnum";
+import { useDispatch } from "react-redux";
+import { toggleErrorModal } from "../features/Ui/UiSlice";
 import axios from "./axios";
-
 
 class FriendshipService {
     sendFriendRequest(friendId: number) {
@@ -12,6 +12,8 @@ class FriendshipService {
                 }
             }).catch(function (error) {
                 console.log(error);
+                const dispatch = useDispatch();
+                dispatch(toggleErrorModal())
             });
     }
 
@@ -24,6 +26,8 @@ class FriendshipService {
                 }
             }).catch(function (error) {
                 console.log(error);
+                const dispatch = useDispatch();
+                dispatch(toggleErrorModal())
             });
     }
 
@@ -31,6 +35,8 @@ class FriendshipService {
         return axios.delete('/deleteRequest/' + friendId)
             .then().catch(function (error) {
                 console.log(error);
+                const dispatch = useDispatch();
+                dispatch(toggleErrorModal())
             });
     }
 
@@ -43,6 +49,8 @@ class FriendshipService {
                 }
             }).catch(function (error) {
                 console.log(error);
+                const dispatch = useDispatch();
+                dispatch(toggleErrorModal())
             });
     }
 
@@ -55,6 +63,8 @@ class FriendshipService {
                 }
             }).catch(function (error) {
                 console.log(error);
+                const dispatch = useDispatch();
+                dispatch(toggleErrorModal())
             });
     }
 }

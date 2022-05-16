@@ -1,6 +1,7 @@
+import { useDispatch } from "react-redux";
+import { toggleErrorModal } from "../features/Ui/UiSlice";
 import { ICommentUpdateData, ICommentUploadData } from "../interfaces/IComment";
 import axios from "./axios";
-
 
 class CommentService {
     getAllAlbumComments(albumId: number, page: number) {
@@ -11,6 +12,8 @@ class CommentService {
                 }
             }).catch(function (error) {
                 console.log(error);
+                const dispatch = useDispatch();
+                dispatch(toggleErrorModal())
             });
     }
 
@@ -22,6 +25,8 @@ class CommentService {
                 }
             }).catch(function (error) {
                 console.log(error);
+                const dispatch = useDispatch();
+                dispatch(toggleErrorModal())
             });
     }
 
@@ -33,6 +38,8 @@ class CommentService {
                 }
             }).catch(function (error) {
                 console.log(error);
+                const dispatch = useDispatch();
+                dispatch(toggleErrorModal())
             });
     }
 
@@ -42,9 +49,11 @@ class CommentService {
 
             }).catch(function (error) {
                 console.log(error);
+                const dispatch = useDispatch();
+                dispatch(toggleErrorModal())
             });
     }
-    
+
     updateComment(comment: ICommentUpdateData) {
         return axios.put('/comments', comment)
             .then(function (response) {
@@ -53,6 +62,8 @@ class CommentService {
                 }
             }).catch(function (error) {
                 console.log(error);
+                const dispatch = useDispatch();
+                dispatch(toggleErrorModal())
             });
     }
 }

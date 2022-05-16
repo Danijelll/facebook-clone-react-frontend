@@ -20,6 +20,7 @@ import { useEffect, useState } from 'react';
 import { getCurrentUserData } from './features/Users/userSlice';
 import Loader from './components/Loader/Loader';
 import TwoFactorCode from './pages/2FACode/TwoFactorCode';
+import ErrorModal from './pages/ErrorModal/ErrorModal';
 
 function App() {
   const setShowCommentModal = useSelector((state: RootStore) => state.ui.setShowCommentModal);
@@ -29,7 +30,9 @@ function App() {
   const setShowDeleteImageModal = useSelector((state: RootStore) => state.ui.setShowDeleteImageModal);
   const setShowEditCommentModal = useSelector((state: RootStore) => state.ui.setShowEditCommentModal);
   const setShowImageModal = useSelector((state: RootStore) => state.ui.setShowImageModal);
-  const setShowEditProfileModal = useSelector((state: RootStore) => state.ui.setShowEditProfileModal)
+  const setShowEditProfileModal = useSelector((state: RootStore) => state.ui.setShowEditProfileModal);
+  const setShowErrorModal = useSelector((state: RootStore) => state.ui.setShowErrorModal)
+
 
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
@@ -57,6 +60,7 @@ function App() {
         {setShowCommentModal && <CommentModal />}
         {setShowEditCommentModal && <EditCommentModal />}
         {setShowUserSearchModal && <UserSearchModal />}
+        {setShowErrorModal && <ErrorModal />}
         <Routes>
           <Route path='/' element={<Login />} />
           <Route path='/register' element={<Register />} />
