@@ -41,7 +41,9 @@ function FriendRequestModal() {
                     {renderFriendList()}
                 </div>
 
-                {friendRequestList}
+                {!friendRequestList?.length &&
+                <h2 id='center-white-text' >You have no incoming friend requests</h2>
+                }
 
                 <div id='friend-request-modal-page-buttons'>
                     <button

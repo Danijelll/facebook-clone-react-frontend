@@ -35,7 +35,6 @@ function CommentModal() {
   useEffect(() => {
     if (currentOpenAlbum?.id != null) {
       dispatch(getAllAlbumComments(albumCommentPage))
-
       comment.albumId = currentOpenAlbum.id
     }
 
@@ -77,7 +76,9 @@ function CommentModal() {
 
   return (
     <div className='comment-modal-background'
-      onClick={() => dispatch(toggleCommentModal())}>
+      onClick={() => {
+        dispatch(toggleCommentModal());
+      }}>
       <div id='comment-modal-container'
         onClick={(e) => e.stopPropagation()}>
 
@@ -120,6 +121,10 @@ function CommentModal() {
 
         <div id='comment-modal-body'>
           {renderComments()}
+
+          {!albumComments?.length &&
+            <h2 id='center-white-text'>No comments</h2>
+          }
         </div>
 
       </div>
