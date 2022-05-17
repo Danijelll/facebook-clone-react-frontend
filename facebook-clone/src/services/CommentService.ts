@@ -1,5 +1,7 @@
+import { addNewCurrentError } from "../features/Error/ErrorSlice";
 import { toggleErrorModal } from "../features/Ui/UiSlice";
 import { ICommentUpdateData, ICommentUploadData } from "../interfaces/IComment";
+import { IErrorData } from "../interfaces/IError";
 import axios from "./axios";
 
 class CommentService {
@@ -16,6 +18,12 @@ class CommentService {
                 }
             }).catch((error) => {
                 console.log(error);
+                let e: Error = error;
+                const errorData: IErrorData = {
+                    errorMessage: error.response.data.message,
+                    errorStatus: error.response.status
+                }
+                this.store.dispatch(addNewCurrentError(errorData))
                 this.store.dispatch(toggleErrorModal())
             });
     }
@@ -28,6 +36,12 @@ class CommentService {
                 }
             }).catch((error) => {
                 console.log(error);
+                let e: Error = error;
+                const errorData: IErrorData = {
+                    errorMessage: error.response.data.message,
+                    errorStatus: error.response.status
+                }
+                this.store.dispatch(addNewCurrentError(errorData))
                 this.store.dispatch(toggleErrorModal())
             });
     }
@@ -40,6 +54,12 @@ class CommentService {
                 }
             }).catch((error) => {
                 console.log(error);
+                let e: Error = error;
+                const errorData: IErrorData = {
+                    errorMessage: error.response.data.message,
+                    errorStatus: error.response.status
+                }
+                this.store.dispatch(addNewCurrentError(errorData))
                 this.store.dispatch(toggleErrorModal())
             });
     }
@@ -52,6 +72,12 @@ class CommentService {
                 }
             }).catch((error) => {
                 console.log(error);
+                let e: Error = error;
+                const errorData: IErrorData = {
+                    errorMessage: error.response.data.message,
+                    errorStatus: error.response.status
+                }
+                this.store.dispatch(addNewCurrentError(errorData))
                 this.store.dispatch(toggleErrorModal())
             });
     }
@@ -64,6 +90,12 @@ class CommentService {
                 }
             }).catch((error) => {
                 console.log(error);
+                let e: Error = error;
+                const errorData: IErrorData = {
+                    errorMessage: error.response.data.message,
+                    errorStatus: error.response.status
+                }
+                this.store.dispatch(addNewCurrentError(errorData))
                 this.store.dispatch(toggleErrorModal())
             });
     }

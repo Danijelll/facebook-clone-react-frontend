@@ -1,4 +1,6 @@
+import { addNewCurrentError } from "../features/Error/ErrorSlice";
 import { toggleErrorModal } from "../features/Ui/UiSlice";
+import { IErrorData } from "../interfaces/IError";
 import { IUploadImageData } from "../interfaces/IImage";
 import axios from "./axios";
 
@@ -29,6 +31,12 @@ class ImageService {
                 }
             }).catch((error) => {
                 console.log(error);
+                let e: Error = error;
+                const errorData: IErrorData = {
+                    errorMessage: error.response.data.message,
+                    errorStatus: error.response.status
+                }
+                this.store.dispatch(addNewCurrentError(errorData))
                 this.store.dispatch(toggleErrorModal())
             });
     }

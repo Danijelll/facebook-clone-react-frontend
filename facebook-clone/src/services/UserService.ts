@@ -1,6 +1,8 @@
 import axios from "./axios";
 import { ILogin, IRegister, IUserUpdateCoverImageData, IUserUpdateProfileImageData } from "../interfaces/IUser";
 import { toggleErrorModal } from "../features/Ui/UiSlice";
+import { addNewCurrentError } from "../features/Error/ErrorSlice";
+import { IErrorData } from "../interfaces/IError";
 
 class UserService {
     store: any;
@@ -16,14 +18,13 @@ class UserService {
                     return true;
                 }
             }).catch((error) => {
-                let e:Error= error;
                 console.log(error);
-                console.log(e.message);
-                console.log(e.stack);
-                console.log(e);
-                
-                
-                
+                let e: Error = error;
+                const errorData: IErrorData = {
+                    errorMessage: error.response.data.message,
+                    errorStatus: error.response.status
+                }
+                this.store.dispatch(addNewCurrentError(errorData))
                 this.store.dispatch(toggleErrorModal())
             });
     }
@@ -36,6 +37,12 @@ class UserService {
                 }
             }).catch((error) => {
                 console.log(error);
+                let e: Error = error;
+                const errorData: IErrorData = {
+                    errorMessage: error.response.data.message,
+                    errorStatus: error.response.status
+                }
+                this.store.dispatch(addNewCurrentError(errorData))
                 this.store.dispatch(toggleErrorModal())
             });
     }
@@ -49,8 +56,13 @@ class UserService {
                 }
             }).catch((error) => {
                 console.log(error);
+                let e: Error = error;
+                const errorData: IErrorData = {
+                    errorMessage: error.response.data.message,
+                    errorStatus: error.response.status
+                }
+                this.store.dispatch(addNewCurrentError(errorData))
                 this.store.dispatch(toggleErrorModal())
-
             });
     }
 
@@ -62,8 +74,13 @@ class UserService {
                 }
             }).catch((error) => {
                 console.log(error);
+                let e: Error = error;
+                const errorData: IErrorData = {
+                    errorMessage: error.response.data.message,
+                    errorStatus: error.response.status
+                }
+                this.store.dispatch(addNewCurrentError(errorData))
                 this.store.dispatch(toggleErrorModal())
-
             });
     }
 
@@ -75,6 +92,12 @@ class UserService {
                 }
             }).catch((error) => {
                 console.log(error);
+                let e: Error = error;
+                const errorData: IErrorData = {
+                    errorMessage: error.response.data.message,
+                    errorStatus: error.response.status
+                }
+                this.store.dispatch(addNewCurrentError(errorData))
                 this.store.dispatch(toggleErrorModal())
             });
     }
@@ -87,6 +110,12 @@ class UserService {
                 }
             }).catch((error) => {
                 console.log(error);
+                let e: Error = error;
+                const errorData: IErrorData = {
+                    errorMessage: error.response.data.message,
+                    errorStatus: error.response.status
+                }
+                this.store.dispatch(addNewCurrentError(errorData))
                 this.store.dispatch(toggleErrorModal())
             });
     }
@@ -99,6 +128,12 @@ class UserService {
                 }
             }).catch((error) => {
                 console.log(error);
+                let e: Error = error;
+                const errorData: IErrorData = {
+                    errorMessage: error.response.data.message,
+                    errorStatus: error.response.status
+                }
+                this.store.dispatch(addNewCurrentError(errorData))
                 this.store.dispatch(toggleErrorModal())
             });
     }
@@ -115,6 +150,12 @@ class UserService {
                 }
             }).catch((error) => {
                 console.log(error);
+                let e: Error = error;
+                const errorData: IErrorData = {
+                    errorMessage: error.response.data.message,
+                    errorStatus: error.response.status
+                }
+                this.store.dispatch(addNewCurrentError(errorData))
                 this.store.dispatch(toggleErrorModal())
             });
 
@@ -128,6 +169,12 @@ class UserService {
                 }
             }).catch((error) => {
                 console.log(error);
+                let e: Error = error;
+                const errorData: IErrorData = {
+                    errorMessage: error.response.data.message,
+                    errorStatus: error.response.status
+                }
+                this.store.dispatch(addNewCurrentError(errorData))
                 this.store.dispatch(toggleErrorModal())
             });
 
@@ -141,6 +188,12 @@ class UserService {
                 }
             }).catch((error) => {
                 console.log(error);
+                let e: Error = error;
+                const errorData: IErrorData = {
+                    errorMessage: error.response.data.message,
+                    errorStatus: error.response.status
+                }
+                this.store.dispatch(addNewCurrentError(errorData))
                 this.store.dispatch(toggleErrorModal())
             });
 
@@ -158,6 +211,12 @@ class UserService {
                 }
             }).catch((error) => {
                 console.log(error);
+                let e: Error = error;
+                const errorData: IErrorData = {
+                    errorMessage: error.response.data.message,
+                    errorStatus: error.response.status
+                }
+                this.store.dispatch(addNewCurrentError(errorData))
                 this.store.dispatch(toggleErrorModal())
             });
 

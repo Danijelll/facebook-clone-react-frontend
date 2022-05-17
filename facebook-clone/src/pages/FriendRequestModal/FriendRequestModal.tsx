@@ -41,6 +41,8 @@ function FriendRequestModal() {
                     {renderFriendList()}
                 </div>
 
+                {friendRequestList}
+
                 <div id='friend-request-modal-page-buttons'>
                     <button
                         id='comment-modal-page-button'

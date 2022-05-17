@@ -1,11 +1,16 @@
-import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux';
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { RootStore } from '../../features/store';
 import { toggleErrorModal } from '../../features/Ui/UiSlice';
+import './ErrorModal.scss'
 
 function ErrorModal() {
     const dispatch = useDispatch();
+    const errorData = useSelector((state: RootStore) => state.error.currentError);
 
-    useEffect(() => {        
+
+    useEffect(() => {
+                
     }, [])
 
     return (
@@ -15,15 +20,12 @@ function ErrorModal() {
                 dispatch(toggleErrorModal())}>
 
             <div
-                id='friend-request-wrapper'
+                id='error-modal-wrapper'
                 onClick={(e) =>
                     e.stopPropagation()}>
 
-                <button id='close-modal-button'
-                    onClick={() =>
-                        dispatch(toggleErrorModal())}>
-                    X
-                </button>
+                <h2 className='error-modal-title'>Error : {errorData?.errorStatus}</h2>
+                <h2>{errorData?.errorMessage}</h2>
 
             </div>
         </div >
