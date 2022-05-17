@@ -32,14 +32,17 @@ function App() {
   const setShowImageModal = useSelector((state: RootStore) => state.ui.setShowImageModal);
   const setShowEditProfileModal = useSelector((state: RootStore) => state.ui.setShowEditProfileModal);
   const setShowErrorModal = useSelector((state: RootStore) => state.ui.setShowErrorModal)
-
+  const userData = useSelector((state: RootStore) => state.user.currentUser);
 
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const getData = async () => {
-      await dispatch(getCurrentUserData());
+      if (userData?.id != null) {
+        await dispatch(getCurrentUserData());
+        setIsLoading(false);
+      }
       setIsLoading(false);
     }
     getData();
