@@ -1,23 +1,18 @@
-import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { RootStore } from '../../features/store';
-import { toggleErrorModal } from '../../features/Ui/UiSlice';
+import { closeErrorModal } from '../../features/Ui/UiSlice';
 import './ErrorModal.scss'
 
 function ErrorModal() {
     const dispatch = useDispatch();
     const errorData = useSelector((state: RootStore) => state.error.currentError);
 
-
-    useEffect(() => {
-                
-    }, [])
-
     return (
         <div
             className='comment-modal-background'
-            onClick={() =>
-                dispatch(toggleErrorModal())}>
+            onClick={() => {
+                dispatch(closeErrorModal());
+            }}>
 
             <div
                 id='error-modal-wrapper'

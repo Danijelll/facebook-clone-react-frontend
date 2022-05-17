@@ -1,19 +1,11 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom"
 import { RootStore } from "../../features/store";
-import { getCurrentUserData } from "../../features/Users/userSlice";
 import HamburgerMenu from "../HamburgerMenu/HamburgerMenu";
 import '../Nav/Nav.scss'
 
 function Nav() {
     const userData = useSelector((state: RootStore) => state.user?.currentUser);
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(getCurrentUserData)
-    }, [userData])
-
 
     return (
         <div className='navWrapper'>

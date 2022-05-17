@@ -1,19 +1,20 @@
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router';
-import { AppDispatch } from '../../features/store';
+import { AppDispatch, RootStore } from '../../features/store';
 import { confirm2FA, getCurrentUserData } from '../../features/Users/userSlice';
 import { I2FAProps } from '../../interfaces/IRouterProps';
 import './TwoFactorCode.scss'
 
 function TwoFactorCode() {
+  const userData = useSelector((state: RootStore) => state.user.currentUser);
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
 
   const username = (location.state as I2FAProps).username
-  const [twoFactorCode, setTwoFactorCode] = useState('')
+  const [twoFactorCode, setTwoFactorCode] = useState('1')
 
   const twoFactorLoginData = {
     username,
@@ -22,10 +23,10 @@ function TwoFactorCode() {
 
   const handle2FA = async () => {
     const result = await dispatch(confirm2FA(twoFactorLoginData));
-    dispatch(getCurrentUserData())
     const resultData = unwrapResult(result);
-
+    
     if (resultData) {
+      dispatch(getCurrentUserData())
       navigate('/home');
     }
   }

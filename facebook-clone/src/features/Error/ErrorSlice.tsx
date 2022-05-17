@@ -12,9 +12,12 @@ export const errorSlice = createSlice({
     },
     reducers: {
         addNewCurrentError(state, action) {
+            
             state.currentError = action.payload;
         },
     },
 });
-export const { addNewCurrentError } = errorSlice.actions
+export const {
+    addNewCurrentError,
+    } = errorSlice.actions
 export default errorSlice.reducer;

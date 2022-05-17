@@ -38,8 +38,8 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const getData = async () => {
-      if (userData?.id != null) {
+    const getData = async () => {      
+      if (localStorage.getItem('token')) {
         await dispatch(getCurrentUserData());
         setIsLoading(false);
       }

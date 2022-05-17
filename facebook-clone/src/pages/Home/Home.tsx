@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router';
-import Loader from '../../components/Loader/Loader';
 import { RootStore } from '../../features/store';
-import { getCurrentUserData } from '../../features/Users/userSlice'
 import Feed from './Components/Feed/Feed';
 import MyProfile from './Components/MyProfile/MyProfile';
 import ProfileHeader from '../ProfileHeader/ProfileHeader';
@@ -27,7 +25,7 @@ function Home() {
     if (userData?.id && !userData?.isEmailConfirmed) {
       navigate('/confirmEmail')
     }
-    if (!userData?.id) {
+    if (userData == undefined) {
       navigate('/')
     }
   }, [userData])

@@ -64,16 +64,16 @@ function EditProfileModal() {
 
                 <div id='body'>
                     <input
+                        accept=".png,.jpg,.jpeg"
                         id='file-input'
                         type="file"
-                        multiple
                         onChange={handleProfileImage}
                     />
 
                     <input
+                        accept=".png,.jpg,.jpeg"
                         id='file-input'
                         type="file"
-                        multiple
                         onChange={handleCoverImage}
                     />
                 </div>

@@ -54,6 +54,7 @@ function AddImageModal() {
                 <div id='body'>
 
                     <input
+                        accept=".png,.jpg,.jpeg"
                         id='file-input'
                         type="file"
                         multiple

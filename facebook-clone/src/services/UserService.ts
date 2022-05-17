@@ -1,6 +1,6 @@
 import axios from "./axios";
 import { ILogin, IRegister, IUserUpdateCoverImageData, IUserUpdateProfileImageData } from "../interfaces/IUser";
-import { toggleErrorModal } from "../features/Ui/UiSlice";
+import { showErrorModal } from "../features/Ui/UiSlice";
 import { addNewCurrentError } from "../features/Error/ErrorSlice";
 import { IErrorData } from "../interfaces/IError";
 
@@ -19,13 +19,12 @@ class UserService {
                 }
             }).catch((error) => {
                 console.log(error);
-                let e: Error = error;
                 const errorData: IErrorData = {
                     errorMessage: error.response.data.message,
                     errorStatus: error.response.status
                 }
                 this.store.dispatch(addNewCurrentError(errorData))
-                this.store.dispatch(toggleErrorModal())
+                this.store.dispatch(showErrorModal())
             });
     }
 
@@ -37,13 +36,12 @@ class UserService {
                 }
             }).catch((error) => {
                 console.log(error);
-                let e: Error = error;
                 const errorData: IErrorData = {
                     errorMessage: error.response.data.message,
                     errorStatus: error.response.status
                 }
                 this.store.dispatch(addNewCurrentError(errorData))
-                this.store.dispatch(toggleErrorModal())
+                this.store.dispatch(showErrorModal())
             });
     }
 
@@ -56,13 +54,12 @@ class UserService {
                 }
             }).catch((error) => {
                 console.log(error);
-                let e: Error = error;
                 const errorData: IErrorData = {
                     errorMessage: error.response.data.message,
-                    errorStatus: error.response.status
+                    errorStatus: error.response.status,
                 }
                 this.store.dispatch(addNewCurrentError(errorData))
-                this.store.dispatch(toggleErrorModal())
+                this.store.dispatch(showErrorModal())
             });
     }
 
@@ -74,13 +71,12 @@ class UserService {
                 }
             }).catch((error) => {
                 console.log(error);
-                let e: Error = error;
                 const errorData: IErrorData = {
                     errorMessage: error.response.data.message,
                     errorStatus: error.response.status
                 }
                 this.store.dispatch(addNewCurrentError(errorData))
-                this.store.dispatch(toggleErrorModal())
+                this.store.dispatch(showErrorModal())
             });
     }
 
@@ -92,13 +88,12 @@ class UserService {
                 }
             }).catch((error) => {
                 console.log(error);
-                let e: Error = error;
                 const errorData: IErrorData = {
                     errorMessage: error.response.data.message,
                     errorStatus: error.response.status
                 }
                 this.store.dispatch(addNewCurrentError(errorData))
-                this.store.dispatch(toggleErrorModal())
+                this.store.dispatch(showErrorModal())
             });
     }
 
@@ -110,13 +105,12 @@ class UserService {
                 }
             }).catch((error) => {
                 console.log(error);
-                let e: Error = error;
                 const errorData: IErrorData = {
                     errorMessage: error.response.data.message,
                     errorStatus: error.response.status
                 }
                 this.store.dispatch(addNewCurrentError(errorData))
-                this.store.dispatch(toggleErrorModal())
+                this.store.dispatch(showErrorModal())
             });
     }
 
@@ -128,13 +122,12 @@ class UserService {
                 }
             }).catch((error) => {
                 console.log(error);
-                let e: Error = error;
                 const errorData: IErrorData = {
                     errorMessage: error.response.data.message,
                     errorStatus: error.response.status
                 }
                 this.store.dispatch(addNewCurrentError(errorData))
-                this.store.dispatch(toggleErrorModal())
+                this.store.dispatch(showErrorModal())
             });
     }
 
@@ -150,13 +143,12 @@ class UserService {
                 }
             }).catch((error) => {
                 console.log(error);
-                let e: Error = error;
                 const errorData: IErrorData = {
                     errorMessage: error.response.data.message,
                     errorStatus: error.response.status
                 }
                 this.store.dispatch(addNewCurrentError(errorData))
-                this.store.dispatch(toggleErrorModal())
+                this.store.dispatch(showErrorModal())
             });
 
     }
@@ -169,13 +161,12 @@ class UserService {
                 }
             }).catch((error) => {
                 console.log(error);
-                let e: Error = error;
                 const errorData: IErrorData = {
                     errorMessage: error.response.data.message,
                     errorStatus: error.response.status
                 }
                 this.store.dispatch(addNewCurrentError(errorData))
-                this.store.dispatch(toggleErrorModal())
+                this.store.dispatch(showErrorModal())
             });
 
     }
@@ -188,13 +179,12 @@ class UserService {
                 }
             }).catch((error) => {
                 console.log(error);
-                let e: Error = error;
                 const errorData: IErrorData = {
                     errorMessage: error.response.data.message,
                     errorStatus: error.response.status
                 }
                 this.store.dispatch(addNewCurrentError(errorData))
-                this.store.dispatch(toggleErrorModal())
+                this.store.dispatch(showErrorModal())
             });
 
     }
@@ -211,13 +201,12 @@ class UserService {
                 }
             }).catch((error) => {
                 console.log(error);
-                let e: Error = error;
                 const errorData: IErrorData = {
                     errorMessage: error.response.data.message,
                     errorStatus: error.response.status
                 }
                 this.store.dispatch(addNewCurrentError(errorData))
-                this.store.dispatch(toggleErrorModal())
+                this.store.dispatch(showErrorModal())
             });
 
     }

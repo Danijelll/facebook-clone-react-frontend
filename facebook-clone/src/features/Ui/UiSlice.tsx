@@ -50,10 +50,13 @@ export const uiSlice = createSlice({
             state.setShowUserSearchModal = !state.setShowUserSearchModal;
         },
         toggleFriendRequestModal(state) {
-            state.setShowFriendRequestModal = !state.setShowFriendRequestModal
+            state.setShowFriendRequestModal = !state.setShowFriendRequestModal;
         },
-        toggleErrorModal(state) {
-            state.setShowErrorModal = !state.setShowErrorModal
+        showErrorModal(state) {
+            state.setShowErrorModal = true;
+        },
+        closeErrorModal(state) {
+            state.setShowErrorModal = false;
         }
     },
 });
@@ -66,5 +69,6 @@ export const {
     toggleEditCommentModal,
     toggleUserSearchModal,
     toggleFriendRequestModal,
-    toggleErrorModal } = uiSlice.actions
+    showErrorModal,
+    closeErrorModal } = uiSlice.actions
 export default uiSlice.reducer;

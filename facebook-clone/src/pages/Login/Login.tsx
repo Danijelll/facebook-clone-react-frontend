@@ -14,7 +14,7 @@ function Login() {
   const location = useLocation();
 
   useEffect(() => {
-    if (userData?.id != null) {
+    if (userData) {
       navigate('/home');
     }
   }, [userData])
