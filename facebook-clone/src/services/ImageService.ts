@@ -1,8 +1,15 @@
+import { addNewCurrentError } from "../features/Error/ErrorSlice";
+import { showErrorModal } from "../features/Ui/UiSlice";
+import { IErrorData } from "../interfaces/IError";
 import { IUploadImageData } from "../interfaces/IImage";
 import axios from "./axios";
 
-
 class ImageService {
+    store: any;
+
+    injectStore(store: any) {
+        this.store = store;
+    }
     uploadImages(data: IUploadImageData) {
 
         const imageUploadData = {
@@ -18,12 +25,18 @@ class ImageService {
         }
 
         return axios.post('/albums', formData)
-            .then(function (response) {
+            .then((response) => {
                 if (response.status === 200) {
                     return response.data;
                 }
-            }).catch(function (error) {
+            }).catch((error) => {
                 console.log(error);
+                const errorData: IErrorData = {
+                    errorMessage: error.response.data.message,
+                    errorStatus: error.response.status
+                }
+                this.store.dispatch(addNewCurrentError(errorData))
+                this.store.dispatch(showErrorModal())
             });
     }
 }

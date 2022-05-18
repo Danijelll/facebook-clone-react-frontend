@@ -5,8 +5,6 @@ import { RootStore } from '../../features/store';
 import { searchUserById } from '../../features/Users/userSlice';
 import { IUserProps } from '../../interfaces/IRouterProps';
 import ProfileHeader from '../ProfileHeader/ProfileHeader'
-import './UserPage.scss'
-
 
 function UserPage() {
     const friendData = useSelector((state: RootStore) => state.user.currentFriend);
@@ -23,7 +21,7 @@ function UserPage() {
     return (
         <div id='home-wrapper'>
             <ProfileHeader
-                id = {friendData?.id}
+                id={friendData?.id}
                 profileImage={friendData?.profileImage}
                 coverImage={friendData?.coverImage}
                 username={friendData?.username}

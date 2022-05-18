@@ -1,12 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { IAlbumCommentPageData, ICommentData, ICommentUpdateData, ICommentUploadData } from "../../interfaces/IComment";
-import CommentItem from "../../pages/CommentModal/Components/CommentItem/CommentItem";
 import CommentService from "../../services/CommentService";
 
 
 export interface CommentSliceState {
     currentAlbumComments: Array<ICommentData>;
-    currentOpenComment:ICommentData
+    currentOpenComment: ICommentData
 }
 
 const getAllAlbumComments = createAsyncThunk(
@@ -49,23 +48,26 @@ const updateComment = createAsyncThunk(
     }
 )
 
+const initialState = {
+    currentAlbumComments: [],
+    currentOpenComment: undefined,
+  }
+
 export const commentSlice = createSlice({
     name: "comment",
-    initialState: {
-        currentAlbumComments: [],
-        currentOpenComment: undefined,
-    },
+    initialState,
     reducers: {
-
+        clearAllAblumComments: () => initialState
     },
     extraReducers: (builder) => {
         builder.addCase(getAllAlbumComments.fulfilled, (state, action) => {
-            state.currentAlbumComments = action.payload;            
+            if (action.payload.length)
+                state.currentAlbumComments = action.payload;
         })
         builder.addCase(uploadComment.fulfilled, (state, action) => {
         })
         builder.addCase(deleteCommentById.fulfilled, (state, action) => {
-            state.currentAlbumComments = state.currentAlbumComments.filter((commentItem: { id: number; })=>commentItem.id !== action.payload)
+            state.currentAlbumComments = state.currentAlbumComments.filter((commentItem: { id: number; }) => commentItem.id !== action.payload)
         })
         builder.addCase(getCommentById.fulfilled, (state, action) => {
             state.currentOpenComment = action.payload;
@@ -76,5 +78,12 @@ export const commentSlice = createSlice({
     },
 });
 
-export { getAllAlbumComments, uploadComment, deleteCommentById, updateComment, getCommentById }
+export {
+    getAllAlbumComments,
+    uploadComment,
+    deleteCommentById,
+    updateComment,
+    getCommentById
+}
+export const { clearAllAblumComments } = commentSlice.actions
 export default commentSlice.reducer;

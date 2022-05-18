@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom"
 import { RootStore } from "../../features/store";
@@ -8,16 +7,24 @@ import '../Nav/Nav.scss'
 function Nav() {
     const userData = useSelector((state: RootStore) => state.user?.currentUser);
 
-useEffect(() => {
-}, [userData])
-
-
     return (
         <div className='navWrapper'>
 
-            <Link to="/">
-                <div className='logo'>Facebook Clone</div>
-            </Link>
+            {!userData?.id &&
+
+                <Link to="/">
+                    <div className='logo'>Facebook Clone</div>
+                </Link>
+
+            }
+
+            {userData?.id &&
+
+                <Link to="/home">
+                    <div className='logo'>Facebook Clone</div>
+                </Link>
+
+            }
 
             {!userData?.id &&
 
@@ -38,7 +45,7 @@ useEffect(() => {
 
                 <div className="options">
 
-                    <HamburgerMenu/>
+                    <HamburgerMenu />
 
                 </div>
             }

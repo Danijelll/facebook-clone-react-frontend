@@ -11,6 +11,8 @@ import { getCurrentOpenAlbum } from '../../features/Albums/AlbumSlice';
 interface ImageCarouselProps {
     albumId: number,
     userId: number,
+    username: string,
+    userProfileImage: string,
     images: ImageData[],
     captions: string,
     createdOn: Date,
@@ -18,7 +20,7 @@ interface ImageCarouselProps {
 
 function ImageCarousel(props: ImageCarouselProps) {
     const userData = useSelector((state: RootStore) => state.user.currentUser);
-    const { albumId, userId, images, captions, createdOn } = props;
+    const { username, userProfileImage, albumId, userId, images, captions, createdOn } = props;
     const dispatch = useDispatch();
 
     const loadImages = () => {
@@ -46,11 +48,11 @@ function ImageCarousel(props: ImageCarouselProps) {
                 <div id='image-slider-header'>
 
                     <img id='image-slider-user-image'
-                        src={userData?.profileImage} alt=""
+                        src={userProfileImage} alt=""
                     />
 
                     <p id='image-slider-username'>
-                        {userData?.username}
+                        {username}
                     </p>
 
                     <div id='image-slider-add-comment-button'

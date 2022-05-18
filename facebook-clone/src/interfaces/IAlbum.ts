@@ -12,3 +12,18 @@ export interface IAlbumUpdateData {
     id: number
     caption: string
 }
+
+export interface IAlbumsPerPage {
+    itemsPerPage: number
+    page: number
+}
+
+export interface IAlbumWithUserData {
+    id: number
+    userId: number
+    username: string
+    userProfileImageUrl: string
+    caption: string
+    createdOn: Date
+    images: ImageData[]
+}

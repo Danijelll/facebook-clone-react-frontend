@@ -1,7 +1,9 @@
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllAlbumComments, uploadComment } from '../../features/Comments/CommentSlice';
+import Loader from '../../components/Loader/Loader';
+import SmallLoader from '../../components/SmallLoader/SmallLoader';
+import { clearAllAblumComments, getAllAlbumComments, uploadComment } from '../../features/Comments/CommentSlice';
 import { AppDispatch, RootStore } from '../../features/store';
 import { toggleCommentModal } from '../../features/Ui/UiSlice'
 import { ICommentUploadData } from '../../interfaces/IComment';
@@ -15,7 +17,7 @@ function CommentModal() {
   const userData = useSelector((state: RootStore) => state.user.currentUser);
 
   const dispatch: AppDispatch = useDispatch();
-
+  const [isLoading, setIsLoading] = useState(true);
   let [page, setPage] = useState<number>(1)
   const [comment, setComment] = useState<ICommentUploadData>({
     albumId: currentOpenAlbum?.id,
@@ -27,13 +29,26 @@ function CommentModal() {
     albumId: currentOpenAlbum?.id,
     page: page,
   }
+  let nextAlbumCommentPage = {
+    albumId: currentOpenAlbum?.id,
+    page: page + 1,
+  }
 
   useEffect(() => {
-    if (currentOpenAlbum?.id != null) {
-      dispatch(getAllAlbumComments(albumCommentPage))
-      comment.albumId = currentOpenAlbum.id
+    const getData = async () => {
+      if (currentOpenAlbum?.id != null) {
+        await dispatch(getAllAlbumComments(albumCommentPage))
+        comment.albumId = currentOpenAlbum.id
+        setIsLoading(false);
+      }
+      setIsLoading(false);
     }
 
+    getData();
+
+    return () => {
+      dispatch(clearAllAblumComments())
+    }
   }, [currentOpenAlbum, page, currentOpenComment])
 
 
@@ -50,10 +65,18 @@ function CommentModal() {
     }
   }
 
+  const handleNextPage = async () => {
+    const result = await dispatch(getAllAlbumComments(nextAlbumCommentPage));
+    const resultData = unwrapResult(result);
+    if (resultData.length) {
+      setPage(page + 1)
+    }
+  }
+
   const renderComments = () => {
     return albumComments?.map(comment =>
       <CommentItem key={comment.id}
-        userId ={comment.userId}
+        userId={comment.userId}
         commentId={comment.id}
         username={comment.username}
         profileImage={comment.profileImage}
@@ -63,32 +86,57 @@ function CommentModal() {
   }
 
   return (
-    <div className='comment-modal-background' onClick={() => dispatch(toggleCommentModal())}>
-      <div id='comment-modal-container' onClick={(e) => e.stopPropagation()}>
+    <div className='comment-modal-background'
+      onClick={() => {
+        dispatch(toggleCommentModal());
+      }}>
+      <div id='comment-modal-container'
+        onClick={(e) => e.stopPropagation()}>
 
         <div id='upload-comment-wrapper'>
 
-          <img id='upload-comment-image' src={userData.profileImage} alt={userData.profileImage} />
+          <img
+            id='upload-comment-image'
+            src={userData.profileImage}
+            alt={userData.profileImage}
+          />
 
-          <input onChange={e => handleInput('text', e.target.value)} id='upload-comment-input' type="text" placeholder='Add a comment...' />
+          <input
+            onChange={e => handleInput('text', e.target.value)}
+            id='upload-comment-input'
+            type="text"
+            placeholder='Add a comment...'
+          />
 
-          <button onClick={handleUpload} id='upload-comment-button'>Post</button>
+          <button
+            onClick={handleUpload}
+            id='upload-comment-button'>
+            Post
+          </button>
 
           <button
             id='comment-modal-page-button'
-            onClick={() => setPage(page - 1)}>
+            onClick={() => { if (page > 1) { setPage(page - 1) } }}>
             &lt;
           </button>
+
           <p id='comment-modal-page-text'>Page {page}</p>
+
           <button
             id='comment-modal-page-button'
-            onClick={() => { setPage(page + 1) }}>
+            onClick={() => handleNextPage()}>
             &gt;
           </button>
+
         </div>
 
         <div id='comment-modal-body'>
+          {isLoading && <SmallLoader />}
           {renderComments()}
+
+          {!albumComments?.length &&
+            <h2 id='center-white-text'>No comments</h2>
+          }
         </div>
 
       </div>

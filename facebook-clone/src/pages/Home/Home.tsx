@@ -1,48 +1,37 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router';
-import Loader from '../../components/Loader/Loader';
 import { RootStore } from '../../features/store';
-import { getCurrentUserData } from '../../features/Users/userSlice'
-import AddImageModal from './Components/AddImageModal/AddImageModal';
 import Feed from './Components/Feed/Feed';
 import MyProfile from './Components/MyProfile/MyProfile';
 import ProfileHeader from '../ProfileHeader/ProfileHeader';
 import './Home.scss'
-import EditProfileModal from './Components/EditProfileModal/EditProfileModal';
+import { getAllFriendsAlbumsWithImages } from '../../features/Albums/AlbumSlice';
 
 function Home() {
   const userData = useSelector((state: RootStore) => state.user.currentUser);
-  const setShowImageModal = useSelector((state: RootStore) => state.ui.setShowImageModal);
-  const setShowEditProfileModal = useSelector((state:RootStore) => state.ui.setShowEditProfileModal)
 
   const [mainContent, setMainContent] = useState(true)
-  const [isLoading, setIsLoading] = useState(true);
+
+  let postOnPage = {
+    itemsPerPage: 10,
+    page: 1,
+  }
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const getData = async () => {
-      await dispatch(getCurrentUserData());
-      setIsLoading(false);
-    }
-    getData();
-  }, [])
-
-  useEffect(() => {
     if (userData?.id && !userData?.isEmailConfirmed) {
-      navigate('/confirmEmail')      
+      navigate('/confirmEmail')
+    }
+    if (userData == undefined) {
+      navigate('/')
     }
   }, [userData])
 
   return (
     <div id='home-wrapper'>
-      {isLoading && <Loader />}
-
-      {setShowImageModal && <AddImageModal />}
-      {setShowEditProfileModal && <EditProfileModal/>}
-
       <ProfileHeader
         id={userData?.id}
         profileImage={userData?.profileImage}
@@ -72,7 +61,10 @@ function Home() {
               borderBottom: mainContent ? '' : 'none',
               borderLeft: mainContent ? '' : 'none'
             }}
-            onClick={() => setMainContent(false)}
+            onClick={() => {
+              setMainContent(false);
+              dispatch(getAllFriendsAlbumsWithImages(postOnPage))
+            }}
             id='feed-button'>
             Feed
           </div>

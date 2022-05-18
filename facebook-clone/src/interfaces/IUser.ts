@@ -1,6 +1,18 @@
+import { UserRoleEnum } from "../Models/UserRoleEnum"
+
 export interface ILogin {
     username: string,
     password: string
+}
+
+export interface ITwoFactorCode {
+    username: string,
+    twoFactorCode: string
+}
+
+export interface IUsersPerPage {
+    username: string | undefined,
+    page: number
 }
 
 export interface IRegister {
@@ -14,7 +26,9 @@ export interface IUserData {
     username: string,
     profileImage: string,
     coverImage: string,
+    role: UserRoleEnum,
     isEmailConfirmed: boolean,
+    isBanned: boolean,
     createdOn: string
 }
 

@@ -1,11 +1,12 @@
-import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
-import { IAlbumData, IAlbumUpdateData } from "../../interfaces/IAlbum";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { IAlbumData, IAlbumsPerPage, IAlbumUpdateData, IAlbumWithUserData } from "../../interfaces/IAlbum";
 import AlbumService from "../../services/AlbumService";
 
 
 export interface AlbumSliceState {
     userAlbums: Array<IAlbumData>;
     currentOpenAlbum: IAlbumData;
+    userFriendsAlbums: Array<IAlbumWithUserData>
 }
 
 const getAllCurrentUserAlbums = createAsyncThunk(
@@ -20,6 +21,13 @@ const getCurrentOpenAlbum = createAsyncThunk(
     'albums/getCurrentOpenAlbum',
     async (albumId: number) => {
         const response = await AlbumService.getCurrentOpenAlbum(albumId);
+        return response;
+    }
+)
+const getAllFriendsAlbumsWithImages = createAsyncThunk(
+    'albums/getAllFriendsAlbumsWithImages',
+    async (postOnPage: IAlbumsPerPage) => {
+        const response = await AlbumService.getAllFriendsAlbumsWithImages(postOnPage.itemsPerPage, postOnPage.page);
         return response;
     }
 )
@@ -44,6 +52,7 @@ export const albumSlice = createSlice({
     initialState: {
         userAlbums: [],
         currentOpenAlbum: undefined,
+        userFriendsAlbums: [],
     },
     reducers: {
     },
@@ -60,8 +69,18 @@ export const albumSlice = createSlice({
         builder.addCase(updateAlbumCaption.fulfilled, (state, action) => {
             state.currentOpenAlbum = action.payload
         })
+        builder.addCase(getAllFriendsAlbumsWithImages.fulfilled, (state, action) => {
+            if (action.payload.length)
+                state.userFriendsAlbums = action.payload
+        })
     },
 });
 
-export { getAllCurrentUserAlbums, getCurrentOpenAlbum, deleteAlbumById, updateAlbumCaption }
+export {
+    getAllCurrentUserAlbums,
+    getCurrentOpenAlbum,
+    deleteAlbumById,
+    updateAlbumCaption,
+    getAllFriendsAlbumsWithImages
+}
 export default albumSlice.reducer;

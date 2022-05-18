@@ -45,13 +45,16 @@ function EditProfileModal() {
     const dispatch = useDispatch();
     return (
         <div className='modal-background'
-            onClick={() => dispatch(toggleEditProfileModal())}>
+            onClick={() =>
+                dispatch(toggleEditProfileModal())}>
 
             <div id='modal-container'
-                onClick={(e) => e.stopPropagation()}>
+                onClick={(e) =>
+                    e.stopPropagation()}>
 
                 <button id='close-modal-button'
-                    onClick={() => dispatch(toggleEditProfileModal())}>
+                    onClick={() =>
+                        dispatch(toggleEditProfileModal())}>
                     X
                 </button>
 
@@ -61,16 +64,16 @@ function EditProfileModal() {
 
                 <div id='body'>
                     <input
+                        accept=".png,.jpg,.jpeg"
                         id='file-input'
                         type="file"
-                        multiple
                         onChange={handleProfileImage}
                     />
 
                     <input
+                        accept=".png,.jpg,.jpeg"
                         id='file-input'
                         type="file"
-                        multiple
                         onChange={handleCoverImage}
                     />
                 </div>

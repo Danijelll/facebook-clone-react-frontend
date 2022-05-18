@@ -43,14 +43,14 @@ input[type=file]::file-selector-button {
     border-radius: 5px;
 }
 
-#body{
+#body {
     display: flex;
     margin: auto;
     padding-top: 50px;
     justify-content: center;
 }
 
-#edit-image-modal-input{
+#edit-image-modal-input {
     padding: 10px;
     font-size: 14px;
     margin: 10px;
@@ -61,24 +61,24 @@ input[type=file]::file-selector-button {
     background-color: #171717;
 }
 
-#edit-image-modal-edit-button{
+#edit-image-modal-edit-button {
     font-size: 14px;
     background-color: rgb(57, 146, 6);
     outline: none;
     color: white;
-    border:none;
+    border: none;
     border-radius: 10px;
     padding: 10px;
     margin: 10px;
     cursor: pointer;
 }
 
-#edit-image-modal-cancel-button{
+#edit-image-modal-cancel-button {
     font-size: 14px;
     background-color: rgb(190, 11, 26);
     outline: none;
     color: white;
-    border:none;
+    border: none;
     border-radius: 10px;
     padding: 10px;
     margin: 10px;

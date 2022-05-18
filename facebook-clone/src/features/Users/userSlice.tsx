@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { ILogin, IRegister, IUserData, IUserListData, IUserUpdateCoverImageData, IUserUpdateProfileImageData } from "../../interfaces/IUser";
+import { ILogin, IRegister, ITwoFactorCode, IUserData, IUserListData, IUsersPerPage, IUserUpdateCoverImageData, IUserUpdateProfileImageData } from "../../interfaces/IUser";
 import UserService from "../../services/UserService";
 
 export interface UserSliceState {
@@ -22,6 +22,15 @@ const register = createAsyncThunk(
         return response;
     }
 )
+
+const confirm2FA = createAsyncThunk(
+    'user/confirm2FA',
+    async (twoFactorLoginData: ITwoFactorCode) => {
+        const response = await UserService.confirm2FA(twoFactorLoginData.username, twoFactorLoginData.twoFactorCode);
+        return response;
+    }
+)
+
 const getCurrentUserData = createAsyncThunk(
     'user/getCurrentUserData',
     async () => {
@@ -31,11 +40,19 @@ const getCurrentUserData = createAsyncThunk(
 )
 const searchUsers = createAsyncThunk(
     'user/searchUsers',
-    async (username: string) => {
-        const response = await UserService.getUserByUsername(username);
+    async (usersOnPage: IUsersPerPage) => {
+        const response = await UserService.getUserByUsername(usersOnPage.username, usersOnPage.page);
         return response;
     }
 )
+const searchUsersWithBanned = createAsyncThunk(
+    'user/searchUsersWithBanned',
+    async (usersOnPage: IUsersPerPage) => {
+        const response = await UserService.getUserByUsernameWithBanned(usersOnPage.username, usersOnPage.page);
+        return response;
+    }
+)
+
 const searchUserById = createAsyncThunk(
     'user/searchUserById',
     async (id: number) => {
@@ -57,6 +74,27 @@ const editUserCoverImage = createAsyncThunk(
         return response;
     }
 )
+const logout = createAsyncThunk(
+    'user/logout',
+    async () => {
+        await UserService.logout();
+        return true;
+    }
+)
+const unbanUser = createAsyncThunk(
+    'user/unbanUser',
+    async (id: number) => {
+        const response = await UserService.unbanUser(id);
+        return response;
+    }
+)
+const banUser = createAsyncThunk(
+    'user/banUser',
+    async (id: number) => {
+        const response = await UserService.banUser(id);
+        return response;
+    }
+)
 export const userSlice = createSlice({
     name: "user",
     initialState: {
@@ -65,14 +103,19 @@ export const userSlice = createSlice({
         currentFriend: undefined,
     },
     reducers: {
+        clearUserData: (state) => {
+            state.currentUser = undefined;
+        }
     },
     extraReducers: (builder) => {
-        builder.addCase(login.fulfilled, (state, action) => { })
+        builder.addCase(login.fulfilled, (state, action) => {
+        })
 
         builder.addCase(register.fulfilled, (state, action) => { })
 
         builder.addCase(searchUsers.fulfilled, (state, action) => {
-            state.userList = action.payload
+            if (action.payload.length)
+                state.userList = action.payload
         })
         builder.addCase(getCurrentUserData.fulfilled, (state, action) => {
             state.currentUser = action.payload;
@@ -81,13 +124,38 @@ export const userSlice = createSlice({
             state.currentFriend = action.payload;
         })
         builder.addCase(editUserProfileImage.fulfilled, (state, action) => {
-            state.currentUser = action.payload;
+            if (action.payload)
+                state.currentUser = action.payload;
         })
         builder.addCase(editUserCoverImage.fulfilled, (state, action) => {
-            state.currentUser = action.payload;
+            if (action.payload)
+                state.currentUser = action.payload;
+        })
+        builder.addCase(unbanUser.fulfilled, (state, action) => {
+            state.currentFriend = action.payload;
+        })
+        builder.addCase(banUser.fulfilled, (state, action) => {
+            state.currentFriend = action.payload;
+        })
+        builder.addCase(searchUsersWithBanned.fulfilled, (state, action) => {
+            if (action.payload.length)
+                state.userList = action.payload;
+        })
+        builder.addCase(confirm2FA.fulfilled, (state, action) => {
         })
     },
 });
 
-export { login, register, getCurrentUserData, searchUsers, searchUserById, editUserProfileImage, editUserCoverImage };
+export {
+    login, register, logout,
+    getCurrentUserData,
+    searchUsers,
+    searchUserById,
+    editUserProfileImage,
+    editUserCoverImage,
+    unbanUser, banUser,
+    searchUsersWithBanned,
+    confirm2FA
+};
+export const { clearUserData } = userSlice.actions
 export default userSlice.reducer;

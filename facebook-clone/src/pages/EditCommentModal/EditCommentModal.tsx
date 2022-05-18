@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { updateComment } from '../../features/Comments/CommentSlice';
 import { RootStore } from '../../features/store';
@@ -16,20 +16,23 @@ function EditCommentModal() {
     }
 
     const commentUpdateData = {
-        id:currentOpenComment?.id,
+        id: currentOpenComment?.id,
         albumId: currentOpenComment?.albumId,
         text: commentText
     }
 
     return (
         <div className='modal-background'
-            onClick={() => dispatch(toggleEditCommentModal())}>
+            onClick={() =>
+                dispatch(toggleEditCommentModal())}>
 
             <div id='image-menu-modal-container'
-                onClick={(e) => e.stopPropagation()}>
+                onClick={(e) =>
+                    e.stopPropagation()}>
 
                 <button id='image-menu-close-modal-button'
-                    onClick={() => dispatch(toggleEditCommentModal())}>
+                    onClick={() =>
+                        dispatch(toggleEditCommentModal())}>
                     X
                 </button>
 

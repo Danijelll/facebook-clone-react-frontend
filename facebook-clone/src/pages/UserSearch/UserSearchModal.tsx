@@ -1,25 +1,50 @@
+import { unwrapResult } from '@reduxjs/toolkit';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useDebounce } from 'use-debounce';
-import { RootStore } from '../../features/store';
+import { AppDispatch, RootStore } from '../../features/store';
 import { toggleUserSearchModal } from '../../features/Ui/UiSlice';
-import { searchUsers } from '../../features/Users/userSlice';
+import { searchUsers, searchUsersWithBanned } from '../../features/Users/userSlice';
 import UserItem from './UserItem/UserItem';
 import './UserSearchModal.scss'
 
 function UserSearch() {
+    const userData = useSelector((state: RootStore) => state.user.currentUser);
     const [query, setQuery] = useState<string>();
     const [value] = useDebounce(query, 400);
     const userList = useSelector((state: RootStore) => state.user.userList);
 
-    const dispatch = useDispatch();
+    const dispatch: AppDispatch = useDispatch();
+
+    let [page, setPage] = useState<number>(1)
+
+    let usersOnPage = {
+        username: value,
+        page: page,
+    }
+
+    let usersOnNextPage = {
+        username: value,
+        page: page + 1,
+    }
+
+    const handleNextPage = async () => {
+        const result = await dispatch(searchUsers(usersOnNextPage));
+
+        const resultData = unwrapResult(result);        
+        if (resultData.length) {
+            setPage(page + 1)
+        }
+    }
 
     useEffect(() => {
-        if (value !== undefined && value !== '') {
-            dispatch(searchUsers(value))
-
+        if (value !== undefined && value !== '' && userData?.role === 0) {
+            dispatch(searchUsers(usersOnPage))
         }
-    }, [value])
+        if (value !== undefined && value !== '' && userData?.role === 1) {
+            dispatch(searchUsersWithBanned(usersOnPage))
+        }
+    }, [value, page])
 
     const renderUserList = () => {
         return userList?.map(user =>
@@ -32,8 +57,14 @@ function UserSearch() {
     }
 
     return (
-        <div className='comment-modal-background' onClick={() => dispatch(toggleUserSearchModal())}>
-            <div onClick={(e) => e.stopPropagation()} id='user-search-wrapper'>
+        <div
+            className='comment-modal-background'
+            onClick={() => dispatch(toggleUserSearchModal())}>
+
+            <div
+                id='user-search-wrapper'
+                onClick={(e) => e.stopPropagation()}>
+
                 <div id='user-search-header'>
                     <input
                         id='user-search-input'
@@ -51,6 +82,23 @@ function UserSearch() {
                 </div>
                 <div>
                     {renderUserList()}
+                </div>
+                <div id='friend-request-modal-page-buttons'>
+
+                    <button
+                        id='comment-modal-page-button'
+                        onClick={() => { if (page > 1) { setPage(page - 1) } }}>
+                        &lt;
+                    </button>
+
+                    <p id='comment-modal-page-text'>Page {page}</p>
+
+                    <button
+                        id='comment-modal-page-button'
+                        onClick={() => { handleNextPage() }}>
+                        &gt;
+                    </button>
+
                 </div>
             </div>
         </div >

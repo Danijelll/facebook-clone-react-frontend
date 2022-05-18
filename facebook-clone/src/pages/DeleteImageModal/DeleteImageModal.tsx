@@ -15,16 +15,21 @@ function DeleteImageModal() {
 
     return (
         <div className='modal-background'
-            onClick={() => dispatch(toggleDeleteImageModal())}>
+            onClick={() =>
+                dispatch(toggleDeleteImageModal())}>
 
             <div id='image-menu-modal-container'
-                onClick={(e) => e.stopPropagation()}>
+                onClick={(e) =>
+                    e.stopPropagation()}>
 
                 <button id='image-menu-close-modal-button'
-                    onClick={() => dispatch(toggleDeleteImageModal())}>
+                    onClick={() =>
+                        dispatch(toggleDeleteImageModal())}>
                     X
                 </button>
-                <h2 id='image-menu-delete-title'>Are you sure you want to delete this post
+
+                <h2 id='image-menu-delete-title'>
+                    Are you sure you want to delete this post
                 </h2>
                 <div id='body'>
                     <button
@@ -35,7 +40,8 @@ function DeleteImageModal() {
 
                     <button
                         id='image-menu-delete-no-button'
-                        onClick={() => dispatch(toggleDeleteImageModal())}>
+                        onClick={() =>
+                            dispatch(toggleDeleteImageModal())}>
                         Cancel
                     </button>
                 </div>

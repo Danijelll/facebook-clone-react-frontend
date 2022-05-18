@@ -7,7 +7,7 @@ import './CommentItem.scss'
 
 interface CommentItemProps {
   userId: number,
-  commentId: number
+  commentId: number,
   username: string,
   profileImage: string,
   text: string,
@@ -21,11 +21,6 @@ function CommentItem(props: CommentItemProps) {
   const { userId, commentId, username, profileImage, text, createdOn } = props;
   const dispatch = useDispatch();
 
-  useEffect(() => {
-
-  }, [])
-
-
   return (
     <div id='comment-item-wrapper'>
       <img id='comment-item-profile-image' src={profileImage} alt={profileImage} />
@@ -34,7 +29,13 @@ function CommentItem(props: CommentItemProps) {
         <div id='comment-item-username'>
           {username}
           {userId === userData.id &&
-            <img src='edit.svg' onClick={() => { dispatch(toggleEditCommentModal()); dispatch(getCommentById(commentId)) }} id='comment-item-edit-button'></img>
+            <img src='edit.svg'
+              onClick={() => {
+                dispatch(toggleEditCommentModal());
+                dispatch(getCommentById(commentId))
+              }}
+              id='comment-item-edit-button'>
+            </img>
           }
         </div>
 
@@ -47,8 +48,13 @@ function CommentItem(props: CommentItemProps) {
         </div>
 
       </div>
-      {currentOpenAlbum.userId === userData.id &&
-        <div onClick={() => dispatch(deleteCommentById(commentId))} id='comment-item-delete-button'>X</div>
+      {(currentOpenAlbum?.userId === userData?.id ||
+        userId === userData?.id) &&
+        <div
+          onClick={() => dispatch(deleteCommentById(commentId))}
+          id='comment-item-delete-button'>
+          X
+        </div>
       }
     </div>
   )

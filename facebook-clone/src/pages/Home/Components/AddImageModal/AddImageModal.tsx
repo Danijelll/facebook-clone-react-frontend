@@ -34,13 +34,16 @@ function AddImageModal() {
 
     return (
         <div className='modal-background'
-            onClick={() => dispatch(toggleAddImageModal())}>
+            onClick={() =>
+                dispatch(toggleAddImageModal())}>
 
             <div id='modal-container'
-                onClick={(e) => e.stopPropagation()}>
+                onClick={(e) =>
+                    e.stopPropagation()}>
 
                 <button id='close-modal-button'
-                    onClick={() => dispatch(toggleAddImageModal())}>
+                    onClick={() =>
+                        dispatch(toggleAddImageModal())}>
                     X
                 </button>
 
@@ -51,6 +54,7 @@ function AddImageModal() {
                 <div id='body'>
 
                     <input
+                        accept=".png,.jpg,.jpeg"
                         id='file-input'
                         type="file"
                         multiple
