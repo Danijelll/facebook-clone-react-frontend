@@ -48,8 +48,6 @@ function Feed() {
 
   useEffect(() => {
     dispatch(getAllFriendsAlbumsWithImages(postOnPage))
-    console.log(userFriendsAlbums);
-
   }, [page, itemsPerPage])
 
   return (

@@ -64,8 +64,6 @@ const editUserProfileImage = createAsyncThunk(
     'user/editUserProfileImage',
     async (data: IUserUpdateProfileImageData) => {
         const response = await UserService.editUserProfileImage(data);
-        console.log(response);
-
         return response;
     }
 )
