@@ -48,14 +48,16 @@ const updateComment = createAsyncThunk(
     }
 )
 
+const initialState = {
+    currentAlbumComments: [],
+    currentOpenComment: undefined,
+  }
+
 export const commentSlice = createSlice({
     name: "comment",
-    initialState: {
-        currentAlbumComments: [],
-        currentOpenComment: undefined,
-    },
+    initialState,
     reducers: {
-
+        clearAllAblumComments: () => initialState
     },
     extraReducers: (builder) => {
         builder.addCase(getAllAlbumComments.fulfilled, (state, action) => {
@@ -83,4 +85,5 @@ export {
     updateComment,
     getCommentById
 }
+export const { clearAllAblumComments } = commentSlice.actions
 export default commentSlice.reducer;
