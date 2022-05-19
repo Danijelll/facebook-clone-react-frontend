@@ -21,6 +21,7 @@ import { getCurrentUserData } from './features/Users/userSlice';
 import Loader from './components/Loader/Loader';
 import TwoFactorCode from './pages/2FACode/TwoFactorCode';
 import ErrorModal from './pages/ErrorModal/ErrorModal';
+import FriendModal from './pages/FriendModal/FriendModal';
 
 function App() {
   const setShowCommentModal = useSelector((state: RootStore) => state.ui.setShowCommentModal);
@@ -31,8 +32,8 @@ function App() {
   const setShowEditCommentModal = useSelector((state: RootStore) => state.ui.setShowEditCommentModal);
   const setShowImageModal = useSelector((state: RootStore) => state.ui.setShowImageModal);
   const setShowEditProfileModal = useSelector((state: RootStore) => state.ui.setShowEditProfileModal);
+  const setShowFriendModal = useSelector((state: RootStore) => state.ui.setShowFriendModal);
   const setShowErrorModal = useSelector((state: RootStore) => state.ui.setShowErrorModal)
-  const userData = useSelector((state: RootStore) => state.user.currentUser);
 
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
@@ -63,6 +64,7 @@ function App() {
         {setShowCommentModal && <CommentModal />}
         {setShowEditCommentModal && <EditCommentModal />}
         {setShowUserSearchModal && <UserSearchModal />}
+        {setShowFriendModal && <FriendModal />}
         {setShowErrorModal && <ErrorModal />}
         <Routes>
           <Route path='/' element={<Login />} />

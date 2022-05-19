@@ -131,6 +131,23 @@ class UserService {
             });
     }
 
+    getAllFriends(page: number) {
+        return axios.get('/friends?pageSize=18&pageNumber='+page)
+            .then((response) => {
+                if (response.status === 200) {
+                    return response.data;
+                }
+            }).catch((error) => {
+                console.log(error);
+                const errorData: IErrorData = {
+                    errorMessage: error.response.data.message,
+                    errorStatus: error.response.status
+                }
+                this.store.dispatch(addNewCurrentError(errorData))
+                this.store.dispatch(showErrorModal())
+            });
+    }
+
     editUserProfileImage(data: IUserUpdateProfileImageData) {
 
         const formData = new FormData();
