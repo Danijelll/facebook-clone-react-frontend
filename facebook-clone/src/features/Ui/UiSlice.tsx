@@ -10,6 +10,7 @@ export interface UiSliceState {
     setShowUserSearchModal: boolean;
     setShowFriendRequestModal: boolean;
     setShowFriendModal: boolean;
+    setShowChatModal: boolean;
     setShowErrorModal: boolean;
 
 
@@ -27,6 +28,7 @@ export const uiSlice = createSlice({
         setShowUserSearchModal: false,
         setShowFriendRequestModal: false,
         setShowFriendModal: false,
+        setShowChatModal: false,
         setShowErrorModal: false,
     },
     reducers: {
@@ -57,6 +59,9 @@ export const uiSlice = createSlice({
         toggleFriendModal(state) {
             state.setShowFriendModal = !state.setShowFriendModal;
         },
+        toggleChatModalModal(state) {
+            state.setShowChatModal = !state.setShowChatModal;
+        },
         showErrorModal(state) {
             state.setShowErrorModal = true;
         },
@@ -75,6 +80,7 @@ export const {
     toggleUserSearchModal,
     toggleFriendRequestModal,
     toggleFriendModal,
+    toggleChatModalModal,
     showErrorModal,
     closeErrorModal } = uiSlice.actions
 export default uiSlice.reducer;

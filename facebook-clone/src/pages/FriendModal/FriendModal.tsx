@@ -1,11 +1,10 @@
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useDebounce } from 'use-debounce';
 import { AppDispatch, RootStore } from '../../features/store';
 import { toggleFriendModal } from '../../features/Ui/UiSlice';
-import { getAllFriends, searchUsers, searchUsersWithBanned } from '../../features/Users/userSlice';
-import UserItem from '../UserSearch/UserItem/UserItem';
+import { getAllFriends } from '../../features/Users/userSlice';
+import UserItem from './UserItem';
 
 function FriendModal() {
     const userData = useSelector((state: RootStore) => state.user.currentUser);
@@ -51,7 +50,7 @@ function FriendModal() {
                 <div>
                     {renderUserList()}
                 </div>
-                
+
                 <div id='friend-request-modal-page-buttons'>
 
                     <button
