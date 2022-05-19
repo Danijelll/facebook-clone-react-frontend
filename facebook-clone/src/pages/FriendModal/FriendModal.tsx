@@ -48,16 +48,10 @@ function FriendModal() {
                 id='user-search-wrapper'
                 onClick={(e) => e.stopPropagation()}>
 
-                <div id='user-search-header'>
-                    <img
-                        id='user-search-svg'
-                        src="../../../../search.svg"
-                        alt="searchSvg"
-                    />
-                </div>
                 <div>
                     {renderUserList()}
                 </div>
+                
                 <div id='friend-request-modal-page-buttons'>
 
                     <button
