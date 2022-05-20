@@ -27,9 +27,16 @@ function MessageItem(props: MessageItemProps) {
             }
             {friendData?.id === senderId &&
                 <div>
-                    <div id='friend-username' >{friendData?.username}</div>
-                    <div id='friend-profile-image-message-wrapper'>
-                        <img id='message-friend-profile-image' src={friendData.profileImage} alt="" />
+                    <div
+                        id='friend-username' >
+                        {friendData?.username}
+                    </div>
+                    <div
+                        id='friend-profile-image-message-wrapper'>
+                        <img
+                            id='message-friend-profile-image'
+                            src={friendData.profileImage}
+                            alt="friendProfileImage" />
                         <div id='friend-message-wrapper'>
                             {message}
                         </div>

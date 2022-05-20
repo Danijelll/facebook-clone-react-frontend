@@ -1,7 +1,5 @@
 import { HubConnectionBuilder, LogLevel } from '@microsoft/signalr';
-import { useDispatch } from 'react-redux';
 import { addMessage } from '../features/Messages/MessageSlice';
-import { IMessageData } from '../interfaces/IMessage';
 
 const CHAT_URL = 'https://localhost:5001/chatHub'
 

@@ -48,7 +48,6 @@ function ChatModal() {
                 onClick={(e) => e.stopPropagation()}>
 
                 <div id='chat-modal-message-wrapper'>
-
                     {loadMessages()}
                 </div>
 
@@ -62,7 +61,14 @@ function ChatModal() {
                         placeholder={'Message ' + friendData?.username + '...'}
                         type="text"
                     />
-                    <button id='send-message-button' onClick={() => {dispatch(sendMessage(messageData));setMessage(() => '')}}>Send</button>
+                    <button
+                        id='send-message-button'
+                        onClick={() => {
+                            dispatch(sendMessage(messageData));
+                            setMessage(() => '');
+                        }}>
+                        Send
+                    </button>
                 </div>
 
             </div>
