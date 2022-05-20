@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { IMessageData } from "../../interfaces/IMessage";
+import { ICreateMessageData, IMessageData } from "../../interfaces/IMessage";
 import ChatService from "../../services/ChatService";
 
 export interface MessageSliceState {
@@ -7,7 +7,7 @@ export interface MessageSliceState {
 }
 
 const connect = createAsyncThunk(
-    'albums/connect',
+    'message/connect',
     async (name:string) => {
         const response = await ChatService.connect(name);
         return response;
@@ -15,9 +15,17 @@ const connect = createAsyncThunk(
 )
 
 const sendMessage = createAsyncThunk(
-    'albums/sendMessage',
-    async (message: IMessageData) => {        
+    'message/sendMessage',
+    async (message: ICreateMessageData) => {        
         const response = await ChatService.sendMessage(message.sender, message.receiver, message.message);
+        return response;
+    }
+)
+
+const receiveMessages = createAsyncThunk(
+    'message/receiveMessages',
+    async () => {        
+        const response = await ChatService.receiveMessages();
         return response;
     }
 )
@@ -25,17 +33,24 @@ const sendMessage = createAsyncThunk(
 export const messageSlice = createSlice({
     name: "messages",
     initialState: {
-        messages: undefined
+        messages: [{}]
     },
     reducers: {
+        addMessage: (state, action) => {
+            state.messages.push(action.payload)
+                   
+        }
     },
     extraReducers: (builder) => {
-        builder.addCase(sendMessage.fulfilled, (state, action) => {
+        builder.addCase(receiveMessages.fulfilled, (state, action) => {
         })
     },
 });
+
+export const { addMessage } = messageSlice.actions
 export {
     connect,
     sendMessage,
+    receiveMessages,
 }
 export default messageSlice.reducer;

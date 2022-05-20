@@ -1,4 +1,7 @@
 import { HubConnectionBuilder, LogLevel } from '@microsoft/signalr';
+import { useDispatch } from 'react-redux';
+import { addMessage } from '../features/Messages/MessageSlice';
+import { IMessageData } from '../interfaces/IMessage';
 
 const CHAT_URL = 'https://localhost:5001/chatHub'
 
@@ -8,25 +11,36 @@ const connection = new HubConnectionBuilder()
   .build()
 
 class ChatService {
+  store: any;
+
+  injectStore(store: any) {
+    this.store = store;
+  }
+
   sendMessage = async (sender: string, receiver: string, message: string) => {
     try {
-      await connection.invoke("SendMessage", sender, receiver, message);      
+      await connection.invoke("SendMessage", sender, receiver, message);
     } catch (e) {
       console.log(e);
     }
-
   }
 
-  connect = async (name:string) => {
+  receiveMessages = async () => {
     try {
-      connection.on("ReceiveMessage", (sender, message) => {        
-        console.log(sender, message);
+      connection.on("ReceiveMessage", (messageDTO) => {
+        this.store.dispatch(addMessage(messageDTO))
       })
 
-      await connection.start().then(() =>{
-        connection.invoke("OnConnected",(name))
-      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
+  connect = async (name: string) => {
+    try {
+      await connection.start().then(() => {
+        connection.invoke("OnConnected", (name))
+      });
     } catch (error) {
       console.log(error);
     }

@@ -60,7 +60,7 @@ function HamburgerMenu() {
 
                 <li className="menu__item">
                     <div onClick={() => dispatch(toggleFriendModal())}>
-                        <div className='navOptions'>Friends</div>
+                        <div className='navOptions'>Messages</div>
                     </div>
                 </li>
 

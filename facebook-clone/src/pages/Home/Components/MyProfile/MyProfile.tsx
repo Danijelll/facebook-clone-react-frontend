@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllCurrentUserAlbums } from '../../../../features/Albums/AlbumSlice';
-import { connect } from '../../../../features/Messages/MessageSlice';
+import { connect, receiveMessages } from '../../../../features/Messages/MessageSlice';
 import { RootStore } from '../../../../features/store';
 import ImageCarousel from '../../../ImageCarousel/ImageCarousel';
 import './MyProfile.scss'
@@ -18,7 +18,8 @@ function MyProfile() {
   useEffect(() => {
     if (userData?.id) {
       dispatch(getAllCurrentUserAlbums(userData?.id));
-      dispatch(connect(userData?.username));
+      dispatch(connect(userData?.id.toString()));
+      dispatch(receiveMessages());
     }
   }, [userData, images, currentOpenAlbum])
 
