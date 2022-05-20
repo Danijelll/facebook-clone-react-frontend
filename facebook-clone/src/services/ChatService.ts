@@ -1,5 +1,4 @@
 import { HubConnectionBuilder, LogLevel } from '@microsoft/signalr';
-import { IMessageData } from '../interfaces/IMessage';
 
 const CHAT_URL = 'https://localhost:5001/chatHub'
 
@@ -9,22 +8,24 @@ const connection = new HubConnectionBuilder()
   .build()
 
 class ChatService {
-  sendMessage = async (user: string, message: string) => {
+  sendMessage = async (sender: string, receiver: string, message: string) => {
     try {
-      await connection.invoke("SendMessage",user , message);
+      await connection.invoke("SendMessage", sender, receiver, message);      
     } catch (e) {
       console.log(e);
     }
 
   }
 
-  connect = async () => {
+  connect = async (name:string) => {
     try {
-      connection.on("ReceiveMessage", (user, message) => {
-        console.log(user, message);
+      connection.on("ReceiveMessage", (sender, message) => {        
+        console.log(sender, message);
       })
 
-      await connection.start();
+      await connection.start().then(() =>{
+        connection.invoke("OnConnected",(name))
+      });
 
     } catch (error) {
       console.log(error);

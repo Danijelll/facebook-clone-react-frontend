@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { connect, sendMessage } from '../../features/Messages/MessageSlice';
+import {  sendMessage } from '../../features/Messages/MessageSlice';
 import { AppDispatch, RootStore } from '../../features/store';
 import { toggleChatModalModal } from '../../features/Ui/UiSlice';
 
@@ -12,14 +12,10 @@ function ChatModal() {
 
     const dispatch: AppDispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(connect());
-    }, [])
-
     const messageData = {
-        receiver: '',
         sender: userData?.username,
-        message:message
+        receiver: friendData?.username,
+        message: message
     }
 
     return (

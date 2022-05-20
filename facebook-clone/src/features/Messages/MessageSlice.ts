@@ -8,16 +8,16 @@ export interface MessageSliceState {
 
 const connect = createAsyncThunk(
     'albums/connect',
-    async () => {
-        const response = await ChatService.connect();
+    async (name:string) => {
+        const response = await ChatService.connect(name);
         return response;
     }
 )
 
 const sendMessage = createAsyncThunk(
     'albums/sendMessage',
-    async (message: IMessageData) => {
-        const response = await ChatService.sendMessage(message.sender, message.message);
+    async (message: IMessageData) => {        
+        const response = await ChatService.sendMessage(message.sender, message.receiver, message.message);
         return response;
     }
 )

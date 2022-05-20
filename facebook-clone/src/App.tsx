@@ -23,6 +23,7 @@ import TwoFactorCode from './pages/2FACode/TwoFactorCode';
 import ErrorModal from './pages/ErrorModal/ErrorModal';
 import FriendModal from './pages/FriendModal/FriendModal';
 import ChatModal from './pages/ChatModal/ChatModal';
+import { connect } from './features/Messages/MessageSlice';
 
 function App() {
   const setShowCommentModal = useSelector((state: RootStore) => state.ui.setShowCommentModal);
