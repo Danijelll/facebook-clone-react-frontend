@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { sendMessage } from '../../features/Messages/MessageSlice';
 import { AppDispatch, RootStore } from '../../features/store';
@@ -14,19 +14,25 @@ function ChatModal() {
 
     const dispatch: AppDispatch = useDispatch();
 
+    useEffect(() => {
+        console.log(messages);
+
+    }, [messages])
+
+
     const messageData = {
-        sender: userData?.id.toString(),
-        receiver: friendData?.id.toString(),
+        senderId: userData?.id.toString(),
+        receiverId: friendData?.id.toString(),
         message: message
     }
 
     const loadMessages = () => {
         return messages?.map(message =>
             <MessageItem
-                key={message?.createdOn?.toString()}
+                key={message.id}
                 id={message.id}
-                sender={message.sender}
-                receiver={message.receiver}
+                senderId={parseInt(message.senderId)}
+                receiverId={parseInt(message.receiverId)}
                 message={message.message}
                 createdOn={message.createdOn}
             />)
@@ -40,20 +46,24 @@ function ChatModal() {
             <div
                 id='user-search-wrapper'
                 onClick={(e) => e.stopPropagation()}>
-                <div id='user-search-header'>
+
+                <div id='chat-modal-message-wrapper'>
+
+                    {loadMessages()}
+                </div>
+
+                <div id='message-modal-footer'>
                     <input
-                        id='user-search-input'
+                        id='message-modal-input'
+                        value={message}
                         onChange={(e) => {
                             setMessage(e.target.value);
                         }}
                         placeholder={'Message ' + friendData?.username + '...'}
                         type="text"
                     />
-                    <button onClick={() => dispatch(sendMessage(messageData))}>Send</button>
+                    <button id='send-message-button' onClick={() => {dispatch(sendMessage(messageData));setMessage(() => '')}}>Send</button>
                 </div>
-
-
-                {loadMessages()}
 
             </div>
         </div>

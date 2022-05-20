@@ -1,25 +1,43 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootStore } from '../../../features/store';
+import './MessageItem.scss'
 
 interface MessageItemProps {
     id: number,
-    sender: string,
-    receiver: string,
+    senderId: number,
+    receiverId: number,
     message: string,
     createdOn: Date,
 }
 
 function MessageItem(props: MessageItemProps) {
     const userData = useSelector((state: RootStore) => state.user.currentUser);
-    const { id, sender, receiver, message, createdOn } = props;
+    const friendData = useSelector((state: RootStore) => state.user.currentFriend);
+
+    const { id, senderId, receiverId, message, createdOn } = props;
+
 
     return (
-        <div>
-            {id}
-            {sender}
-            {receiver}
-            {message}
-            {createdOn}
+        <div id='message-wrapper'>
+            {userData?.id === senderId &&
+                <div id='self-message-wrapper'>
+                    {message}
+                </div>
+
+            }
+            {friendData?.id === senderId &&
+                <div>
+                    <div id='friend-username' >{friendData?.username}</div>
+                    <div id='friend-profile-image-message-wrapper'>
+                        <img id='message-friend-profile-image' src={friendData.profileImage} alt="" />
+                        <div id='friend-message-wrapper'>
+                            {message}
+                        </div>
+
+                    </div>
+                </div>
+            }
+
         </div>
     )
 }

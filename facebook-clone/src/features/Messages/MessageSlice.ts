@@ -3,12 +3,12 @@ import { ICreateMessageData, IMessageData } from "../../interfaces/IMessage";
 import ChatService from "../../services/ChatService";
 
 export interface MessageSliceState {
-    messages: IMessageData[];
+    messages: Array<IMessageData>;
 }
 
 const connect = createAsyncThunk(
     'message/connect',
-    async (name:string) => {
+    async (name: string) => {
         const response = await ChatService.connect(name);
         return response;
     }
@@ -16,15 +16,15 @@ const connect = createAsyncThunk(
 
 const sendMessage = createAsyncThunk(
     'message/sendMessage',
-    async (message: ICreateMessageData) => {        
-        const response = await ChatService.sendMessage(message.sender, message.receiver, message.message);
+    async (message: ICreateMessageData) => {
+        const response = await ChatService.sendMessage(message.senderId, message.receiverId, message.message);
         return response;
     }
 )
 
 const receiveMessages = createAsyncThunk(
     'message/receiveMessages',
-    async () => {        
+    async () => {
         const response = await ChatService.receiveMessages();
         return response;
     }
@@ -33,12 +33,11 @@ const receiveMessages = createAsyncThunk(
 export const messageSlice = createSlice({
     name: "messages",
     initialState: {
-        messages: [{}]
+        messages: []
     },
     reducers: {
-        addMessage: (state, action) => {
+        addMessage: (state:any, action:any) => {
             state.messages.push(action.payload)
-                   
         }
     },
     extraReducers: (builder) => {
