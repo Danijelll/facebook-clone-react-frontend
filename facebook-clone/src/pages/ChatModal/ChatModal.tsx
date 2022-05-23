@@ -11,12 +11,16 @@ function ChatModal() {
     const messages = useSelector((state: RootStore) => state.messages.messages);
     const friendData = useSelector((state: RootStore) => state.user.currentFriend);
     const [text, setText] = useState<any>('');
+    const el = document.getElementById('chat-modal-message-wrapper');
 
     const dispatch: AppDispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getMessages(friendData?.id))
-    }, [])
+        if (el) {
+            el.scrollTop = el.scrollHeight;
+        }
+    }, [text, el])
 
 
     const messageData = {
