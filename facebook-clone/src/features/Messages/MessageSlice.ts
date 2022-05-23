@@ -17,7 +17,7 @@ const connect = createAsyncThunk(
 const sendMessage = createAsyncThunk(
     'message/sendMessage',
     async (message: ICreateMessageData) => {
-        const response = await ChatService.sendMessage(message.senderId, message.receiverId, message.message);
+        const response = await ChatService.sendMessage(message);
         return response;
     }
 )
@@ -30,26 +30,41 @@ const receiveMessages = createAsyncThunk(
     }
 )
 
+const getMessages = createAsyncThunk(
+    'message/getMessages',
+    async (receiverId: number) => {
+        const response = await ChatService.getMessages(receiverId);
+        return response;
+    }
+)
+
+const initialState = {
+    messages: []
+}
+
 export const messageSlice = createSlice({
     name: "messages",
-    initialState: {
-        messages: []
-    },
+    initialState,
     reducers: {
-        addMessage: (state:any, action:any) => {
+        addMessage: (state: any, action: any) => {
             state.messages.push(action.payload)
-        }
+        },
+        clearMessages: () => initialState
     },
     extraReducers: (builder) => {
         builder.addCase(receiveMessages.fulfilled, (state, action) => {
         })
+        builder.addCase(getMessages.fulfilled, (state: any, action) => {
+            state.messages = action.payload
+        })
     },
 });
 
-export const { addMessage } = messageSlice.actions
+export const { addMessage, clearMessages } = messageSlice.actions
 export {
     connect,
     sendMessage,
     receiveMessages,
+    getMessages
 }
 export default messageSlice.reducer;

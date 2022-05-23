@@ -68,4 +68,6 @@
 
 #chat-modal-message-wrapper{
     height: 95%;
+    overflow: scroll;
+    overflow-x: hidden;
 }

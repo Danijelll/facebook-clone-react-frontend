@@ -35,7 +35,7 @@ class UserService {
                     return true;
                 }
             }).catch((error) => {
-                console.log(error);
+                                console.log(error);
                 const errorData: IErrorData = {
                     errorMessage: error.response.data.message,
                     errorStatus: error.response.status
@@ -70,6 +70,7 @@ class UserService {
                     return response.data;
                 }
             }).catch((error) => {
+                localStorage.clear()
                 console.log(error);
                 const errorData: IErrorData = {
                     errorMessage: error.response.data.message,

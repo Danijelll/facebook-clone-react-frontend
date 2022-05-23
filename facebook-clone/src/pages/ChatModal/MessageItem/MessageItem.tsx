@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { RootStore } from '../../../features/store';
 import './MessageItem.scss'
@@ -15,7 +16,6 @@ function MessageItem(props: MessageItemProps) {
     const friendData = useSelector((state: RootStore) => state.user.currentFriend);
 
     const { id, senderId, receiverId, message, createdOn } = props;
-
 
     return (
         <div id='message-wrapper'>
