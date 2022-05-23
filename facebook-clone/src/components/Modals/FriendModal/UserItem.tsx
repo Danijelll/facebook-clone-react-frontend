@@ -1,8 +1,8 @@
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../../features/store';
-import { toggleChatModalModal, toggleFriendModal } from '../../features/Ui/UiSlice';
-import { searchUserById } from '../../features/Users/userSlice';
+import { AppDispatch } from '../../../features/store';
+import { toggleChatModalModal, toggleFriendModal } from '../../../features/Ui/UiSlice';
+import { searchUserById } from '../../../features/Users/userSlice';
 
 interface UserItemProps {
     userId: number,
@@ -16,11 +16,9 @@ function UserItem(props: UserItemProps) {
 
 
     const fetchUser = async () => {
-        const result = await dispatch(searchUserById(userId));
-        const resultData = unwrapResult(result);
+        await dispatch(searchUserById(userId));
         dispatch(toggleFriendModal())
         dispatch(toggleChatModalModal())
-
     }
 
     return (

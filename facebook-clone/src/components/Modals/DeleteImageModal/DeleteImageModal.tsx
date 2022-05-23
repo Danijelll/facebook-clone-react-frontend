@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteAlbumById } from '../../features/Albums/AlbumSlice';
-import { RootStore } from '../../features/store';
-import { toggleDeleteImageModal } from '../../features/Ui/UiSlice';
+import { deleteAlbumById } from '../../../features/Albums/AlbumSlice';
+import { RootStore } from '../../../features/store';
+import { toggleDeleteImageModal } from '../../../features/Ui/UiSlice';
 import './DeleteImageModal.scss'
 
 function DeleteImageModal() {

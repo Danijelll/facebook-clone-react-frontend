@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { RootStore } from '../../../features/store';
+import { RootStore } from '../../../../features/store';
 import './MessageItem.scss'
 
 interface MessageItemProps {

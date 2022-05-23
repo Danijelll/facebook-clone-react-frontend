@@ -1,13 +1,12 @@
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootStore } from '../../features/store';
-import { toggleFriendModal } from '../../features/Ui/UiSlice';
-import { clearUserData, clearUserList, getAllFriends } from '../../features/Users/userSlice';
+import { AppDispatch, RootStore } from '../../../features/store';
+import { toggleFriendModal } from '../../../features/Ui/UiSlice';
+import {  clearUserList, getAllFriends } from '../../../features/Users/userSlice';
 import UserItem from './UserItem';
 
 function FriendModal() {
-    const userData = useSelector((state: RootStore) => state.user.currentUser);
     const userList = useSelector((state: RootStore) => state.user.userList);
 
     const dispatch: AppDispatch = useDispatch();

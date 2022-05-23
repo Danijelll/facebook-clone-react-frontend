@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearMessages, getMessages, sendMessage } from '../../features/Messages/MessageSlice';
-import { AppDispatch, RootStore } from '../../features/store';
-import { toggleChatModalModal } from '../../features/Ui/UiSlice';
+import { clearMessages, getMessages, sendMessage } from '../../../features/Messages/MessageSlice';
+import { AppDispatch, RootStore } from '../../../features/store';
+import { toggleChatModalModal } from '../../../features/Ui/UiSlice';
 import MessageItem from './MessageItem/MessageItem';
 
 

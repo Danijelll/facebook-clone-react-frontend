@@ -2,8 +2,8 @@ import { unwrapResult } from '@reduxjs/toolkit';
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { AppDispatch, RootStore } from '../../../features/store';
-import { searchUserById } from '../../../features/Users/userSlice';
+import { AppDispatch, RootStore } from '../../../../features/store';
+import { searchUserById } from '../../../../features/Users/userSlice';
 
 interface FriendRequestItemProps {
     firstUserId: number

@@ -1,30 +1,29 @@
-import { useState } from 'react'
+import './EditImageModal.scss'
 import { useDispatch, useSelector } from 'react-redux';
-import { updateComment } from '../../features/Comments/CommentSlice';
-import { RootStore } from '../../features/store';
-import { toggleEditCommentModal } from '../../features/Ui/UiSlice';
+import { toggleEditImageModal } from '../../../features/Ui/UiSlice';
+import { RootStore } from '../../../features/store';
+import { useState } from 'react';
+import { updateAlbumCaption } from '../../../features/Albums/AlbumSlice';
 
-function EditCommentModal() {
-    const currentOpenComment = useSelector((state: RootStore) => state.comment.currentOpenComment);
+function ImageMenuModal() {
     const currentOpenAlbum = useSelector((state: RootStore) => state.album.currentOpenAlbum);
-    const [commentText, setCommentText] = useState(currentOpenAlbum?.caption)
+    const [caption, setCaption] = useState(currentOpenAlbum?.caption)
     const dispatch = useDispatch();
 
     const handleEdit = async () => {
-        await dispatch(updateComment(commentUpdateData))
-        dispatch(toggleEditCommentModal())
+        await dispatch(updateAlbumCaption(albumUpdateData))
+        dispatch(toggleEditImageModal())
     }
 
-    const commentUpdateData = {
-        id: currentOpenComment?.id,
-        albumId: currentOpenComment?.albumId,
-        text: commentText
+    const albumUpdateData = {
+        id: currentOpenAlbum?.id,
+        caption: caption
     }
 
     return (
         <div className='modal-background'
             onClick={() =>
-                dispatch(toggleEditCommentModal())}>
+                dispatch(toggleEditImageModal())}>
 
             <div id='image-menu-modal-container'
                 onClick={(e) =>
@@ -32,22 +31,22 @@ function EditCommentModal() {
 
                 <button id='image-menu-close-modal-button'
                     onClick={() =>
-                        dispatch(toggleEditCommentModal())}>
+                        dispatch(toggleEditImageModal())}>
                     X
                 </button>
 
                 <div id='body'>
                     <input
                         id='edit-image-modal-input'
-                        onChange={e => setCommentText(e.target.value)}
+                        onChange={e => setCaption(e.target.value)}
                         type="text"
-                        placeholder={currentOpenComment?.text}
+                        placeholder={currentOpenAlbum?.caption}
                     />
 
                     <button
                         id='edit-image-modal-edit-button'
                         onClick={() => handleEdit()}>
-                        Edit comment text
+                        Edit caption
                     </button>
 
                     <button id='edit-image-modal-cancel-button'>
@@ -59,4 +58,4 @@ function EditCommentModal() {
     )
 }
 
-export default EditCommentModal
+export default ImageMenuModal

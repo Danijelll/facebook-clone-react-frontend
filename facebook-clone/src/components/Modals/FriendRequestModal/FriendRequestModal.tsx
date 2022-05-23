@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllIncomingFriendRequests } from '../../features/Friendships/FriendshipSlice';
-import { RootStore } from '../../features/store';
-import { toggleFriendRequestModal } from '../../features/Ui/UiSlice';
+import { getAllIncomingFriendRequests } from '../../../features/Friendships/FriendshipSlice';
+import { RootStore } from '../../../features/store';
+import { toggleFriendRequestModal } from '../../../features/Ui/UiSlice';
 import FriendRequestItem from './FriendRequestItem/FriendRequestItem';
 import './FriendRequestModal.scss'
 
