@@ -3,7 +3,7 @@ import { addNewCurrentError } from '../features/Error/ErrorSlice';
 import { addMessage } from '../features/Messages/MessageSlice';
 import { showErrorModal } from '../features/Ui/UiSlice';
 import { IErrorData } from '../interfaces/IError';
-import { ICreateMessageData, IMessageData } from '../interfaces/IMessage';
+import { ICreateMessageData } from '../interfaces/IMessage';
 import axios from './axios';
 
 const CHAT_URL = 'https://localhost:5001/chatHub'
@@ -24,7 +24,7 @@ class ChatService {
     return axios.post('/messages', message)
       .then((response) => {
         if (response.status === 200) {
-         connection.invoke("SendMessage", message.senderId, message.receiverId, message.message1);
+         connection.invoke("SendMessage", message.senderId, message.receiverId, message.text);
           return response.data;
         }
       }).catch((error) => {

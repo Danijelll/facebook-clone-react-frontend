@@ -112,6 +112,9 @@ export const userSlice = createSlice({
     reducers: {
         clearUserData: (state) => {
             state.currentUser = undefined;
+        },
+        clearUserList: (state) => {
+            state.userList = undefined;
         }
     },
     extraReducers: (builder) => {
@@ -169,5 +172,5 @@ export {
     getAllFriends,
     confirm2FA
 };
-export const { clearUserData } = userSlice.actions
+export const { clearUserData, clearUserList } = userSlice.actions
 export default userSlice.reducer;

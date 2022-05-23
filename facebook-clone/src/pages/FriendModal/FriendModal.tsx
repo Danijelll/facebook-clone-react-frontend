@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootStore } from '../../features/store';
 import { toggleFriendModal } from '../../features/Ui/UiSlice';
-import { getAllFriends } from '../../features/Users/userSlice';
+import { clearUserData, clearUserList, getAllFriends } from '../../features/Users/userSlice';
 import UserItem from './UserItem';
 
 function FriendModal() {
@@ -41,7 +41,7 @@ function FriendModal() {
     return (
         <div
             className='comment-modal-background'
-            onClick={() => dispatch(toggleFriendModal())}>
+            onClick={() => {dispatch(toggleFriendModal()); dispatch(clearUserList())}}>
 
             <div
                 id='user-search-wrapper'

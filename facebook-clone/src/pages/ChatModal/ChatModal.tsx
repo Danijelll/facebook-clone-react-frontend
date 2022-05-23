@@ -10,7 +10,7 @@ function ChatModal() {
     const userData = useSelector((state: RootStore) => state.user.currentUser);
     const messages = useSelector((state: RootStore) => state.messages.messages);
     const friendData = useSelector((state: RootStore) => state.user.currentFriend);
-    const [message, setMessage] = useState<any>('');
+    const [text, setText] = useState<any>('');
 
     const dispatch: AppDispatch = useDispatch();
 
@@ -22,7 +22,7 @@ function ChatModal() {
     const messageData = {
         senderId: userData?.id.toString(),
         receiverId: friendData?.id.toString(),
-        message1: message
+        text: text
     }
 
     const loadMessages = () => {
@@ -32,7 +32,7 @@ function ChatModal() {
                 id={message.id}
                 senderId={parseInt(message.senderId)}
                 receiverId={parseInt(message.receiverId)}
-                message={message.message1}
+                message={message.text}
                 createdOn={message.createdOn}
             />)
     }
@@ -53,9 +53,9 @@ function ChatModal() {
                 <div id='message-modal-footer'>
                     <input
                         id='message-modal-input'
-                        value={message}
+                        value={text}
                         onChange={(e) => {
-                            setMessage(e.target.value);
+                            setText(e.target.value);
                         }}
                         placeholder={'Message ' + friendData?.username + '...'}
                         type="text"
@@ -64,7 +64,7 @@ function ChatModal() {
                         id='send-message-button'
                         onClick={() => {
                             dispatch(sendMessage(messageData));
-                            setMessage(() => '');
+                            setText(() => '');
                         }}>
                         Send
                     </button>
