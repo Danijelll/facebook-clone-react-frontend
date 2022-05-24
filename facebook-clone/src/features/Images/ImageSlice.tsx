@@ -18,12 +18,12 @@ const uploadImages = createAsyncThunk(
 export const imageSlice = createSlice({
     name: "image",
     initialState: {
-        userImages: [undefined]
+        userImages: []
     },
     reducers: {
     },
     extraReducers: (builder) => {
-        builder.addCase(uploadImages.fulfilled, (state, action) => {
+        builder.addCase(uploadImages.fulfilled, (state:any, action) => {
             state.userImages.push(action.payload);
         })
     },

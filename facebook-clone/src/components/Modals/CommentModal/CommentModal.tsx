@@ -1,14 +1,14 @@
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Loader from '../../components/Loader/Loader';
-import SmallLoader from '../../components/SmallLoader/SmallLoader';
-import { clearAllAblumComments, getAllAlbumComments, uploadComment } from '../../features/Comments/CommentSlice';
-import { AppDispatch, RootStore } from '../../features/store';
-import { toggleCommentModal } from '../../features/Ui/UiSlice'
-import { ICommentUploadData } from '../../interfaces/IComment';
+import Loader from '../../Loader/Loader';
+import SmallLoader from '../../SmallLoader/SmallLoader';
+import { clearAllAblumComments, getAllAlbumComments, uploadComment } from '../../../features/Comments/CommentSlice';
+import { AppDispatch, RootStore } from '../../../features/store';
+import { toggleCommentModal } from '../../../features/Ui/UiSlice'
+import { ICommentUploadData } from '../../../interfaces/IComment';
 import './CommentModal.scss'
-import CommentItem from './Components/CommentItem/CommentItem';
+import CommentItem from './Components/CommentItem';
 
 function CommentModal() {
   const currentOpenComment = useSelector((state: RootStore) => state.comment.currentOpenComment);

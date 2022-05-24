@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { RootStore } from '../../features/store';
-import { closeErrorModal } from '../../features/Ui/UiSlice';
+import { RootStore } from '../../../features/store';
+import { closeErrorModal } from '../../../features/Ui/UiSlice';
 import './ErrorModal.scss'
 
 function ErrorModal() {

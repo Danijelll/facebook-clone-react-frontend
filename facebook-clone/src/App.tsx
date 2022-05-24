@@ -8,19 +8,22 @@ import ConfirmEmail from './pages/ConfirmEmail/ConfirmEmail';
 import UserPage from './pages/UserPage/UserPage';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootStore } from './features/store';
-import EditImageModal from './pages/EditImageModal/EditImageModal';
-import DeleteImageModal from './pages/DeleteImageModal/DeleteImageModal';
-import FriendRequestModal from './pages/FriendRequestModal/FriendRequestModal';
-import CommentModal from './pages/CommentModal/CommentModal';
-import EditCommentModal from './pages/EditCommentModal/EditCommentModal';
-import UserSearchModal from './pages/UserSearch/UserSearchModal';
+import EditImageModal from './components/Modals/EditImageModal/EditImageModal';
+import DeleteImageModal from './components/Modals/DeleteImageModal/DeleteImageModal';
+import FriendRequestModal from './components/Modals/FriendRequestModal/FriendRequestModal';
+import CommentModal from './components/Modals/CommentModal/CommentModal';
+import EditCommentModal from './components/Modals/EditCommentModal/EditCommentModal';
+import UserSearchModal from './components/Modals/UserSearchModal/UserSearchModal';
 import AddImageModal from './pages/Home/Components/AddImageModal/AddImageModal';
 import EditProfileModal from './pages/Home/Components/EditProfileModal/EditProfileModal';
 import { useEffect, useState } from 'react';
 import { getCurrentUserData } from './features/Users/userSlice';
 import Loader from './components/Loader/Loader';
 import TwoFactorCode from './pages/2FACode/TwoFactorCode';
-import ErrorModal from './pages/ErrorModal/ErrorModal';
+import ErrorModal from './components/Modals/ErrorModal/ErrorModal';
+import FriendModal from './components/Modals/FriendModal/FriendModal';
+import ChatModal from './components/Modals/ChatModal/ChatModal';
+import { connect } from './features/Messages/MessageSlice';
 
 function App() {
   const setShowCommentModal = useSelector((state: RootStore) => state.ui.setShowCommentModal);
@@ -31,8 +34,9 @@ function App() {
   const setShowEditCommentModal = useSelector((state: RootStore) => state.ui.setShowEditCommentModal);
   const setShowImageModal = useSelector((state: RootStore) => state.ui.setShowImageModal);
   const setShowEditProfileModal = useSelector((state: RootStore) => state.ui.setShowEditProfileModal);
-  const setShowErrorModal = useSelector((state: RootStore) => state.ui.setShowErrorModal)
-  const userData = useSelector((state: RootStore) => state.user.currentUser);
+  const setShowFriendModal = useSelector((state: RootStore) => state.ui.setShowFriendModal);
+  const setShowChatModal = useSelector((state: RootStore) => state.ui.setShowChatModal);
+  const setShowErrorModal = useSelector((state: RootStore) => state.ui.setShowErrorModal);
 
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
@@ -63,6 +67,8 @@ function App() {
         {setShowCommentModal && <CommentModal />}
         {setShowEditCommentModal && <EditCommentModal />}
         {setShowUserSearchModal && <UserSearchModal />}
+        {setShowFriendModal && <FriendModal />}
+        {setShowChatModal && <ChatModal />}
         {setShowErrorModal && <ErrorModal />}
         <Routes>
           <Route path='/' element={<Login />} />

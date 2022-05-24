@@ -2,9 +2,9 @@ import { unwrapResult } from '@reduxjs/toolkit';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useDebounce } from 'use-debounce';
-import { AppDispatch, RootStore } from '../../features/store';
-import { toggleUserSearchModal } from '../../features/Ui/UiSlice';
-import { searchUsers, searchUsersWithBanned } from '../../features/Users/userSlice';
+import { AppDispatch, RootStore } from '../../../features/store';
+import { toggleUserSearchModal } from '../../../features/Ui/UiSlice';
+import { clearUserData, clearUserList, searchUsers, searchUsersWithBanned } from '../../../features/Users/userSlice';
 import UserItem from './UserItem/UserItem';
 import './UserSearchModal.scss'
 
@@ -59,7 +59,7 @@ function UserSearch() {
     return (
         <div
             className='comment-modal-background'
-            onClick={() => dispatch(toggleUserSearchModal())}>
+            onClick={() => {dispatch(toggleUserSearchModal()); dispatch(clearUserList())}}>
 
             <div
                 id='user-search-wrapper'

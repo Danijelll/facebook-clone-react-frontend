@@ -67,6 +67,13 @@ const editUserProfileImage = createAsyncThunk(
         return response;
     }
 )
+const getAllFriends = createAsyncThunk(
+    'user/getAllFriends',
+    async (page: number) => {
+        const response = await UserService.getAllFriends(page);
+        return response;
+    }
+)
 const editUserCoverImage = createAsyncThunk(
     'user/editUserCoverImage',
     async (data: IUserUpdateCoverImageData) => {
@@ -105,6 +112,9 @@ export const userSlice = createSlice({
     reducers: {
         clearUserData: (state) => {
             state.currentUser = undefined;
+        },
+        clearUserList: (state) => {
+            state.userList = undefined;
         }
     },
     extraReducers: (builder) => {
@@ -143,6 +153,10 @@ export const userSlice = createSlice({
         })
         builder.addCase(confirm2FA.fulfilled, (state, action) => {
         })
+        builder.addCase(getAllFriends.fulfilled, (state, action) => {
+            if (action.payload.length)
+                state.userList = action.payload;
+        })
     },
 });
 
@@ -155,7 +169,8 @@ export {
     editUserCoverImage,
     unbanUser, banUser,
     searchUsersWithBanned,
+    getAllFriends,
     confirm2FA
 };
-export const { clearUserData } = userSlice.actions
+export const { clearUserData, clearUserList } = userSlice.actions
 export default userSlice.reducer;

@@ -2,7 +2,7 @@ import { unwrapResult } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { AppDispatch } from '../../features/store';
-import { toggleAddImageModal, toggleEditProfileModal, toggleFriendRequestModal, toggleUserSearchModal } from '../../features/Ui/UiSlice';
+import { toggleAddImageModal, toggleEditProfileModal, toggleFriendModal, toggleFriendRequestModal, toggleUserSearchModal } from '../../features/Ui/UiSlice';
 import { clearUserData, logout } from '../../features/Users/userSlice';
 import './HamburgerMenu.scss'
 
@@ -55,6 +55,12 @@ function HamburgerMenu() {
                 <li className="menu__item">
                     <div onClick={() => dispatch(toggleFriendRequestModal())}>
                         <div className='navOptions'>Friend Requests</div>
+                    </div>
+                </li>
+
+                <li className="menu__item">
+                    <div onClick={() => dispatch(toggleFriendModal())}>
+                        <div className='navOptions'>Messages</div>
                     </div>
                 </li>
 

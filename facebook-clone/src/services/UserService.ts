@@ -35,7 +35,7 @@ class UserService {
                     return true;
                 }
             }).catch((error) => {
-                console.log(error);
+                                console.log(error);
                 const errorData: IErrorData = {
                     errorMessage: error.response.data.message,
                     errorStatus: error.response.status
@@ -70,6 +70,7 @@ class UserService {
                     return response.data;
                 }
             }).catch((error) => {
+                localStorage.clear()
                 console.log(error);
                 const errorData: IErrorData = {
                     errorMessage: error.response.data.message,
@@ -116,6 +117,23 @@ class UserService {
 
     getUserById(id: number) {
         return axios.get('/users/' + id)
+            .then((response) => {
+                if (response.status === 200) {
+                    return response.data;
+                }
+            }).catch((error) => {
+                console.log(error);
+                const errorData: IErrorData = {
+                    errorMessage: error.response.data.message,
+                    errorStatus: error.response.status
+                }
+                this.store.dispatch(addNewCurrentError(errorData))
+                this.store.dispatch(showErrorModal())
+            });
+    }
+
+    getAllFriends(page: number) {
+        return axios.get('/friends?pageSize=18&pageNumber='+page)
             .then((response) => {
                 if (response.status === 200) {
                     return response.data;

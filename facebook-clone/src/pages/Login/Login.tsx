@@ -30,7 +30,7 @@ function Login() {
   }
 
   const handleLogin = async () => {
-    const result = await dispatch(login(loginData));    
+    const result = await dispatch(login(loginData));
 
     if (result.payload) {
       navigate('/login', { state: { username: loginData.username } });
@@ -76,7 +76,7 @@ function Login() {
         </Link>
       </p>
 
-    </div>
+    </div >
   )
 }
 
